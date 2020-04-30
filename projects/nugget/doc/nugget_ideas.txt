@@ -1,0 +1,45 @@
+NEXT
+===
+Improve nuggets suggestions when creating quiz
+Quiz Search
+Notifications panel, e.g. when quiz successfully updated, show msg on quiz detail page; or "Nugget 'Ayn Rand' Liked"
+Create quiz from liked / created nuggets
+When filtering nuggets, option to "create quiz from selection"
+Nugget difficulty (global vs. regional? e.g. local pop-star well known locally)
+Integrate "saved" nuggets into nugget search page (if user logged in)
+
+TOP
+===
+Quiz user rating (1-5)
+Add Quiz main image
+Take random quiz
+When creating nugget, load summary from wikipedia: https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=war
+Question=name, answer=4 picture options *or* Question=description, answer=4 picture options, etc.
+Quiz difficulty score (should only take the users' completed attempts into account.), avg. score
+Nugget difficulty
+Flag nugget / quiz as inappropriate
+
+MEDIUM
+===
+Comments for quizzes / nuggets
+Semantics for 2nd part of tag: 'paris' or '1901' may be another nugget.
+Processing of two-word tags, e.g. born 1901, died paris, started 1903
+Move quiz results, likes, created nuggets from session to db user after registering
+Allow tags to be reported and blocked if abusive/insulting
+User reputation based on:
+- Popularity of nuggets created
+- Popularity of quizzes created
+- Quiz rating
+- Created quizzes featured
+Share quiz:
+- private (only me, logged in)
+- hidden (anyone with the link)
+- public (everyone)
+- specific people (logged in)
+- specific group (logged in)
+
+LOW
+===
+Create a visual theme for a quiz, and share it with friends
+Quiz "weak" questions (often answered wrong)
+

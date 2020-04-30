@@ -1,5 +1,9 @@
-<app-mrb-ui-container>
-  <div style="color: white;">
-    this is fungus content
-  </div>
+<app-mrb-ui-container (resized)="resized($event)">
+  <ng-container *ngFor="let cellBgRow of cellBgGrid">
+    <app-cell *ngFor="let cellBg of cellBgRow" [cell]="cellBg"></app-cell>
+  </ng-container>
+  <app-cell
+    [cell]="cellFungus"
+    *ngFor="let cellFungus of fungus.cells"
+  ></app-cell>
 </app-mrb-ui-container>
