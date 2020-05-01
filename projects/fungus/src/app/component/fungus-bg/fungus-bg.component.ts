@@ -7,7 +7,7 @@ import {CellBg} from '../../model/cell-bg';
   styleUrls: ['./fungus-bg.component.less'],
 })
 export class FungusBgComponent implements OnInit {
-  @Input() cellBgGrid: CellBg[][] = [];
+  @Input() fungusBg: CellBg[][] = [];
   constructor() {}
 
   ngOnInit(): void {}

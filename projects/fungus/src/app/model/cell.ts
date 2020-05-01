@@ -1,5 +1,5 @@
 export interface Cell {
   row: number;
   col: number;
-  colour: string;
+  colour?: string;
 }
