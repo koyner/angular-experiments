@@ -13,6 +13,10 @@ export class CellComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  clicked() {
+    console.log(`clicked: ${this.cell.col}, ${this.cell.row}`);
+  }
+
   get x() {
     return this.renderer.xFor(this.cell);
   }
