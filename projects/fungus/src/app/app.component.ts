@@ -20,12 +20,12 @@ export class AppComponent {
     private config: ConfigService,
     private util: UtilService,
   ) {
-    for (let i = 0; i < this.config.rows; i++) {
+    for (let i = 0; i < this.config.cols; i++) {
       this._fungusBg[i] = [];
-      for (let j = 0; j < this.config.cols; j++) {
+      for (let j = 0; j < this.config.rows; j++) {
         this._fungusBg[i][j] = {
-          row: i,
-          col: j,
+          col: i,
+          row: j,
           colour: '#222',
           bgProp: 'some-prop',
         };

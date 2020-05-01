@@ -3,10 +3,10 @@ import {UtilService} from '../util/util.service';
 import {CellFungus} from './cell-fungus';
 
 export enum Cardinal {
-  n = 'n',
-  s = 's',
   w = 'w',
   e = 'e',
+  n = 'n',
+  s = 's',
 }
 
 export class Fungus {
@@ -15,8 +15,8 @@ export class Fungus {
   constructor(public config: ConfigService, public util: UtilService) {
     this.cells.push(
       new CellFungus(
-        (this.config.rows - 1) / 2,
         (this.config.cols - 1) / 2,
+        (this.config.rows - 1) / 2,
         '#446644',
         true,
         this,
@@ -27,17 +27,17 @@ export class Fungus {
       if (cell) {
         let coords;
         switch (cell.getRandomEmptyNeighbourKey()) {
-          case Cardinal.n:
-            coords = [cell.row - 1, cell.col];
-            break;
-          case Cardinal.s:
-            coords = [cell.row + 1, cell.col];
-            break;
           case Cardinal.w:
-            coords = [cell.row, cell.col - 1];
+            coords = [cell.col - 1, cell.row];
             break;
           case Cardinal.e:
-            coords = [cell.row, cell.col + 1];
+            coords = [cell.col + 1, cell.row];
+            break;
+          case Cardinal.n:
+            coords = [cell.col, cell.row - 1];
+            break;
+          case Cardinal.s:
+            coords = [cell.col, cell.row + 1];
             break;
           default:
             break;
@@ -55,9 +55,9 @@ export class Fungus {
     }, 1000);
   }
 
-  getCell(row, col): CellFungus {
+  getCell(col, row): CellFungus {
     return this.cells.find(c => {
-      return c.row === row && c.col === col;
+      return c.col === col && c.row === row;
     });
   }
 
