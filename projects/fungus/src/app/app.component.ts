@@ -1,10 +1,7 @@
 import {Component} from '@angular/core';
-
-import {ConfigService} from './config/config.service';
-import {CellBg} from './model/cell-bg';
-import {Fungus} from './model/fungus';
 import {RenderService} from './render/render.service';
-import {UtilService} from './util/util.service';
+import {BgService} from './util/bg.service';
+import {FungusService} from './util/fungus.service';
 
 @Component({
   selector: 'app-root',
@@ -12,33 +9,13 @@ import {UtilService} from './util/util.service';
   styleUrls: ['./app.component.less'],
 })
 export class AppComponent {
-  private _fungusBg: CellBg[][] = [];
-  private _fungus = new Fungus(this.config, this.util);
-
   constructor(
     private renderer: RenderService,
-    private config: ConfigService,
-    private util: UtilService,
+    private fungus: FungusService,
+    private bg: BgService,
   ) {
-    for (let i = 0; i < this.config.cols; i++) {
-      this._fungusBg[i] = [];
-      for (let j = 0; j < this.config.rows; j++) {
-        this._fungusBg[i][j] = {
-          col: i,
-          row: j,
-          colour: '#222',
-          bgProp: 'some-prop',
-        };
-      }
-    }
-  }
-
-  get fungusBg() {
-    return this._fungusBg;
-  }
-
-  get fungus() {
-    return this._fungus;
+    this.bg.init();
+    this.fungus.init();
   }
 
   resized(size: number) {

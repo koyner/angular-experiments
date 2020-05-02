@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Cell} from '../../model/cell';
 import {RenderService} from '../../render/render.service';
+import {GridService} from '../../util/grid.service';
 
 @Component({
   selector: 'app-cell',
@@ -9,12 +10,13 @@ import {RenderService} from '../../render/render.service';
 })
 export class CellComponent implements OnInit {
   @Input() cell: Cell;
-  constructor(private renderer: RenderService) {}
+  constructor(private renderer: RenderService, private grid: GridService) {}
 
   ngOnInit(): void {}
 
   clicked() {
-    console.log(`clicked: ${this.cell.col}, ${this.cell.row}`);
+    const coords = this.grid.coordsOf(this.cell);
+    console.log(`clicked: ${coords.col}, ${coords.row}`);
   }
 
   get x() {

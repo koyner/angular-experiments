@@ -2,13 +2,14 @@ import {Injectable} from '@angular/core';
 
 import {ConfigService} from '../config/config.service';
 import {Cell} from '../model/cell';
+import {GridService} from '../util/grid.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RenderService {
   private _size: number;
-  constructor(private config: ConfigService) {}
+  constructor(private config: ConfigService, private grid: GridService) {}
 
   set size(size: number) {
     this._size = size;
@@ -19,11 +20,11 @@ export class RenderService {
   }
 
   xFor(cell: Cell): number {
-    return Math.round(cell.col * this.cellWidth);
+    return Math.round(this.grid.coordsOf(cell).col * this.cellWidth);
   }
 
   yFor(cell: Cell): number {
-    return Math.round(cell.row * this.cellHeight);
+    return Math.round(this.grid.coordsOf(cell).row * this.cellHeight);
   }
 
   wFor(cell: Cell): number {

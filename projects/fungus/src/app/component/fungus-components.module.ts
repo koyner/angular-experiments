@@ -2,12 +2,11 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {CellComponent} from './cell/cell.component';
-import {FungusComponent} from './fungus/fungus.component';
-import {FungusBgComponent} from './fungus-bg/fungus-bg.component';
+import {GridComponent} from './grid/grid.component';
 
 @NgModule({
-  declarations: [CellComponent, FungusComponent, FungusBgComponent],
+  declarations: [CellComponent, GridComponent],
   imports: [CommonModule],
-  exports: [CellComponent, FungusComponent, FungusBgComponent],
+  exports: [CellComponent, GridComponent],
 })
 export class FungusComponentsModule {}

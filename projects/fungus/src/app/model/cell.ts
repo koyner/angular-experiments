@@ -1,5 +1,5 @@
-export interface Cell {
-  col: number;
-  row: number;
-  colour?: string;
+export abstract class Cell {
+  constructor(public colour: string) {}
+
+  abstract get type();
 }

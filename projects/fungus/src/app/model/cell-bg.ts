@@ -1,5 +1,11 @@
 import {Cell} from './cell';
 
-export interface CellBg extends Cell {
-  bgProp: string;
+export class CellBg extends Cell {
+  constructor(colour: string) {
+    super(colour);
+  }
+
+  get type() {
+    return 'bg';
+  }
 }
