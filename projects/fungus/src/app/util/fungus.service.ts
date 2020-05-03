@@ -21,24 +21,23 @@ export class FungusService {
       Math.floor(Math.random() * this.config.rows),
     );
     window.setInterval(() => {
-      const cell = this.util.getRandomElementOf(
-        this.grid.cellsWithEmptyNeighbour,
+      const gridEl = this.util.getRandomElementOf(
+        this.grid.gridElsWithEmptyNeighbour,
       );
-      if (cell) {
+      if (gridEl) {
         let coordsNew;
-        const coords = this.grid.coordsOf(cell);
-        switch (this.grid.getRandomEmptyNeighbourKey(cell)) {
+        switch (this.grid.getRandomEmptyNeighbourKey(gridEl)) {
           case Cardinal.w:
-            coordsNew = {col: coords.col - 1, row: coords.row};
+            coordsNew = {col: gridEl.col - 1, row: gridEl.row};
             break;
           case Cardinal.e:
-            coordsNew = {col: coords.col + 1, row: coords.row};
+            coordsNew = {col: gridEl.col + 1, row: gridEl.row};
             break;
           case Cardinal.n:
-            coordsNew = {col: coords.col, row: coords.row - 1};
+            coordsNew = {col: gridEl.col, row: gridEl.row - 1};
             break;
           case Cardinal.s:
-            coordsNew = {col: coords.col, row: coords.row + 1};
+            coordsNew = {col: gridEl.col, row: gridEl.row + 1};
             break;
           default:
             break;

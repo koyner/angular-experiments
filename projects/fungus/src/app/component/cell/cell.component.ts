@@ -15,8 +15,8 @@ export class CellComponent implements OnInit {
   ngOnInit(): void {}
 
   clicked(): void {
-    const coords = this.grid.coordsOf(this.cell);
-    console.log(`clicked: ${coords.col}, ${coords.row}`);
+    const gridEl = this.grid.elFrom(this.cell);
+    console.log(`clicked: ${gridEl.col}, ${gridEl.row}`);
   }
 
   get x(): number {

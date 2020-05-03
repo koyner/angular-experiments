@@ -16,6 +16,13 @@ export interface IGridEl {
   row: number;
 }
 
+interface INeighbourEls {
+  w?: IGridEl;
+  e?: IGridEl;
+  n?: IGridEl;
+  s?: IGridEl;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -38,34 +45,26 @@ export class GridService {
     }
   }
 
-  coordsOf(cell: Cell): {col: number; row: number} {
-    const el = this.elFrom(cell);
-    return {
-      col: el.col,
-      row: el.row,
-    };
+  get gridElsWithEmptyNeighbour(): IGridEl[] {
+    return this._grid.filter(
+      el => el.cell.type === 'fungus' && this.hasEmptyNeighbour(el),
+    );
   }
 
-  get cellsWithEmptyNeighbour(): Cell[] {
-    return this._grid
-      .filter(el => el.cell.type === 'fungus' && this.hasEmptyNeighbour(el))
-      .map(el => el.cell);
-  }
-
-  getRandomEmptyNeighbourKey(cell: Cell): Cardinal {
-    const neighbours = this.getNeighboursOf(this.elFrom(cell));
+  getRandomEmptyNeighbourKey(el: IGridEl): Cardinal {
+    const neighbours = this.getNeighboursOf(el);
     const emptyNeighbourKeys = Object.keys(neighbours).filter(
       key => neighbours[key].cell.type !== 'fungus',
     );
     return this.util.getRandomElementOf(emptyNeighbourKeys) as Cardinal;
   }
 
-  private elAt(col: number, row: number): IGridEl {
-    return this._grid.find(el => el.col === col && el.row === row);
+  elFrom(cell: Cell): IGridEl {
+    return this._grid.find(elGrid => elGrid.cell === cell);
   }
 
-  private elFrom(cell: Cell): IGridEl {
-    return this._grid.find(elGrid => elGrid.cell === cell);
+  private elAt(col: number, row: number): IGridEl {
+    return this._grid.find(el => el.col === col && el.row === row);
   }
 
   private hasEmptyNeighbour(el: IGridEl): boolean {
@@ -75,8 +74,8 @@ export class GridService {
     );
   }
 
-  private getNeighboursOf(el: IGridEl): object {
-    const dirs: {[key: string]: IGridEl} = {};
+  private getNeighboursOf(el: IGridEl): INeighbourEls {
+    const dirs: INeighbourEls = {};
     if (el.col !== 0) {
       dirs[Cardinal.w] = this.elAt(el.col - 1, el.row);
     }
