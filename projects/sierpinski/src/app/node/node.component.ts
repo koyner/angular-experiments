@@ -19,55 +19,6 @@ export class NodeComponent implements OnInit, OnDestroy, IRenderable {
     return Math.floor(50 + Math.random() * 200);
   }
 
-  private _col: string;
-  private _opacity: number;
-
-  @Input() level: number;
-  @Input() pos: number;
-  @Input() xParent: number;
-  @Input() yParent: number;
-
-  constructor(
-    public settings: SettingsService,
-    public draw: DrawService,
-    private animate: AnimateService,
-    private domSanitizer: DomSanitizer,
-  ) {}
-
-  ngOnInit() {
-    this._col = `rgb(${NodeComponent.colRand}, ${NodeComponent.colRand}, ${NodeComponent.colRand})`;
-    this._opacity = 0.7;
-    this.draw.renderables.push(this);
-  }
-
-  ngOnDestroy() {
-    const index = this.draw.renderables.indexOf(this);
-    this.draw.renderables.splice(index, 1);
-  }
-
-  private getCoord(axis: Axis): number {
-    const isX = axis === Axis.x;
-    if (this.level === 0) {
-      return (isX ? this.settings.width : this.settings.height) / 2;
-    } else {
-      const parentOffset =
-        Math.min(this.settings.height, this.settings.width) /
-        2 /
-        Math.pow(2, this.level);
-      const coordLinear =
-        Math.pow(this.settings.accel, this.level) *
-        (this.animate.frame *
-          (1 / (this.settings.speedMax + 1 - this.settings.speed))) *
-        (!this.settings.alternate || this.level % 2 === 0 ? 1 : -1);
-      const trig = isX ? Math.sin : Math.cos;
-      const coordRotation = trig(
-        ((this.pos * 2) / this.settings.armsCount) * Math.PI + coordLinear,
-      );
-      const coordOffset = parentOffset * coordRotation;
-      return coordOffset + (isX ? this.xParent : this.yParent);
-    }
-  }
-
   get x(): number {
     return this.getCoord(Axis.x);
   }
@@ -106,7 +57,33 @@ export class NodeComponent implements OnInit, OnDestroy, IRenderable {
     return this.settings.colourful ? this._col : 'white';
   }
 
-  render() {
+  @Input() level: number;
+  @Input() pos: number;
+  @Input() xParent: number;
+  @Input() yParent: number;
+
+  private _col: string;
+  private _opacity: number;
+
+  constructor(
+    public settings: SettingsService,
+    public draw: DrawService,
+    private animate: AnimateService,
+    private domSanitizer: DomSanitizer,
+  ) {}
+
+  ngOnInit(): void {
+    this._col = `rgb(${NodeComponent.colRand}, ${NodeComponent.colRand}, ${NodeComponent.colRand})`;
+    this._opacity = 0.7;
+    this.draw.renderables.push(this);
+  }
+
+  ngOnDestroy(): void {
+    const index = this.draw.renderables.indexOf(this);
+    this.draw.renderables.splice(index, 1);
+  }
+
+  render(): void {
     if (this.level >= this.settings.hideLevels) {
       const ctx = this.draw.ctx;
       ctx.globalAlpha = this.opacity;
@@ -150,6 +127,29 @@ export class NodeComponent implements OnInit, OnDestroy, IRenderable {
         ctx.closePath();
         ctx.stroke();
       }
+    }
+  }
+
+  private getCoord(axis: Axis): number {
+    const isX = axis === Axis.x;
+    if (this.level === 0) {
+      return (isX ? this.settings.width : this.settings.height) / 2;
+    } else {
+      const parentOffset =
+        Math.min(this.settings.height, this.settings.width) /
+        2 /
+        Math.pow(2, this.level);
+      const coordLinear =
+        Math.pow(this.settings.accel, this.level) *
+        (this.animate.frame *
+          (1 / (this.settings.speedMax + 1 - this.settings.speed))) *
+        (!this.settings.alternate || this.level % 2 === 0 ? 1 : -1);
+      const trig = isX ? Math.sin : Math.cos;
+      const coordRotation = trig(
+        ((this.pos * 2) / this.settings.armsCount) * Math.PI + coordLinear,
+      );
+      const coordOffset = parentOffset * coordRotation;
+      return coordOffset + (isX ? this.xParent : this.yParent);
     }
   }
 }

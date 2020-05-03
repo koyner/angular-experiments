@@ -16,25 +16,25 @@ export class BgMeasureComponent implements OnInit {
     private constants: ConstantsService,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
-  get x() {
+  get x(): number {
     return (
       (this.distFurthest.xMid - this.distFurthest.offset) * this.constants.scale
     );
   }
 
-  get y() {
+  get y(): number {
     return (
       (this.distFurthest.yMid - this.distFurthest.offset) * this.constants.scale
     );
   }
 
-  get side() {
+  get side(): number {
     return this.distFurthest.offset * 2 * this.constants.scale;
   }
 
-  get offset() {
+  get offset(): number {
     return this.distFurthest.offset * this.constants.scale;
   }
 

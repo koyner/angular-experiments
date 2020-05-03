@@ -16,7 +16,7 @@ import {IQuiz, QuizService} from './quiz.service';
 export class QuizzesComponent implements OnInit {
   quizzes: IQuiz[];
   constructor(private router: Router, private quizService: QuizService) {}
-  ngOnInit() {
+  ngOnInit(): void {
     this.quizzes = this.quizService.getQuizzes();
   }
   onSelect = (quiz: any) => {

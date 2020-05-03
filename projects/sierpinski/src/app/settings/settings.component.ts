@@ -16,22 +16,22 @@ import {SettingsService} from './settings.service';
 export class SettingsComponent implements OnInit {
   isOpen = false;
 
+  updateArmsHandler: (event: MatSliderChange) => void;
+
   constructor(
     public settings: SettingsService,
     public animate: AnimateService,
   ) {}
 
-  updateArmsHandler: (event: MatSliderChange) => void;
-
-  close() {
+  close(): void {
     this.isOpen = false;
   }
 
-  open() {
+  open(): void {
     this.isOpen = true;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.createArms();
     this.armsCountUpdates().subscribe(armsCount => {
       this.settings.armsCount = armsCount;
@@ -52,7 +52,7 @@ export class SettingsComponent implements OnInit {
     );
   }
 
-  private createArms() {
+  private createArms(): void {
     this.settings.arms = [];
     let i = 0;
     while (i < this.settings.armsCount) {

@@ -16,13 +16,13 @@ export class BgComponent implements OnInit {
     private constants: ConstantsService,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
   get dists(): Dist[][] {
     return this.distService.dists;
   }
 
-  getOffset(dist: Dist) {
+  getOffset(dist: Dist): number {
     return dist.offset * this.constants.scale;
   }
 }

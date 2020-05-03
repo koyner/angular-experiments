@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     console.log('app component initialised');
   }
 }

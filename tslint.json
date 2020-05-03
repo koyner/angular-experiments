@@ -47,7 +47,7 @@
     "no-implicit-dependencies": [
       true,
       "dev",
-      ["app", "@environments", "protractor", "mrb-ui"]
+      ["app", "@environments", "protractor", "mrb-ui", "mrb-logging"]
     ],
     "no-submodule-imports": [
       true,
@@ -57,7 +57,8 @@
       "zone.js",
       "webrtc-adapter",
       "modernizr",
-      "@e2e"
+      "@e2e",
+      "three"
     ]
   }
 }

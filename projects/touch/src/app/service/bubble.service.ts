@@ -11,9 +11,16 @@ import {ConstantsService} from 'mrb-ui';
   providedIn: 'root',
 })
 export class BubbleService {
-  private _tLastCreated: number;
+  get tLastCreated(): number {
+    return this._tLastCreated;
+  }
+
+  private get distFurthest(): Dist {
+    return this.distService.distFurthest;
+  }
 
   bubbles: Bubble[] = [];
+  private _tLastCreated: number;
 
   constructor(
     private distService: DistService,
@@ -42,17 +49,9 @@ export class BubbleService {
     });
   }
 
-  get tLastCreated(): number {
-    return this._tLastCreated;
-  }
-
   registerSpeed(): void {
     this.bubbles.forEach(b => {
       b.speed = this.constants.speed;
     });
-  }
-
-  private get distFurthest(): Dist {
-    return this.distService.distFurthest;
   }
 }

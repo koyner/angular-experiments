@@ -8,10 +8,9 @@ export interface IRenderable {
 
 @Injectable()
 export class DrawService {
-  private _isCanvasRendered = false;
-
   ctx: CanvasRenderingContext2D;
   renderables: IRenderable[] = [];
+  private _isCanvasRendered = false;
 
   constructor(private settings: SettingsService) {}
 
@@ -19,7 +18,7 @@ export class DrawService {
     return this.settings.canvasMode && this._isCanvasRendered;
   }
 
-  update() {
+  update(): void {
     if (this.ctx && this.settings.canvasMode) {
       this.fillBlack(this.settings.trail ? this.settings.trailOpacity : 1);
       this.renderables.forEach(r => r.render());
@@ -30,7 +29,7 @@ export class DrawService {
     }
   }
 
-  private fillBlack(opacity = 1) {
+  private fillBlack(opacity: number = 1): void {
     this.ctx.globalAlpha = opacity;
     this.ctx.fillStyle = 'rgb(0, 0, 0)';
     this.ctx.fillRect(0, 0, this.settings.width, this.settings.height);

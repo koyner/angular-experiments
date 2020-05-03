@@ -4,9 +4,7 @@ import {switchMap} from 'rxjs/operators';
 import {IQuiz, QuizService} from './quiz.service';
 
 @Component({
-  template: `
-    <div>quiz: {{ quiz?.name }}</div>
-  `,
+  template: ` <div>quiz: {{ quiz?.name }}</div> `,
 })
 export class QuizComponent implements OnInit {
   quiz: IQuiz;
@@ -14,7 +12,7 @@ export class QuizComponent implements OnInit {
     private route: ActivatedRoute,
     private quizService: QuizService,
   ) {}
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.params
       .pipe(
         switchMap((params: Params) => this.quizService.getQuiz(+params['id'])),

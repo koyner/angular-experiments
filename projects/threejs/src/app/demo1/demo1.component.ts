@@ -7,15 +7,14 @@ import * as THREE from 'three';
   styleUrls: ['./demo1.component.less'],
 })
 export class Demo1Component implements OnInit {
-  constructor() {}
-
   private static makeCube(): THREE.Mesh {
     const material = new THREE.MeshBasicMaterial({color: 0x00ff00});
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     return new THREE.Mesh(geometry, material);
   }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,

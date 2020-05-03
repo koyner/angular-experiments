@@ -1,6 +1,4 @@
 import {Component} from '@angular/core';
-import * as THREE from 'three';
-import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 
 @Component({
   selector: 'app-root',

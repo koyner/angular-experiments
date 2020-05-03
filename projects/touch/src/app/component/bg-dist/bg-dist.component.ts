@@ -18,33 +18,33 @@ export class BgDistComponent implements OnInit {
     private constants: ConstantsService,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
   isFurthest(): boolean {
     return this.dist === this.distService.distFurthest;
   }
 
-  get x() {
+  get x(): number {
     return this.dist.x * this.constants.scale;
   }
 
-  get y() {
+  get y(): number {
     return this.dist.y * this.constants.scale;
   }
 
-  get width() {
+  get width(): number {
     return this.dist.w * this.constants.scale;
   }
 
-  get height() {
+  get height(): number {
     return this.dist.h * this.constants.scale;
   }
 
-  get brightness() {
+  get brightness(): number {
     return Math.floor(2 * this.dist.offset * 255);
   }
 
-  get col() {
+  get col(): string {
     return `rgb(${this.brightness},${this.brightness},${this.brightness})`;
   }
 }

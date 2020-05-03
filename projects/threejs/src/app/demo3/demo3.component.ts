@@ -7,8 +7,6 @@ import * as THREE from 'three';
   styleUrls: ['./demo3.component.less'],
 })
 export class Demo3Component implements OnInit {
-  constructor() {}
-
   private static makeLine(): THREE.Line {
     const material = new THREE.LineBasicMaterial({color: 0x0000ff});
     const geometry = new THREE.Geometry();
@@ -17,8 +15,9 @@ export class Demo3Component implements OnInit {
     geometry.vertices.push(new THREE.Vector3(1, 0, 0));
     return new THREE.Line(geometry, material);
   }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,

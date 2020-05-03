@@ -18,9 +18,9 @@ export class StatusComponent implements OnInit {
     private constants: ConstantsService,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
-  get bubbleCount() {
+  get bubbleCount(): number {
     return this.bubbleService.bubbles.length;
   }
 

@@ -8,9 +8,7 @@ import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
   styleUrls: ['./demo2.component.less'],
 })
 export class Demo2Component implements OnInit {
-  constructor() {}
-
-  private static loadModel(scene: THREE.Scene) {
+  private static loadModel(scene: THREE.Scene): void {
     new GLTFLoader().load(
       '/assets/AnimatedMorphSphere.glb',
       gltf => {
@@ -22,8 +20,9 @@ export class Demo2Component implements OnInit {
       },
     );
   }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,

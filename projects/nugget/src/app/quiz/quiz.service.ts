@@ -15,7 +15,7 @@ const quizzesPromise = Promise.resolve(quizzes);
 
 @Injectable()
 export class QuizService {
-  getQuizzes() {
+  getQuizzes(): IQuiz[] {
     return quizzes;
   }
   getQuiz(id: number | string): Promise<IQuiz> {

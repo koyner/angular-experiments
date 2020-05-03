@@ -8,10 +8,6 @@ export interface IReceivesFrames {
 export class TimerService {
   private frameReceivers: IReceivesFrames[];
 
-  public registerFrameReceiver(rf: IReceivesFrames): void {
-    this.frameReceivers.push(rf);
-  }
-
   constructor() {
     let getNextFrame: () => void;
     let timePrev: number;
@@ -32,5 +28,9 @@ export class TimerService {
       window.requestAnimationFrame(handleNextFrame);
     };
     getNextFrame();
+  }
+
+  registerFrameReceiver(rf: IReceivesFrames): void {
+    this.frameReceivers.push(rf);
   }
 }

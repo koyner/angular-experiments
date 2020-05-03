@@ -24,15 +24,15 @@ export class AppComponent implements OnInit, AfterViewInit {
     public draw: DrawService,
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.animate.start();
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.draw.ctx = this.canvasRef.nativeElement.getContext('2d');
   }
 
-  resize(side: number) {
+  resize(side: number): void {
     this.settings.width = side;
     this.settings.height = side;
   }

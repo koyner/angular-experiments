@@ -11,7 +11,7 @@ import {BubbleService} from '../../service/bubble.service';
 export class BubblesComponent implements OnInit {
   constructor(private bubbleService: BubbleService) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
   get bubbles(): Bubble[] {
     return this.bubbleService.bubbles;

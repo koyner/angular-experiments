@@ -12,5 +12,5 @@ import {Component, OnInit} from '@angular/core';
 export class MrbLoggingComponent implements OnInit {
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 }

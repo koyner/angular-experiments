@@ -7,10 +7,9 @@ import {Dist} from '../model/dist';
   providedIn: 'root',
 })
 export class DistService {
-  private readonly _distDivs = 20;
-
   dists: Dist[][] = [];
   distFurthest: Dist;
+  private readonly _distDivs = 20;
 
   constructor() {
     for (let j = 0; j < this._distDivs; j++) {

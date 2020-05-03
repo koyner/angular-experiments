@@ -9,13 +9,13 @@ import {IReceivesFrames, TimerService} from '../utils/timer.service';
 export class BarComponent implements OnInit, IReceivesFrames {
   constructor(private timerService: TimerService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     console.log('bar initialised');
     console.log(this.timerService);
     this.timerService.registerFrameReceiver(this);
   }
 
-  receiveFrame() {
+  receiveFrame(): void {
     console.log('frame updated');
   }
 }
