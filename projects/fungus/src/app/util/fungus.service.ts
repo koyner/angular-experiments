@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ConfigService} from '../config/config.service';
+import {CellType} from '../model/cell';
 import {CellFungus} from '../model/cell-fungus';
 import {Cardinal, GridService} from './grid.service';
 import {UtilService} from './util.service';
@@ -8,6 +9,8 @@ import {UtilService} from './util.service';
   providedIn: 'root',
 })
 export class FungusService {
+  private readonly _nodeCount = 5;
+  private readonly _timeoutMs = 20;
   constructor(
     private config: ConfigService,
     private util: UtilService,
@@ -15,19 +18,18 @@ export class FungusService {
   ) {}
 
   init(): void {
-    this.grid.set(
-      new CellFungus('#446644', true),
-      Math.floor(Math.random() * this.config.cols),
-      Math.floor(Math.random() * this.config.rows),
-    );
+    this.createNodes(this._nodeCount);
     window.setInterval(() => {
       const gridEl = this.util.getRandomElementOf(
-        this.grid.elsWithDifferentNeighbour('fungus'),
+        this.grid.elsWithDifferentNeighbour(CellType.fungus),
       );
       if (gridEl) {
         let coordsNew;
         switch (
-          this.grid.dirOfRandomNeighbourWithDifferentType(gridEl, 'fungus')
+          this.grid.dirOfRandomNeighbourWithDifferentType(
+            gridEl,
+            CellType.fungus,
+          )
         ) {
           case Cardinal.w:
             coordsNew = {col: gridEl.col - 1, row: gridEl.row};
@@ -45,14 +47,34 @@ export class FungusService {
             break;
         }
         this.grid.set(
-          new CellFungus(
-            `rgb(${this.util.randomCol}, ${this.util.randomCol}, ${this.util.randomCol})`,
-            false,
-          ),
+          new CellFungus(gridEl.cell.colour, false),
           coordsNew.col,
           coordsNew.row,
         );
       }
-    }, 10);
+    }, this._timeoutMs);
+  }
+
+  private createNodes(count: number): void {
+    let i = 0;
+    while (i++ < count) {
+      this.createNode();
+    }
+  }
+
+  private createNode(): void {
+    this.grid.set(
+      new CellFungus(this.util.randomColStr, true),
+      this.randCol(),
+      this.randRow(),
+    );
+  }
+
+  private randCol(): number {
+    return Math.floor(Math.random() * this.config.cols);
+  }
+
+  private randRow(): number {
+    return Math.floor(Math.random() * this.config.rows);
   }
 }

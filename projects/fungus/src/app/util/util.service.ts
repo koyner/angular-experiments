@@ -10,7 +10,11 @@ export class UtilService {
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
-  get randomCol(): number {
-    return 50 + Math.random() * 205;
+  get randomColStr(): string {
+    return `rgb(${UtilService.randomCol}, ${UtilService.randomCol}, ${UtilService.randomCol})`;
+  }
+
+  private static get randomCol(): number {
+    return Math.floor(30 + Math.random() * 225);
   }
 }

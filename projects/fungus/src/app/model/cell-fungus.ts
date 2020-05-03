@@ -1,11 +1,11 @@
-import {Cell} from './cell';
+import {Cell, CellType} from './cell';
 
 export class CellFungus extends Cell {
   constructor(public colour: string, private isNode: boolean) {
     super(colour);
   }
 
-  get type(): string {
-    return 'fungus';
+  get type(): CellType {
+    return CellType.fungus;
   }
 }

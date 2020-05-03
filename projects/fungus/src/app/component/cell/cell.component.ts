@@ -15,8 +15,10 @@ export class CellComponent implements OnInit {
   ngOnInit(): void {}
 
   clicked(): void {
-    const gridEl = this.grid.elFrom(this.cell);
-    console.log(`clicked: ${gridEl.col}, ${gridEl.row}`);
+    const gridEl = this.grid.elFor(this.cell);
+    console.log(
+      `${gridEl.col}, ${gridEl.row}, ${gridEl.cell.type}, ${gridEl.cell.colour}`,
+    );
   }
 
   get x(): number {

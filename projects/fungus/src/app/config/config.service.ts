@@ -4,8 +4,8 @@ import {Injectable} from '@angular/core';
   providedIn: 'root',
 })
 export class ConfigService {
-  private readonly _cols = 29;
-  private readonly _rows = 29;
+  private readonly _cols = 19;
+  private readonly _rows = 19;
   constructor() {}
 
   get cols(): number {

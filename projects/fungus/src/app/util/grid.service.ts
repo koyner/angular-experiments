@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ConfigService} from '../config/config.service';
-import {Cell} from '../model/cell';
+import {Cell, CellType} from '../model/cell';
 import {UtilService} from './util.service';
 
 export enum Cardinal {
@@ -45,21 +45,21 @@ export class GridService {
     }
   }
 
-  elsWithDifferentNeighbour(type: string): IGridEl[] {
+  elsWithDifferentNeighbour(type: CellType): IGridEl[] {
     return this._grid.filter(
       el => el.cell.type === type && this.hasNeighbourOfDifferentType(el, type),
     );
   }
 
-  dirOfRandomNeighbourWithDifferentType(el: IGridEl, type: string): Cardinal {
-    const neighbours = this.getNeighboursOf(el);
+  dirOfRandomNeighbourWithDifferentType(el: IGridEl, type: CellType): Cardinal {
+    const neighbours = this.neighboursOf(el);
     const emptyNeighbourKeys = Object.keys(neighbours).filter(
       key => neighbours[key].cell.type !== type,
     );
     return this.util.getRandomElementOf(emptyNeighbourKeys) as Cardinal;
   }
 
-  elFrom(cell: Cell): IGridEl {
+  elFor(cell: Cell): IGridEl {
     return this._grid.find(elGrid => elGrid.cell === cell);
   }
 
@@ -67,14 +67,14 @@ export class GridService {
     return this._grid.find(el => el.col === col && el.row === row);
   }
 
-  private hasNeighbourOfDifferentType(el: IGridEl, type: string): boolean {
-    const neighbours = this.getNeighboursOf(el);
+  private hasNeighbourOfDifferentType(el: IGridEl, type: CellType): boolean {
+    const neighbours = this.neighboursOf(el);
     return Object.keys(neighbours).some(
-      key => neighbours[key].cell.type !== type,
+      key => (neighbours[key] as IGridEl).cell.type !== type,
     );
   }
 
-  private getNeighboursOf(el: IGridEl): INeighbourEls {
+  private neighboursOf(el: IGridEl): INeighbourEls {
     const dirs: INeighbourEls = {};
     if (el.col !== 0) {
       dirs[Cardinal.w] = this.elAt(el.col - 1, el.row);

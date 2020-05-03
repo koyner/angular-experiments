@@ -20,11 +20,11 @@ export class RenderService {
   }
 
   xFor(cell: Cell): number {
-    return Math.round(this.grid.elFrom(cell).col * this.cellWidth);
+    return Math.round(this.grid.elFor(cell).col * this.cellWidth);
   }
 
   yFor(cell: Cell): number {
-    return Math.round(this.grid.elFrom(cell).row * this.cellHeight);
+    return Math.round(this.grid.elFor(cell).row * this.cellHeight);
   }
 
   wFor(cell: Cell): number {
