@@ -8,11 +8,11 @@ export class ConfigService {
   private readonly _rows = 29;
   constructor() {}
 
-  get cols() {
+  get cols(): number {
     return this._cols;
   }
 
-  get rows() {
+  get rows(): number {
     return this._rows;
   }
 }

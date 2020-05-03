@@ -5,7 +5,7 @@ export class CellFungus extends Cell {
     super(colour);
   }
 
-  get type() {
+  get type(): string {
     return 'fungus';
   }
 }

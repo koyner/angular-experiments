@@ -14,28 +14,28 @@ export class CellComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  clicked() {
+  clicked(): void {
     const coords = this.grid.coordsOf(this.cell);
     console.log(`clicked: ${coords.col}, ${coords.row}`);
   }
 
-  get x() {
+  get x(): number {
     return this.renderer.xFor(this.cell);
   }
 
-  get y() {
+  get y(): number {
     return this.renderer.yFor(this.cell);
   }
 
-  get w() {
+  get w(): number {
     return this.renderer.wFor(this.cell);
   }
 
-  get h() {
+  get h(): number {
     return this.renderer.hFor(this.cell);
   }
 
-  get colour() {
+  get colour(): string {
     return this.cell.colour;
   }
 }

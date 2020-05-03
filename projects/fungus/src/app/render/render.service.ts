@@ -15,7 +15,7 @@ export class RenderService {
     this._size = size;
   }
 
-  get size() {
+  get size(): number {
     return this._size;
   }
 
@@ -35,11 +35,11 @@ export class RenderService {
     return Math.round(this.cellHeight);
   }
 
-  private get cellWidth() {
+  private get cellWidth(): number {
     return this._size / this.config.cols;
   }
 
-  private get cellHeight() {
+  private get cellHeight(): number {
     return this._size / this.config.rows;
   }
 }

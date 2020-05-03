@@ -5,7 +5,7 @@ export class CellBg extends Cell {
     super(colour);
   }
 
-  get type() {
+  get type(): string {
     return 'bg';
   }
 }

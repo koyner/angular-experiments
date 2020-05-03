@@ -11,15 +11,15 @@ export class ContainerComponent implements OnInit {
 
   constructor(private constants: ConstantsService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.resize();
   }
 
-  onResize() {
+  onResize(): void {
     this.resize();
   }
 
-  resize() {
+  resize(): void {
     this.constants.resize();
     this.resized.emit(this.side);
   }

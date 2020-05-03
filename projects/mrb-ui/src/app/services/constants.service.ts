@@ -12,15 +12,15 @@ export class ConstantsService {
     this.resize();
   }
 
-  resize() {
+  resize(): void {
     this.scale = Math.min(this.winW, this.winH) - 20;
   }
 
-  get winW() {
+  get winW(): number {
     return this.window.innerWidth;
   }
 
-  get winH() {
+  get winH(): number {
     return this.window.innerHeight;
   }
 }

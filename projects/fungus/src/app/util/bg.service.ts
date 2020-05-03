@@ -9,7 +9,7 @@ import {GridService} from './grid.service';
 export class BgService {
   constructor(private config: ConfigService, private grid: GridService) {}
 
-  init() {
+  init(): void {
     for (let i = 0; i < this.config.cols; i++) {
       for (let j = 0; j < this.config.rows; j++) {
         this.grid.set(new CellBg('#222'), i, j);

@@ -18,7 +18,7 @@ export class AppComponent {
     this.fungus.init();
   }
 
-  resized(size: number) {
+  resized(size: number): void {
     this.renderer.size = size;
   }
 }

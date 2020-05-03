@@ -14,7 +14,7 @@ export class FungusService {
     private grid: GridService,
   ) {}
 
-  init() {
+  init(): void {
     this.grid.set(
       new CellFungus('#446644', true),
       Math.floor(Math.random() * this.config.cols),

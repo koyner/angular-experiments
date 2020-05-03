@@ -5,9 +5,10 @@
     "package": "ng-packagr -p ng-package.json"
   },
   "peerDependencies": {
-    "@angular/common": "^8.0.1",
-    "@angular/core": "^8.0.1",
-    "zone.js": "^0.9.1",
-    "@angular/platform-browser": "^8.0.2"
+    "@angular/common": "^9.1.2",
+    "@angular/core": "^9.1.2",
+    "@angular/platform-browser": "^9.1.2",
+    "@angular/platform-browser-dynamic": "^9.1.2",
+    "zone.js": "~0.10.3"
   }
 }
