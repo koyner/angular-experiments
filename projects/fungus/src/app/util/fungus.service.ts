@@ -22,11 +22,13 @@ export class FungusService {
     );
     window.setInterval(() => {
       const gridEl = this.util.getRandomElementOf(
-        this.grid.gridElsWithEmptyNeighbour,
+        this.grid.elsWithDifferentNeighbour('fungus'),
       );
       if (gridEl) {
         let coordsNew;
-        switch (this.grid.getRandomEmptyNeighbourKey(gridEl)) {
+        switch (
+          this.grid.dirOfRandomNeighbourWithDifferentType(gridEl, 'fungus')
+        ) {
           case Cardinal.w:
             coordsNew = {col: gridEl.col - 1, row: gridEl.row};
             break;

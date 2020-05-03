@@ -45,16 +45,16 @@ export class GridService {
     }
   }
 
-  get gridElsWithEmptyNeighbour(): IGridEl[] {
+  elsWithDifferentNeighbour(type: string): IGridEl[] {
     return this._grid.filter(
-      el => el.cell.type === 'fungus' && this.hasEmptyNeighbour(el),
+      el => el.cell.type === type && this.hasNeighbourOfDifferentType(el, type),
     );
   }
 
-  getRandomEmptyNeighbourKey(el: IGridEl): Cardinal {
+  dirOfRandomNeighbourWithDifferentType(el: IGridEl, type: string): Cardinal {
     const neighbours = this.getNeighboursOf(el);
     const emptyNeighbourKeys = Object.keys(neighbours).filter(
-      key => neighbours[key].cell.type !== 'fungus',
+      key => neighbours[key].cell.type !== type,
     );
     return this.util.getRandomElementOf(emptyNeighbourKeys) as Cardinal;
   }
@@ -67,10 +67,10 @@ export class GridService {
     return this._grid.find(el => el.col === col && el.row === row);
   }
 
-  private hasEmptyNeighbour(el: IGridEl): boolean {
+  private hasNeighbourOfDifferentType(el: IGridEl, type: string): boolean {
     const neighbours = this.getNeighboursOf(el);
     return Object.keys(neighbours).some(
-      key => neighbours[key].cell.type !== 'fungus',
+      key => neighbours[key].cell.type !== type,
     );
   }
 
