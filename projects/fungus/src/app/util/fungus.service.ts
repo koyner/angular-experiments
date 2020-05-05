@@ -9,8 +9,8 @@ import {UtilService} from './util.service';
   providedIn: 'root',
 })
 export class FungusService {
-  private readonly _nodeCount = 5;
-  private readonly _timeoutMs = 20;
+  private readonly _nodeCount = 10;
+  private readonly _breedTimeoutMaxMs = 1000;
   constructor(
     private config: ConfigService,
     private util: UtilService,
@@ -19,7 +19,11 @@ export class FungusService {
 
   init(): void {
     this.createNodes(this._nodeCount);
-    window.setInterval(() => {
+    this.breed();
+  }
+
+  private breed(): void {
+    window.setTimeout(() => {
       const gridEl = this.util.getRandomElementOf(
         this.grid.elsWithDifferentNeighbour(CellType.fungus),
       );
@@ -52,7 +56,8 @@ export class FungusService {
           coordsNew.row,
         );
       }
-    }, this._timeoutMs);
+      this.breed();
+    }, Math.floor(Math.random() * this._breedTimeoutMaxMs));
   }
 
   private createNodes(count: number): void {
