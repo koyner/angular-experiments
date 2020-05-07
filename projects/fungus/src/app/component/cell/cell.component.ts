@@ -10,14 +10,13 @@ import {GridService} from '../../util/grid.service';
 })
 export class CellComponent implements OnInit {
   @Input() cell: Cell;
-  constructor(private renderer: RenderService, private grid: GridService) {}
+  constructor(private renderer: RenderService) {}
 
   ngOnInit(): void {}
 
   clicked(): void {
-    const gridEl = this.grid.elFor(this.cell);
     console.log(
-      `${gridEl.col}, ${gridEl.row}, ${gridEl.cell.type}, ${gridEl.cell.colour}`,
+      `${this.cell.col}, ${this.cell.row}, ${this.cell.type}, ${this.cell.colour}`,
     );
   }
 

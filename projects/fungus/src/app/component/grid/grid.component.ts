@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {GridService, IGridEl} from '../../util/grid.service';
+import {Cell} from '../../model/cell';
+import {GridService} from '../../util/grid.service';
 
 @Component({
   selector: 'app-grid',
@@ -11,7 +12,7 @@ export class GridComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  get grid(): IGridEl[] {
+  get grid(): Cell[] {
     return this.gridService.grid;
   }
 }

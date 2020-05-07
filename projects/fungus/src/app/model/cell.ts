@@ -4,7 +4,7 @@ export enum CellType {
 }
 
 export abstract class Cell {
-  constructor(public colour: string) {}
+  constructor(public colour: string, public col: number, public row: number) {}
 
   abstract get type(): CellType;
 }
