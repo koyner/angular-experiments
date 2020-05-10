@@ -15,6 +15,6 @@ export class UtilService {
   }
 
   private static get randomCol(): number {
-    return Math.floor(30 + Math.random() * 225);
+    return Math.floor(100 + Math.random() * 155);
   }
 }

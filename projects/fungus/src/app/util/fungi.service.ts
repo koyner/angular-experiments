@@ -1,18 +1,18 @@
 import {Injectable, Injector} from '@angular/core';
+import {ConfigService} from '../config/config.service';
 import {Fungus} from '../model/fungus';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FungiService {
-  private readonly _fungusCount = 10;
-  constructor(private injector: Injector) {}
+  constructor(private injector: Injector, private config: ConfigService) {}
 
   init(): void {
     let i = 0;
-    while (i++ < this._fungusCount) {
-      const c = new Fungus(this.injector);
-      c.init();
+    while (i++ < this.config.fungusCount) {
+      const fungus = new Fungus(this.injector);
+      fungus.init();
     }
   }
 }

@@ -4,15 +4,10 @@ import {Injectable} from '@angular/core';
   providedIn: 'root',
 })
 export class ConfigService {
-  private readonly _cols = 29;
-  private readonly _rows = 29;
-  constructor() {}
-
-  get cols(): number {
-    return this._cols;
-  }
-
-  get rows(): number {
-    return this._rows;
-  }
+  cols = 19;
+  rows = 19;
+  fungusCount = 10;
+  fungusBreedDelayMaxMs = 300;
+  fungusBreedDelayMinMs = 25;
+  animateMs = 50;
 }

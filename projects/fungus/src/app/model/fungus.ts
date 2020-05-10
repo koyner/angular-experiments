@@ -1,5 +1,6 @@
 import {Injector} from '@angular/core';
 import {ConfigService} from '../config/config.service';
+import {AnimateService} from '../util/animate.service';
 import {Cardinal, GridService} from '../util/grid.service';
 import {UtilService} from '../util/util.service';
 import {CellType} from './cell';
@@ -8,24 +9,29 @@ import {CellFungus} from './cell-fungus';
 export class Fungus {
   colour: string;
 
-  private readonly _breedTimeoutMaxMs = Math.random() * 900;
-
   private util: UtilService;
   private grid: GridService;
   private config: ConfigService;
+  private animate: AnimateService;
 
   private _cells: CellFungus[] = [];
+
+  private readonly _localBreedDelayMaxMs: number;
 
   constructor(private injector: Injector) {
     this.util = injector.get(UtilService);
     this.grid = injector.get(GridService);
     this.config = injector.get(ConfigService);
+    this.animate = injector.get(AnimateService);
+
+    this._localBreedDelayMaxMs =
+      Math.random() * this.config.fungusBreedDelayMaxMs;
   }
 
   init(): void {
     this.colour = this.util.randomColStr;
     const cellFungus = new CellFungus(
-      this,
+      this.colour,
       this.randCol(),
       this.randRow(),
       true,
@@ -61,16 +67,17 @@ export class Fungus {
             break;
         }
         const cellNew = new CellFungus(
-          this,
+          this.colour,
           coordsNew.col,
           coordsNew.row,
           false,
         );
         this.grid.set(cellNew);
         this._cells.push(cellNew);
+        this.animate.add(cellNew);
       }
       this.breed();
-    }, Math.floor(25 + Math.random() * this._breedTimeoutMaxMs));
+    }, Math.floor(this.config.fungusBreedDelayMinMs + Math.random() * this._localBreedDelayMaxMs));
   }
 
   private randCol(): number {

@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Cell} from '../../model/cell';
+import {Cell, CellType} from '../../model/cell';
+import {CellFungus} from '../../model/cell-fungus';
 import {RenderService} from '../../render/render.service';
-import {GridService} from '../../util/grid.service';
 
 @Component({
   selector: 'app-cell',
@@ -38,5 +38,13 @@ export class CellComponent implements OnInit {
 
   get colour(): string {
     return this.cell.colour;
+  }
+
+  get opacity(): number {
+    if (this.cell.type === CellType.fungus) {
+      return Math.max(0.5, 1 - (this.cell as CellFungus).age / 15000);
+    } else {
+      return 1;
+    }
   }
 }
