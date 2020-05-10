@@ -11,10 +11,10 @@ export class UtilService {
   }
 
   get randomColStr(): string {
-    return `rgb(${UtilService.randomCol}, ${UtilService.randomCol}, ${UtilService.randomCol})`;
+    return `hsl(${UtilService.randomHue}, 80%, 50%, 1)`;
   }
 
-  private static get randomCol(): number {
-    return Math.floor(100 + Math.random() * 155);
+  private static get randomHue(): number {
+    return Math.floor(Math.random() * 360);
   }
 }
