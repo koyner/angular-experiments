@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ConfigService} from '../../config/config.service';
 import {Cell, CellType} from '../../model/cell';
 import {CellFungus} from '../../model/cell-fungus';
 import {RenderService} from '../../render/render.service';
@@ -10,7 +11,7 @@ import {RenderService} from '../../render/render.service';
 })
 export class CellComponent implements OnInit {
   @Input() cell: Cell;
-  constructor(private renderer: RenderService) {}
+  constructor(private renderer: RenderService, private config: ConfigService) {}
 
   ngOnInit(): void {}
 
@@ -42,7 +43,10 @@ export class CellComponent implements OnInit {
 
   get opacity(): number {
     if (this.cell.type === CellType.fungus) {
-      return Math.max(0.5, 1 - (this.cell as CellFungus).age / 15000);
+      return Math.max(
+        this.config.fungusMinOpacity,
+        1 - (this.cell as CellFungus).age / this.config.fungusAgeDelayMs,
+      );
     } else {
       return 1;
     }

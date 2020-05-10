@@ -4,10 +4,12 @@ import {Injectable} from '@angular/core';
   providedIn: 'root',
 })
 export class ConfigService {
-  cols = 19;
-  rows = 19;
-  fungusCount = 10;
-  fungusBreedDelayMaxMs = 300;
-  fungusBreedDelayMinMs = 25;
   animateMs = 50;
+  cols = 29;
+  rows = 29;
+  fungusCount = 3;
+  fungusBreedDelayMaxMs = 800;
+  fungusBreedDelayMinMs = 30;
+  fungusAgeDelayMs = 300;
+  fungusMinOpacity = 0.7;
 }
