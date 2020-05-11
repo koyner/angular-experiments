@@ -29,10 +29,10 @@ export class GridService {
     return this._grid;
   }
 
-  set(cell: Cell): void {
-    const cellOld = this.cellAt(cell.col, cell.row);
-    if (cellOld) {
-      this._grid[this._grid.indexOf(cellOld)] = cell;
+  add(cell: Cell): void {
+    const cellCurrent = this.cellAt(cell.col, cell.row);
+    if (cellCurrent) {
+      this._grid[this._grid.indexOf(cellCurrent)] = cell;
     } else {
       this._grid.push(cell);
     }

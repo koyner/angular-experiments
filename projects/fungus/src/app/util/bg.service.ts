@@ -14,7 +14,7 @@ export class BgService {
   init(): void {
     for (let i = 0; i < this.config.cols; i++) {
       for (let j = 0; j < this.config.rows; j++) {
-        this.grid.set(new CellBg(this.bgColour, i, j));
+        this.grid.add(new CellBg(this.bgColour, i, j));
       }
     }
   }

@@ -45,7 +45,7 @@ export class CellComponent implements OnInit {
     if (this.cell.type === CellType.fungus) {
       return Math.max(
         this.config.fungusMinOpacity,
-        1 - (this.cell as CellFungus).age / this.config.fungusAgeDelayMs,
+        1 - (this.cell as CellFungus).age / this.config.fungusAgingDelayMs,
       );
     } else {
       return 1;
