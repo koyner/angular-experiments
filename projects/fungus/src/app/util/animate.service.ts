@@ -19,4 +19,8 @@ export class AnimateService {
   add(a: Animatable): void {
     this._animatable.push(a);
   }
+
+  remove(a: Animatable): void {
+    this._animatable.splice(this._animatable.indexOf(a), 1);
+  }
 }

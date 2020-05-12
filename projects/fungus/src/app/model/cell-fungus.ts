@@ -1,5 +1,4 @@
 import {Injector} from '@angular/core';
-import {Config} from 'codelyzer';
 import {ConfigService} from '../config/config.service';
 import {Animatable} from '../util/animate.service';
 import {Cardinal, GridService} from '../util/grid.service';
@@ -14,7 +13,7 @@ export class CellFungus extends Cell implements Animatable {
   private readonly _createdAt: number;
   constructor(
     private injector: Injector,
-    private fungus: Fungus,
+    private _fungus: Fungus,
     colour: string,
     col: number,
     row: number,
@@ -23,7 +22,7 @@ export class CellFungus extends Cell implements Animatable {
     super(colour, col, row);
     this.grid = injector.get(GridService);
     this.config = injector.get(ConfigService);
-    this._createdAt = Date.now();
+    this._createdAt = this.now;
     this.cueNextBreed();
   }
 
@@ -39,18 +38,20 @@ export class CellFungus extends Cell implements Animatable {
     return this._age;
   }
 
+  get fungus(): Fungus {
+    return this._fungus;
+  }
+
   animate(): void {
+    this._age = this.now - this._createdAt;
     this.breed();
-    this._age = Date.now() - this._createdAt;
   }
 
   private breed(): void {
-    if (this._breedNext < Date.now()) {
-      if (this.grid.hasNeighbourOfDifferentType(this, CellType.fungus)) {
+    if (this._breedNext < this.now) {
+      if (this.grid.canGrow(this)) {
         let coordsNew;
-        switch (
-          this.grid.dirOfRandomNeighbourWithDifferentType(this, CellType.fungus)
-        ) {
+        switch (this.grid.dirGrow(this)) {
           case Cardinal.w:
             coordsNew = {col: this.col - 1, row: this.row};
             break;
@@ -68,23 +69,27 @@ export class CellFungus extends Cell implements Animatable {
         }
         const cellNew = new CellFungus(
           this.injector,
-          this.fungus,
+          this._fungus,
           this.colour,
           coordsNew.col,
           coordsNew.row,
           false,
         );
-        this.fungus.add(cellNew);
-        this.cueNextBreed();
+        this._fungus.add(cellNew);
       }
+      this.cueNextBreed();
     }
+  }
+
+  private get now(): number {
+    return Date.now();
   }
 
   private cueNextBreed(): void {
     this._breedNext =
-      Date.now() +
-      this.fungus.breedDelayLowMs +
+      this.now +
+      this._fungus.breedDelayLowMs +
       Math.random() *
-        (this.fungus.breedDelayHighMs - this.fungus.breedDelayLowMs);
+        (this._fungus.breedDelayHighMs - this._fungus.breedDelayLowMs);
   }
 }

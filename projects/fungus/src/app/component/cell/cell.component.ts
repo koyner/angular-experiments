@@ -43,12 +43,14 @@ export class CellComponent implements OnInit {
 
   get opacity(): number {
     if (this.cell.type === CellType.fungus) {
-      return Math.max(
-        this.config.fungusMinOpacity,
-        1 - (this.cell as CellFungus).age / this.config.fungusAgingDelayMs,
-      );
-    } else {
-      return 1;
+      const cf = this.cell as CellFungus;
+      if (!cf.isNode) {
+        return Math.max(
+          this.config.fungusMinOpacity,
+          1 - cf.age / this.config.fungusAgingDelayMs,
+        );
+      }
     }
+    return 1;
   }
 }

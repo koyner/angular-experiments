@@ -3,6 +3,7 @@ import {ConfigService} from '../config/config.service';
 import {AnimateService} from '../util/animate.service';
 import {GridService} from '../util/grid.service';
 import {UtilService} from '../util/util.service';
+import {CellType} from './cell';
 import {CellFungus} from './cell-fungus';
 
 export class Fungus {
@@ -45,8 +46,11 @@ export class Fungus {
   }
 
   add(cell: CellFungus): void {
-    this.grid.add(cell);
+    const replaced = this.grid.add(cell);
     this.animate.add(cell);
+    if (replaced && (replaced as CellFungus).type === CellType.fungus) {
+      this.animate.remove(replaced as CellFungus);
+    }
   }
 
   get breedDelayLowMs(): number {
