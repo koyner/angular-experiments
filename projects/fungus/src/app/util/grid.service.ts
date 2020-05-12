@@ -1,7 +1,9 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
 import {ConfigService} from '../config/config.service';
-import {Cell, CellType} from '../model/cell';
+import {Cell} from '../model/cell';
 import {CellFungus} from '../model/cell-fungus';
+import {Fungus} from '../model/fungus';
+import {AnimateService} from './animate.service';
 import {UtilService} from './util.service';
 
 export enum Cardinal {
@@ -24,58 +26,61 @@ interface INeighbourCells {
 export class GridService {
   private _grid: Cell[] = [];
 
-  constructor(private config: ConfigService, private util: UtilService) {}
+  constructor(
+    private config: ConfigService,
+    private util: UtilService,
+    private animate: AnimateService,
+    private injector: Injector,
+  ) {}
 
   get grid(): Cell[] {
     return this._grid;
   }
 
-  add(cell: Cell): Cell {
-    const cellCurrent = this.cellAt(cell.col, cell.row);
-    if (cellCurrent) {
-      this._grid[this._grid.indexOf(cellCurrent)] = cell;
-    } else {
-      this._grid.push(cell);
+  add(cell: Cell): void {
+    const cellOld = this.cellAt(cell.col, cell.row);
+    if (cellOld) {
+      this.remove(cellOld, (cell as CellFungus).fungus);
     }
-    return cellCurrent;
+    this._grid.push(cell);
+    if (this.animate.isAnimatable(cell)) {
+      this.animate.add(cell);
+    }
   }
 
-  dirOfRandomNeighbourWithDifferentType(cell: Cell, type: CellType): Cardinal {
-    const neighbours = this.neighboursOf(cell);
-    const emptyNeighbourKeys = Object.keys(neighbours).filter(
-      key => (neighbours[key] as Cell).type !== type,
+  remove(cell: Cell, removedBy: Fungus): void {
+    this._grid.splice(this._grid.indexOf(cell), 1);
+    if (this.animate.isAnimatable(cell)) {
+      this.animate.remove(cell);
+    }
+    if (cell instanceof CellFungus) {
+      const cellFungus = cell as CellFungus;
+      if (cellFungus.isNode) {
+        this._grid
+          .filter(c => {
+            if (c instanceof CellFungus) {
+              return (c as CellFungus).fungus === cellFungus.fungus;
+            }
+          })
+          .forEach((c: CellFungus) =>
+            this.add(
+              new CellFungus(this.injector, removedBy, c.col, c.row, false),
+            ),
+          );
+      }
+    }
+  }
+
+  dirGrow(cellFungus: CellFungus): Cardinal {
+    const neighbours = this.neighboursOf(cellFungus);
+    const targetNeighbourKeys = Object.keys(neighbours).filter(
+      key =>
+        !(
+          neighbours[key] instanceof CellFungus &&
+          (neighbours[key] as CellFungus).fungus === cellFungus.fungus
+        ),
     );
-    return this.util.getRandomElementOf(emptyNeighbourKeys) as Cardinal;
-  }
-
-  hasNeighbourOfDifferentType(cell: Cell, type: CellType): boolean {
-    const neighbours = this.neighboursOf(cell);
-    return Object.keys(neighbours).some(
-      key => (neighbours[key] as Cell).type !== type,
-    );
-  }
-
-  canGrow(cell: CellFungus): boolean {
-    const neighbours = this.neighboursOf(cell);
-    return Object.keys(neighbours).some(key => {
-      const c = neighbours[key] as Cell;
-      return (
-        c.type !== CellType.fungus ||
-        (!(c as CellFungus).isNode && (c as CellFungus).fungus !== cell.fungus)
-      );
-    });
-  }
-
-  dirGrow(cell: CellFungus): Cardinal {
-    const neighbours = this.neighboursOf(cell);
-    const emptyNeighbourKeys = Object.keys(neighbours).filter(key => {
-      const c = neighbours[key] as Cell;
-      return (
-        c.type !== CellType.fungus ||
-        (!(c as CellFungus).isNode && (c as CellFungus).fungus !== cell.fungus)
-      );
-    });
-    return this.util.getRandomElementOf(emptyNeighbourKeys) as Cardinal;
+    return this.util.randomElOf(targetNeighbourKeys) as Cardinal;
   }
 
   private cellAt(col: number, row: number): Cell {

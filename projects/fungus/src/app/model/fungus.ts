@@ -3,7 +3,6 @@ import {ConfigService} from '../config/config.service';
 import {AnimateService} from '../util/animate.service';
 import {GridService} from '../util/grid.service';
 import {UtilService} from '../util/util.service';
-import {CellType} from './cell';
 import {CellFungus} from './cell-fungus';
 
 export class Fungus {
@@ -12,6 +11,7 @@ export class Fungus {
   private config: ConfigService;
   private animate: AnimateService;
 
+  private readonly _colour: string;
   private readonly _breedDelayLowMs: number;
   private readonly _breedDelayHighMs: number;
 
@@ -20,6 +20,7 @@ export class Fungus {
     this.grid = injector.get(GridService);
     this.config = injector.get(ConfigService);
     this.animate = injector.get(AnimateService);
+    this._colour = this.util.randomColStr;
     this._breedDelayLowMs =
       this.config.fungusBreedDelayLowMinMs +
       Math.random() *
@@ -34,23 +35,12 @@ export class Fungus {
 
   init(): void {
     this.add(
-      new CellFungus(
-        this.injector,
-        this,
-        this.util.randomColStr,
-        this.randCol(),
-        this.randRow(),
-        true,
-      ),
+      new CellFungus(this.injector, this, this.randCol(), this.randRow(), true),
     );
   }
 
   add(cell: CellFungus): void {
-    const replaced = this.grid.add(cell);
-    this.animate.add(cell);
-    if (replaced && (replaced as CellFungus).type === CellType.fungus) {
-      this.animate.remove(replaced as CellFungus);
-    }
+    this.grid.add(cell);
   }
 
   get breedDelayLowMs(): number {
@@ -59,6 +49,10 @@ export class Fungus {
 
   get breedDelayHighMs(): number {
     return this._breedDelayHighMs;
+  }
+
+  get colour(): string {
+    return this._colour;
   }
 
   private randCol(): number {

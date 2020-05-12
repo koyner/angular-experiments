@@ -23,4 +23,8 @@ export class AnimateService {
   remove(a: Animatable): void {
     this._animatable.splice(this._animatable.indexOf(a), 1);
   }
+
+  isAnimatable(object: any): object is Animatable {
+    return object && 'animate' in object;
+  }
 }

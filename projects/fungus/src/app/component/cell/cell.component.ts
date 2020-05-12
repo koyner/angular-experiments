@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ConfigService} from '../../config/config.service';
-import {Cell, CellType} from '../../model/cell';
+import {Cell} from '../../model/cell';
 import {CellFungus} from '../../model/cell-fungus';
 import {RenderService} from '../../render/render.service';
 
@@ -17,7 +17,9 @@ export class CellComponent implements OnInit {
 
   clicked(): void {
     console.log(
-      `${this.cell.col}, ${this.cell.row}, ${this.cell.type}, ${this.cell.colour}`,
+      `${this.cell.col}, ${this.cell.row}, ${
+        this.cell instanceof CellFungus
+      }, ${this.cell.colour}`,
     );
   }
 
@@ -42,7 +44,7 @@ export class CellComponent implements OnInit {
   }
 
   get opacity(): number {
-    if (this.cell.type === CellType.fungus) {
+    if (this.cell instanceof CellFungus) {
       const cf = this.cell as CellFungus;
       if (!cf.isNode) {
         return Math.max(

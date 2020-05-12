@@ -6,12 +6,16 @@ import {Injectable} from '@angular/core';
 export class UtilService {
   constructor() {}
 
-  getRandomElementOf<T>(arr: T[]): T {
+  randomElOf<T>(arr: T[]): T {
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
   get randomColStr(): string {
     return `hsl(${UtilService.randomHue}, 80%, 50%, 1)`;
+  }
+
+  get now(): number {
+    return Date.now();
   }
 
   private static get randomHue(): number {
