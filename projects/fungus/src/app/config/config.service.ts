@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root',
 })
 export class ConfigService {
-  bgColour = 'rgb(50, 50, 50)';
+  bgColour = 'rgb(30, 30, 30)';
   animateMs = 25;
   cols = 29;
   rows = 29;
