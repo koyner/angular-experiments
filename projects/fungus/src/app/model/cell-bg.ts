@@ -1,7 +1,9 @@
+import {Injector} from '@angular/core';
+import {ConfigService} from '../config/config.service';
 import {Cell} from './cell';
 
 export class CellBg extends Cell {
-  constructor(colour: string, col: number, row: number) {
-    super(colour, col, row);
+  constructor(private injector: Injector, col: number, row: number) {
+    super(injector.get(ConfigService).bgColour, col, row);
   }
 }

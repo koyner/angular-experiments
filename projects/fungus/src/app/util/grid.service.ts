@@ -1,6 +1,7 @@
 import {Injectable, Injector} from '@angular/core';
 import {ConfigService} from '../config/config.service';
 import {Cell} from '../model/cell';
+import {CellBg} from '../model/cell-bg';
 import {CellFungus} from '../model/cell-fungus';
 import {Fungus} from '../model/fungus';
 import {AnimateService} from './animate.service';
@@ -64,7 +65,8 @@ export class GridService {
           })
           .forEach((c: CellFungus) =>
             this.add(
-              new CellFungus(this.injector, removedBy, c.col, c.row, false),
+              // new CellFungus(this.injector, removedBy, c.col, c.row, false),
+              new CellBg(this.injector, c.col, c.row),
             ),
           );
       }
