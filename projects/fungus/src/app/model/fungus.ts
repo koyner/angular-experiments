@@ -44,6 +44,10 @@ export class Fungus {
     this.grid.add(cellFungus);
   }
 
+  kill(): void {
+    this.fun;
+  }
+
   get breedDelayLowMs(): number {
     return this._breedDelayLowMs;
   }

@@ -16,4 +16,12 @@ export class FungiService {
       this.fungi.push(new Fungus(this.injector));
     }
   }
+
+  kill(fungus: Fungus): void {
+    this.fungi.splice(this.fungi.indexOf(fungus), 1);
+  }
+
+  get count(): number {
+    return this.fungi.length;
+  }
 }

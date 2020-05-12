@@ -27,4 +27,8 @@ export class AnimateService {
   isAnimatable(object: any): object is Animatable {
     return object && 'animate' in object;
   }
+
+  get count(): number {
+    return this._animatable.length;
+  }
 }

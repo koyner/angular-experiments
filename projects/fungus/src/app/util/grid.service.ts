@@ -5,6 +5,7 @@ import {CellBg} from '../model/cell-bg';
 import {CellFungus} from '../model/cell-fungus';
 import {Fungus} from '../model/fungus';
 import {AnimateService} from './animate.service';
+import {FungiService} from './fungi.service';
 import {UtilService} from './util.service';
 
 export enum Cardinal {
@@ -32,6 +33,7 @@ export class GridService {
     private util: UtilService,
     private animate: AnimateService,
     private injector: Injector,
+    private fungi: FungiService,
   ) {}
 
   get cells(): Cell[] {
@@ -69,6 +71,7 @@ export class GridService {
               new CellBg(this.injector, c.col, c.row),
             ),
           );
+        this.fungi.kill(cellFungus.fungus);
       }
     }
   }
