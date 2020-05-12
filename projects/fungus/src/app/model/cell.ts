@@ -4,4 +4,8 @@ export abstract class Cell {
     public col: number,
     public row: number,
   ) {}
+
+  toString(): string {
+    return `${this.col}, ${this.row}, ${this.colour}`;
+  }
 }

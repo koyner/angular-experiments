@@ -24,7 +24,7 @@ interface INeighbourCells {
   providedIn: 'root',
 })
 export class GridService {
-  private _grid: Cell[] = [];
+  private _cells: Cell[] = [];
 
   constructor(
     private config: ConfigService,
@@ -33,8 +33,8 @@ export class GridService {
     private injector: Injector,
   ) {}
 
-  get grid(): Cell[] {
-    return this._grid;
+  get cells(): Cell[] {
+    return this._cells;
   }
 
   add(cell: Cell): void {
@@ -42,21 +42,21 @@ export class GridService {
     if (cellOld) {
       this.remove(cellOld, (cell as CellFungus).fungus);
     }
-    this._grid.push(cell);
+    this._cells.push(cell);
     if (this.animate.isAnimatable(cell)) {
       this.animate.add(cell);
     }
   }
 
   remove(cell: Cell, removedBy: Fungus): void {
-    this._grid.splice(this._grid.indexOf(cell), 1);
+    this._cells.splice(this._cells.indexOf(cell), 1);
     if (this.animate.isAnimatable(cell)) {
       this.animate.remove(cell);
     }
     if (cell instanceof CellFungus) {
       const cellFungus = cell as CellFungus;
       if (cellFungus.isNode) {
-        this._grid
+        this._cells
           .filter(c => {
             if (c instanceof CellFungus) {
               return (c as CellFungus).fungus === cellFungus.fungus;
@@ -83,8 +83,16 @@ export class GridService {
     return this.util.randomElOf(targetNeighbourKeys) as Cardinal;
   }
 
+  randCol(): number {
+    return Math.floor(Math.random() * this.config.cols);
+  }
+
+  randRow(): number {
+    return Math.floor(Math.random() * this.config.rows);
+  }
+
   private cellAt(col: number, row: number): Cell {
-    return this._grid.find(cell => cell.col === col && cell.row === row);
+    return this._cells.find(cell => cell.col === col && cell.row === row);
   }
 
   private neighboursOf(cell: Cell): INeighbourCells {

@@ -9,18 +9,12 @@ import {RenderService} from '../../render/render.service';
   templateUrl: './cell.component.html',
   styleUrls: ['./cell.component.less'],
 })
-export class CellComponent implements OnInit {
+export class CellComponent {
   @Input() cell: Cell;
   constructor(private renderer: RenderService, private config: ConfigService) {}
 
-  ngOnInit(): void {}
-
   clicked(): void {
-    console.log(
-      `${this.cell.col}, ${this.cell.row}, ${
-        this.cell instanceof CellFungus
-      }, ${this.cell.colour}`,
-    );
+    console.log(this.cell.toString());
   }
 
   get x(): number {

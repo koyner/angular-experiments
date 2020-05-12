@@ -10,8 +10,8 @@ export class UtilService {
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
-  get randomColStr(): string {
-    return `hsl(${UtilService.randomHue}, 80%, 50%, 1)`;
+  get randomColourStr(): string {
+    return `hsl(${UtilService.randomHue}, 90%, 50%, 1)`;
   }
 
   get now(): number {

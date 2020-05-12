@@ -6,13 +6,14 @@ import {Fungus} from '../model/fungus';
   providedIn: 'root',
 })
 export class FungiService {
+  private readonly fungi: Fungus[] = [];
+
   constructor(private injector: Injector, private config: ConfigService) {}
 
   init(): void {
     let i = 0;
     while (i++ < this.config.fungusCount) {
-      const fungus = new Fungus(this.injector);
-      fungus.init();
+      this.fungi.push(new Fungus(this.injector));
     }
   }
 }

@@ -7,12 +7,10 @@ import {GridService} from '../../util/grid.service';
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.less'],
 })
-export class GridComponent implements OnInit {
+export class GridComponent {
   constructor(private gridService: GridService) {}
 
-  ngOnInit(): void {}
-
-  get grid(): Cell[] {
-    return this.gridService.grid;
+  get cells(): Cell[] {
+    return this.gridService.cells;
   }
 }

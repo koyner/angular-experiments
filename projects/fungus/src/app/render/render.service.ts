@@ -19,19 +19,19 @@ export class RenderService {
   }
 
   xFor(cell: Cell): number {
-    return Math.round(cell.col * this.cellWidth);
+    return Math.floor(cell.col * this.cellWidth);
   }
 
   yFor(cell: Cell): number {
-    return Math.round(cell.row * this.cellHeight);
+    return Math.floor(cell.row * this.cellHeight);
   }
 
   wFor(cell: Cell): number {
-    return Math.round(this.cellWidth);
+    return Math.floor(this.cellWidth);
   }
 
   hFor(cell: Cell): number {
-    return Math.round(this.cellHeight);
+    return Math.floor(this.cellHeight);
   }
 
   private get cellWidth(): number {
