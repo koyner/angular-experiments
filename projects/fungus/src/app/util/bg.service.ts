@@ -8,15 +8,15 @@ import {GridService} from './grid.service';
 })
 export class BgService {
   constructor(
-    private injector: Injector,
-    private config: ConfigService,
-    private grid: GridService
+    private _injector: Injector,
+    private _config: ConfigService,
+    private _grid: GridService
   ) {}
 
   init(): void {
-    for (let i = 0; i < this.config.cols; i++) {
-      for (let j = 0; j < this.config.rows; j++) {
-        this.grid.add(new CellBg(this.injector, i, j));
+    for (let i = 0; i < this._config.cols; i++) {
+      for (let j = 0; j < this._config.rows; j++) {
+        this._grid.add(new CellBg(this._injector, i, j));
       }
     }
   }

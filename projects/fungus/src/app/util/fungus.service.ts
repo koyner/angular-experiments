@@ -8,20 +8,20 @@ import {Fungus} from '../model/fungus';
 export class FungusService {
   private readonly _fungi: Fungus[] = [];
 
-  constructor(private injector: Injector, private config: ConfigService) {}
+  constructor(private _injector: Injector, private _config: ConfigService) {}
 
   init(): void {
     let i = 0;
-    while (i++ < this.config.fungusCount) {
-      this._fungi.push(new Fungus(this.injector));
+    while (i++ < this._config.fungusCount) {
+      this._fungi.push(new Fungus(this._injector));
     }
   }
 
   get fungi(): Fungus[] {
-    return this._fungi;
+    return this._fungi.filter(f => !f.isDead);
   }
 
   get count(): number {
-    return this._fungi.length;
+    return this.fungi.length;
   }
 }

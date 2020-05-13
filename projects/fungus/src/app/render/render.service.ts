@@ -8,7 +8,7 @@ import {Cell} from '../model/cell';
 })
 export class RenderService {
   private _size: number;
-  constructor(private config: ConfigService) {}
+  constructor(private _config: ConfigService) {}
 
   set size(size: number) {
     this._size = size;
@@ -35,10 +35,10 @@ export class RenderService {
   }
 
   private get cellWidth(): number {
-    return this._size / this.config.cols;
+    return this._size / this._config.cols;
   }
 
   private get cellHeight(): number {
-    return this._size / this.config.rows;
+    return this._size / this._config.rows;
   }
 }

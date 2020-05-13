@@ -23,7 +23,10 @@ interface INeighbourCells {
 export class GridService {
   private _cells: Cell[] = [];
 
-  constructor(private config: ConfigService, private animate: AnimateService) {}
+  constructor(
+    private _config: ConfigService,
+    private _animate: AnimateService
+  ) {}
 
   get cells(): Cell[] {
     return this._cells;
@@ -33,13 +36,13 @@ export class GridService {
     const cellReplaced = this.cellAt(cell.col, cell.row);
     if (cellReplaced) {
       this._cells.splice(this._cells.indexOf(cellReplaced), 1);
-      if (this.animate.isAnimatable(cellReplaced)) {
-        this.animate.remove(cellReplaced);
+      if (this._animate.isAnimatable(cellReplaced)) {
+        this._animate.remove(cellReplaced);
       }
     }
     this._cells.push(cell);
-    if (this.animate.isAnimatable(cell)) {
-      this.animate.add(cell);
+    if (this._animate.isAnimatable(cell)) {
+      this._animate.add(cell);
     }
     return cellReplaced;
   }
@@ -49,24 +52,24 @@ export class GridService {
     if (cell.col !== 0) {
       dirs[Cardinal.w] = this.cellAt(cell.col - 1, cell.row);
     }
-    if (cell.col !== this.config.cols - 1) {
+    if (cell.col !== this._config.cols - 1) {
       dirs[Cardinal.e] = this.cellAt(cell.col + 1, cell.row);
     }
     if (cell.row !== 0) {
       dirs[Cardinal.n] = this.cellAt(cell.col, cell.row - 1);
     }
-    if (cell.row !== this.config.rows - 1) {
+    if (cell.row !== this._config.rows - 1) {
       dirs[Cardinal.s] = this.cellAt(cell.col, cell.row + 1);
     }
     return dirs;
   }
 
   randCol(): number {
-    return Math.floor(Math.random() * this.config.cols);
+    return Math.floor(Math.random() * this._config.cols);
   }
 
   randRow(): number {
-    return Math.floor(Math.random() * this.config.rows);
+    return Math.floor(Math.random() * this._config.rows);
   }
 
   get count(): number {

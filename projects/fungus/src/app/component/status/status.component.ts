@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Fungus} from '../../model/fungus';
 import {AnimateService} from '../../util/animate.service';
 import {FungusService} from '../../util/fungus.service';
@@ -9,28 +9,26 @@ import {GridService} from '../../util/grid.service';
   templateUrl: './status.component.html',
   styleUrls: ['./status.component.less']
 })
-export class StatusComponent implements OnInit {
+export class StatusComponent {
   constructor(
-    private animate: AnimateService,
-    private fungusService: FungusService,
-    private grid: GridService
+    private _animate: AnimateService,
+    private _fungusService: FungusService,
+    private _grid: GridService
   ) {}
 
-  ngOnInit(): void {}
-
   get animatableCount(): number {
-    return this.animate.count;
+    return this._animate.count;
   }
 
   get fungusCount(): number {
-    return this.fungusService.count;
+    return this._fungusService.count;
   }
 
   get fungi(): Fungus[] {
-    return this.fungusService.fungi.filter(f => !f.isDead);
+    return this._fungusService.fungi;
   }
 
   get cellCount(): number {
-    return this.grid.count;
+    return this._grid.count;
   }
 }

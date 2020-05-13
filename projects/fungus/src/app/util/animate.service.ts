@@ -10,10 +10,10 @@ export interface Animatable {
 })
 export class AnimateService {
   private _animatable: Animatable[] = [];
-  constructor(private config: ConfigService) {
+  constructor(private _config: ConfigService) {
     window.setInterval(() => {
       this._animatable.forEach(a => a.animate());
-    }, this.config.animateMs);
+    }, this._config.animateMs);
   }
 
   add(a: Animatable): void {

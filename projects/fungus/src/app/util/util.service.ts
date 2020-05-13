@@ -4,8 +4,6 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class UtilService {
-  constructor() {}
-
   randomElOf<T>(arr: T[]): T {
     return arr[Math.floor(Math.random() * arr.length)];
   }

@@ -6,8 +6,8 @@ import {Cell} from './cell';
 import {Fungus} from './fungus';
 
 export class CellFungus extends Cell implements Animatable {
-  private grid: GridService;
-  private util: UtilService;
+  private _grid: GridService;
+  private _util: UtilService;
   private _age: number;
   private _breedNext: number;
   private readonly _createdAt: number;
@@ -19,9 +19,9 @@ export class CellFungus extends Cell implements Animatable {
     private _isNode: boolean
   ) {
     super(_fungus.colour, col, row);
-    this.grid = _injector.get(GridService);
-    this.util = _injector.get(UtilService);
-    this._createdAt = this.util.now;
+    this._grid = _injector.get(GridService);
+    this._util = _injector.get(UtilService);
+    this._createdAt = this._util.now;
     this.cueNextBreed();
   }
 
@@ -38,12 +38,12 @@ export class CellFungus extends Cell implements Animatable {
   }
 
   animate(): void {
-    this._age = this.util.now - this._createdAt;
+    this._age = this._util.now - this._createdAt;
     this.breed();
   }
 
   private breed(): void {
-    if (this._breedNext < this.util.now) {
+    if (this._breedNext < this._util.now) {
       let coords;
       switch (this.dirGrow()) {
         case Cardinal.w:
@@ -78,14 +78,14 @@ export class CellFungus extends Cell implements Animatable {
 
   private cueNextBreed(): void {
     this._breedNext =
-      this.util.now +
+      this._util.now +
       this._fungus.breedDelayLowMs +
       Math.random() *
         (this._fungus.breedDelayHighMs - this._fungus.breedDelayLowMs);
   }
 
   private dirGrow(): Cardinal {
-    const neighbours = this.grid.neighboursOf(this);
+    const neighbours = this._grid.neighboursOf(this);
     const targetNeighbourKeys = Object.keys(neighbours).filter(
       key =>
         !(
@@ -93,6 +93,6 @@ export class CellFungus extends Cell implements Animatable {
           (neighbours[key] as CellFungus).fungus === this.fungus
         )
     );
-    return this.util.randomElOf(targetNeighbourKeys) as Cardinal;
+    return this._util.randomElOf(targetNeighbourKeys) as Cardinal;
   }
 }

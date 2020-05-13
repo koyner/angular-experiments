@@ -10,15 +10,15 @@ import {FungusService} from './util/fungus.service';
 })
 export class AppComponent {
   constructor(
-    private renderer: RenderService,
-    private fungusService: FungusService,
-    private bgService: BgService
+    private _renderer: RenderService,
+    private _fungusService: FungusService,
+    private _bgService: BgService
   ) {
-    this.bgService.init();
-    this.fungusService.init();
+    this._bgService.init();
+    this._fungusService.init();
   }
 
   resized(size: number): void {
-    this.renderer.size = size;
+    this._renderer.size = size;
   }
 }

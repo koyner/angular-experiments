@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Cell} from '../../model/cell';
 import {GridService} from '../../util/grid.service';
 
@@ -8,9 +8,9 @@ import {GridService} from '../../util/grid.service';
   styleUrls: ['./grid.component.less']
 })
 export class GridComponent {
-  constructor(private gridService: GridService) {}
+  constructor(private _grid: GridService) {}
 
   get cells(): Cell[] {
-    return this.gridService.cells;
+    return this._grid.cells;
   }
 }
