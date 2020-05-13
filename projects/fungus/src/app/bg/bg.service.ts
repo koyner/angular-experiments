@@ -19,7 +19,7 @@ export class BgService {
     this._bg = new Bg(this._injector);
   }
 
-  addBgCell(col: number, row: number): void {
+  addCell(col: number, row: number): void {
     this._bg.addCell(col, row);
   }
 }

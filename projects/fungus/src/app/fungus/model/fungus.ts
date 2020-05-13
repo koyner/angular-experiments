@@ -65,7 +65,7 @@ export class Fungus {
               return (c as CellFungus).fungus === cfReplaced.fungus;
             }
           })
-          .forEach(c => this._bgService.addBgCell(c.col, c.row));
+          .forEach(c => this._bgService.addCell(c.col, c.row));
       }
     }
   }
