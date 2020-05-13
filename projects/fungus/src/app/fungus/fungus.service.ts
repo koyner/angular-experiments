@@ -1,5 +1,6 @@
 import {Injectable, Injector} from '@angular/core';
 import {ConfigService} from '../config/config.service';
+import {GridService} from '../grid/grid.service';
 import {Fungus} from './model/fungus';
 
 @Injectable({
@@ -8,7 +9,11 @@ import {Fungus} from './model/fungus';
 export class FungusService {
   private readonly _fungi: Fungus[] = [];
 
-  constructor(private _injector: Injector, private _config: ConfigService) {}
+  constructor(
+    private _injector: Injector,
+    private _config: ConfigService,
+    private _grid: GridService
+  ) {}
 
   init(): void {
     let i = 0;
@@ -26,6 +31,8 @@ export class FungusService {
   }
 
   private createFungus(): void {
-    this._fungi.push(new Fungus(this._injector));
+    const f = new Fungus(this._injector);
+    f.addCell(this._grid.randCol(), this._grid.randRow(), true);
+    this._fungi.push(f);
   }
 }

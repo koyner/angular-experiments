@@ -1,12 +1,14 @@
 import {Injectable, Injector} from '@angular/core';
 import {ConfigService} from '../config/config.service';
 import {GridService} from '../grid/grid.service';
-import {CellBg} from './model/cell-bg';
+import {Bg} from './model/bg';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BgService {
+  private _bg: Bg;
+
   constructor(
     private _injector: Injector,
     private _config: ConfigService,
@@ -14,10 +16,10 @@ export class BgService {
   ) {}
 
   init(): void {
-    for (let i = 0; i < this._config.cols; i++) {
-      for (let j = 0; j < this._config.rows; j++) {
-        this._grid.add(new CellBg(this._injector, i, j));
-      }
-    }
+    this._bg = new Bg(this._injector);
+  }
+
+  addBgCell(col: number, row: number): void {
+    this._bg.addCell(col, row);
   }
 }

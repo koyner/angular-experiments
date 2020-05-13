@@ -1,5 +1,5 @@
 import {Injector} from '@angular/core';
-import {CellBg} from '../../bg/model/cell-bg';
+import {BgService} from '../../bg/bg.service';
 import {ConfigService} from '../../config/config.service';
 import {GridService} from '../../grid/grid.service';
 import {UtilService} from '../../util/util.service';
@@ -7,6 +7,7 @@ import {CellFungus} from './cell-fungus';
 
 export class Fungus {
   private _grid: GridService;
+  private _bgService: BgService;
 
   private readonly _colour: string;
   private readonly _breedDelayLowMs: number;
@@ -14,6 +15,7 @@ export class Fungus {
 
   constructor(private _injector: Injector) {
     this._grid = _injector.get(GridService);
+    this._bgService = _injector.get(BgService);
     this._colour = _injector.get(UtilService).randomColourStr;
     const config = _injector.get(ConfigService);
     this._breedDelayLowMs =
@@ -24,34 +26,10 @@ export class Fungus {
       config.fungusBreedDelayHighMinMs +
       Math.random() *
         (config.fungusBreedDelayHighMaxMs - config.fungusBreedDelayHighMinMs);
-
-    this.add(
-      new CellFungus(
-        this._injector,
-        this,
-        this._grid.randCol(),
-        this._grid.randRow(),
-        true
-      )
-    );
   }
 
-  add(cf: CellFungus): void {
-    const cellReplaced = this._grid.add(cf);
-    if (cellReplaced instanceof CellFungus) {
-      const cellFungusReplaced = cellReplaced as CellFungus;
-      if (cellFungusReplaced.isNode) {
-        this._grid.cells
-          .filter(c => {
-            if (c instanceof CellFungus) {
-              return (c as CellFungus).fungus === cellFungusReplaced.fungus;
-            }
-          })
-          .forEach((c: CellFungus) =>
-            this._grid.add(new CellBg(this._injector, c.col, c.row))
-          );
-      }
-    }
+  addCell(col: number, row: number, isNode: boolean): void {
+    this.add(new CellFungus(this._injector, this, col, row, isNode));
   }
 
   get breedDelayLowMs(): number {
@@ -74,5 +52,21 @@ export class Fungus {
 
   get isDead(): boolean {
     return this.count === 0;
+  }
+
+  private add(cf: CellFungus): void {
+    const cReplaced = this._grid.add(cf);
+    if (cReplaced instanceof CellFungus) {
+      const cfReplaced = cReplaced as CellFungus;
+      if (cfReplaced.isNode) {
+        this._grid.cells
+          .filter(c => {
+            if (c instanceof CellFungus) {
+              return (c as CellFungus).fungus === cfReplaced.fungus;
+            }
+          })
+          .forEach(c => this._bgService.addBgCell(c.col, c.row));
+      }
+    }
   }
 }

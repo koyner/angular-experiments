@@ -62,15 +62,7 @@ export class CellFungus extends Cell implements Animatable {
           break;
       }
       if (coords) {
-        this._fungus.add(
-          new CellFungus(
-            this._injector,
-            this._fungus,
-            coords.col,
-            coords.row,
-            false
-          )
-        );
+        this._fungus.addCell(coords.col, coords.row, false);
       }
       this.cueNextBreed();
     }
