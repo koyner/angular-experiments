@@ -9,10 +9,10 @@ export class ConfigService {
   cols = 29;
   rows = 29;
   fungusCount = 10;
-  fungusBreedDelayLowMinMs = 25;
-  fungusBreedDelayLowMaxMs = 100;
+  fungusBreedDelayLowMinMs = 50;
+  fungusBreedDelayLowMaxMs = 200;
   fungusBreedDelayHighMinMs = 1000;
-  fungusBreedDelayHighMaxMs = 1500;
+  fungusBreedDelayHighMaxMs = 4000;
   fungusAgingDelayMs = 300;
   fungusMinOpacity = 0.7;
 }

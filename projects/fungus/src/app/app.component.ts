@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {RenderService} from './render/render.service';
 import {BgService} from './util/bg.service';
-import {FungiService} from './util/fungi.service';
+import {FungusService} from './util/fungus.service';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +11,11 @@ import {FungiService} from './util/fungi.service';
 export class AppComponent {
   constructor(
     private renderer: RenderService,
-    private fungus: FungiService,
-    private bg: BgService,
+    private fungusService: FungusService,
+    private bgService: BgService,
   ) {
-    this.bg.init();
-    this.fungus.init();
+    this.bgService.init();
+    this.fungusService.init();
   }
 
   resized(size: number): void {

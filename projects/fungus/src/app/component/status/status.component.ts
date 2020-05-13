@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Fungus} from '../../model/fungus';
 import {AnimateService} from '../../util/animate.service';
-import {FungiService} from '../../util/fungi.service';
+import {FungusService} from '../../util/fungus.service';
 import {GridService} from '../../util/grid.service';
 
 @Component({
@@ -12,7 +12,7 @@ import {GridService} from '../../util/grid.service';
 export class StatusComponent implements OnInit {
   constructor(
     private animate: AnimateService,
-    private fungus: FungiService,
+    private fungusService: FungusService,
     private grid: GridService,
   ) {}
 
@@ -23,11 +23,11 @@ export class StatusComponent implements OnInit {
   }
 
   get fungusCount(): number {
-    return this.fungus.count;
+    return this.fungusService.count;
   }
 
   get fungi(): Fungus[] {
-    return this.fungus.fungi;
+    return this.fungusService.fungi;
   }
 
   get cellCount(): number {

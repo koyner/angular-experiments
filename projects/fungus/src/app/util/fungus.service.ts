@@ -5,7 +5,7 @@ import {Fungus} from '../model/fungus';
 @Injectable({
   providedIn: 'root',
 })
-export class FungiService {
+export class FungusService {
   private readonly _fungi: Fungus[] = [];
 
   constructor(private injector: Injector, private config: ConfigService) {}

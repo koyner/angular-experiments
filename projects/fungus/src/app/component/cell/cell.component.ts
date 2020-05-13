@@ -38,20 +38,13 @@ export class CellComponent {
   }
 
   get opacity(): number {
-    // if (this.cell instanceof CellFungus) {
-    //   const cf = this.cell as CellFungus;
-    //   if (!cf.isNode) {
-    //     return Math.max(
-    //       this.config.fungusMinOpacity,
-    //       1 - cf.age / this.config.fungusAgingDelayMs,
-    //     );
-    //   }
-    // }
-    // return 1;
     if (this.cell instanceof CellFungus) {
       const cf = this.cell as CellFungus;
       if (!cf.isNode) {
-        return 0.7;
+        return Math.max(
+          this.config.fungusMinOpacity,
+          1 - cf.age / this.config.fungusAgingDelayMs,
+        );
       }
     }
     return 1;
