@@ -6,22 +6,26 @@ import {Fungus} from '../model/fungus';
   providedIn: 'root',
 })
 export class FungiService {
-  private readonly fungi: Fungus[] = [];
+  private readonly _fungi: Fungus[] = [];
 
   constructor(private injector: Injector, private config: ConfigService) {}
 
   init(): void {
     let i = 0;
     while (i++ < this.config.fungusCount) {
-      this.fungi.push(new Fungus(this.injector));
+      this._fungi.push(new Fungus(this.injector));
     }
   }
 
   kill(fungus: Fungus): void {
-    this.fungi.splice(this.fungi.indexOf(fungus), 1);
+    this._fungi.splice(this._fungi.indexOf(fungus), 1);
+  }
+
+  get fungi(): Fungus[] {
+    return this._fungi;
   }
 
   get count(): number {
-    return this.fungi.length;
+    return this._fungi.length;
   }
 }

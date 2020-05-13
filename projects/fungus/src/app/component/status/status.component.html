@@ -1,4 +1,13 @@
-<div>
+<div id="cont">
+  <p>Cells: {{ cellCount }}</p>
   <p>Animatable: {{ animatableCount }}</p>
   <p>Fungi: {{ fungusCount }}</p>
+  <div
+    class="bar"
+    *ngFor="let fungus of fungi"
+    [style.background-color]="fungus.colour"
+    [style.width.%]="100 * (fungus.count / cellCount)"
+  >
+    {{ fungus.count }}
+  </div>
 </div>

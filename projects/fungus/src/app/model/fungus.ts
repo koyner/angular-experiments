@@ -44,10 +44,6 @@ export class Fungus {
     this.grid.add(cellFungus);
   }
 
-  kill(): void {
-    this.fun;
-  }
-
   get breedDelayLowMs(): number {
     return this._breedDelayLowMs;
   }
@@ -58,5 +54,11 @@ export class Fungus {
 
   get colour(): string {
     return this._colour;
+  }
+
+  get count(): number {
+    return this.grid.cells.filter(
+      c => c instanceof CellFungus && (c as CellFungus).fungus === this,
+    ).length;
   }
 }

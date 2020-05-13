@@ -96,6 +96,10 @@ export class GridService {
     return Math.floor(Math.random() * this.config.rows);
   }
 
+  get count(): number {
+    return this.cells.length;
+  }
+
   private cellAt(col: number, row: number): Cell {
     return this._cells.find(cell => cell.col === col && cell.row === row);
   }
