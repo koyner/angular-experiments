@@ -13,7 +13,7 @@ export class FungusService {
   init(): void {
     let i = 0;
     while (i++ < this._config.fungusCount) {
-      this._fungi.push(new Fungus(this._injector));
+      this.createFungus();
     }
   }
 
@@ -23,5 +23,9 @@ export class FungusService {
 
   get count(): number {
     return this.fungi.length;
+  }
+
+  private createFungus(): void {
+    this._fungi.push(new Fungus(this._injector));
   }
 }

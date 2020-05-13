@@ -6,29 +6,24 @@ import {CellBg} from './cell-bg';
 import {CellFungus} from './cell-fungus';
 
 export class Fungus {
-  private _util: UtilService;
   private _grid: GridService;
-  private _config: ConfigService;
 
   private readonly _colour: string;
   private readonly _breedDelayLowMs: number;
   private readonly _breedDelayHighMs: number;
 
   constructor(private _injector: Injector) {
-    this._util = _injector.get(UtilService);
     this._grid = _injector.get(GridService);
-    this._config = _injector.get(ConfigService);
-    this._colour = this._util.randomColourStr;
+    this._colour = _injector.get(UtilService).randomColourStr;
+    const config = _injector.get(ConfigService);
     this._breedDelayLowMs =
-      this._config.fungusBreedDelayLowMinMs +
+      config.fungusBreedDelayLowMinMs +
       Math.random() *
-        (this._config.fungusBreedDelayLowMaxMs -
-          this._config.fungusBreedDelayLowMinMs);
+        (config.fungusBreedDelayLowMaxMs - config.fungusBreedDelayLowMinMs);
     this._breedDelayHighMs =
-      this._config.fungusBreedDelayHighMinMs +
+      config.fungusBreedDelayHighMinMs +
       Math.random() *
-        (this._config.fungusBreedDelayHighMaxMs -
-          this._config.fungusBreedDelayHighMinMs);
+        (config.fungusBreedDelayHighMaxMs - config.fungusBreedDelayHighMinMs);
 
     this.add(
       new CellFungus(
