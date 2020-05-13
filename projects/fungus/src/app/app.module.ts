@@ -5,7 +5,9 @@ import {ComponentsModule} from 'mrb-ui';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {FungusComponentsModule} from './component/fungus-components.module';
+import {CellModule} from './cell/cell.module';
+import {GridModule} from './grid/grid.module';
+import {StatusModule} from './status/status.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,7 +15,9 @@ import {FungusComponentsModule} from './component/fungus-components.module';
     BrowserModule,
     AppRoutingModule,
     ComponentsModule,
-    FungusComponentsModule
+    CellModule,
+    GridModule,
+    StatusModule
   ],
   providers: [],
   bootstrap: [AppComponent]

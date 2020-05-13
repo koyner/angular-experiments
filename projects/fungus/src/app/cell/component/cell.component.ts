@@ -1,8 +1,8 @@
 import {Component, Input} from '@angular/core';
-import {Cell} from '../model/cell';
 import {ConfigService} from '../../config/config.service';
 import {CellFungus} from '../../fungus/model/cell-fungus';
 import {RenderService} from '../../render/render.service';
+import {Cell} from '../model/cell';
 
 @Component({
   selector: 'app-cell',
