@@ -1,9 +1,9 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 
-import {CellComponent} from './cell/cell.component';
-import {GridComponent} from './grid/grid.component';
-import {StatusComponent} from './status/status.component';
+import {CellComponent} from '../cell/component/cell.component';
+import {GridComponent} from '../grid/component/grid.component';
+import {StatusComponent} from '../status/component/status.component';
 
 @NgModule({
   declarations: [CellComponent, GridComponent, StatusComponent],

@@ -1,8 +1,8 @@
 import {Injector} from '@angular/core';
-import {Animatable} from '../util/animate.service';
-import {Cardinal, GridService} from '../util/grid.service';
-import {UtilService} from '../util/util.service';
-import {Cell} from './cell';
+import {Cell} from '../../cell/model/cell';
+import {Cardinal, GridService} from '../../grid/grid.service';
+import {Animatable} from '../../util/animate.service';
+import {UtilService} from '../../util/util.service';
 import {Fungus} from './fungus';
 
 export class CellFungus extends Cell implements Animatable {

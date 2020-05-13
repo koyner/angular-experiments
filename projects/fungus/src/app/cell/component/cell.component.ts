@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
+import {Cell} from '../model/cell';
 import {ConfigService} from '../../config/config.service';
-import {Cell} from '../../model/cell';
-import {CellFungus} from '../../model/cell-fungus';
+import {CellFungus} from '../../fungus/model/cell-fungus';
 import {RenderService} from '../../render/render.service';
 
 @Component({

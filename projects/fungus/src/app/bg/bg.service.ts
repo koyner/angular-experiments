@@ -1,7 +1,7 @@
 import {Injectable, Injector} from '@angular/core';
 import {ConfigService} from '../config/config.service';
-import {CellBg} from '../model/cell-bg';
-import {GridService} from './grid.service';
+import {GridService} from '../grid/grid.service';
+import {CellBg} from './model/cell-bg';
 
 @Injectable({
   providedIn: 'root'

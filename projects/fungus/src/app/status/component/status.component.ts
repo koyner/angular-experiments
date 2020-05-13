@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {Fungus} from '../../model/fungus';
+import {FungusService} from '../../fungus/fungus.service';
+import {Fungus} from '../../fungus/model/fungus';
+import {GridService} from '../../grid/grid.service';
 import {AnimateService} from '../../util/animate.service';
-import {FungusService} from '../../util/fungus.service';
-import {GridService} from '../../util/grid.service';
 
 @Component({
   selector: 'app-status',

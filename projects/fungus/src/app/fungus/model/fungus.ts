@@ -1,8 +1,8 @@
 import {Injector} from '@angular/core';
-import {ConfigService} from '../config/config.service';
-import {GridService} from '../util/grid.service';
-import {UtilService} from '../util/util.service';
-import {CellBg} from './cell-bg';
+import {CellBg} from '../../bg/model/cell-bg';
+import {ConfigService} from '../../config/config.service';
+import {GridService} from '../../grid/grid.service';
+import {UtilService} from '../../util/util.service';
 import {CellFungus} from './cell-fungus';
 
 export class Fungus {

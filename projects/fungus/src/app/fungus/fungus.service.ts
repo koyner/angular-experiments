@@ -1,6 +1,6 @@
 import {Injectable, Injector} from '@angular/core';
 import {ConfigService} from '../config/config.service';
-import {Fungus} from '../model/fungus';
+import {Fungus} from './model/fungus';
 
 @Injectable({
   providedIn: 'root'

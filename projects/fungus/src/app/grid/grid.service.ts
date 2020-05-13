@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
+import {Cell} from '../cell/model/cell';
 import {ConfigService} from '../config/config.service';
-import {Cell} from '../model/cell';
-import {AnimateService} from './animate.service';
+import {AnimateService} from '../util/animate.service';
 
 export enum Cardinal {
   w = 'w',

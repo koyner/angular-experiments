@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
+import {BgService} from './bg/bg.service';
+import {FungusService} from './fungus/fungus.service';
 import {RenderService} from './render/render.service';
-import {BgService} from './util/bg.service';
-import {FungusService} from './util/fungus.service';
 
 @Component({
   selector: 'app-root',

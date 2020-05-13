@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
+import {Cell} from '../cell/model/cell';
 
 import {ConfigService} from '../config/config.service';
-import {Cell} from '../model/cell';
 
 @Injectable({
   providedIn: 'root'

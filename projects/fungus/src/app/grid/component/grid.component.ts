@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {Cell} from '../../model/cell';
-import {GridService} from '../../util/grid.service';
+import {Cell} from '../../cell/model/cell';
+import {GridService} from '../grid.service';
 
 @Component({
   selector: 'app-grid',
