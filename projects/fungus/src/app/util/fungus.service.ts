@@ -17,10 +17,6 @@ export class FungusService {
     }
   }
 
-  kill(fungus: Fungus): void {
-    this._fungi.splice(this._fungi.indexOf(fungus), 1);
-  }
-
   get fungi(): Fungus[] {
     return this._fungi;
   }

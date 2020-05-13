@@ -12,15 +12,15 @@ export class CellFungus extends Cell implements Animatable {
   private _breedNext: number;
   private readonly _createdAt: number;
   constructor(
-    private injector: Injector,
+    private _injector: Injector,
     private _fungus: Fungus,
     col: number,
     row: number,
     private _isNode: boolean,
   ) {
     super(_fungus.colour, col, row);
-    this.grid = injector.get(GridService);
-    this.util = injector.get(UtilService);
+    this.grid = _injector.get(GridService);
+    this.util = _injector.get(UtilService);
     this._createdAt = this.util.now;
     this.cueNextBreed();
   }
@@ -45,7 +45,7 @@ export class CellFungus extends Cell implements Animatable {
   private breed(): void {
     if (this._breedNext < this.util.now) {
       let coords;
-      switch (this.grid.dirGrow(this)) {
+      switch (this.dirGrow()) {
         case Cardinal.w:
           coords = {col: this.col - 1, row: this.row};
           break;
@@ -64,7 +64,7 @@ export class CellFungus extends Cell implements Animatable {
       if (coords) {
         this._fungus.add(
           new CellFungus(
-            this.injector,
+            this._injector,
             this._fungus,
             coords.col,
             coords.row,
@@ -82,5 +82,17 @@ export class CellFungus extends Cell implements Animatable {
       this._fungus.breedDelayLowMs +
       Math.random() *
         (this._fungus.breedDelayHighMs - this._fungus.breedDelayLowMs);
+  }
+
+  private dirGrow(): Cardinal {
+    const neighbours = this.grid.neighboursOf(this);
+    const targetNeighbourKeys = Object.keys(neighbours).filter(
+      key =>
+        !(
+          neighbours[key] instanceof CellFungus &&
+          (neighbours[key] as CellFungus).fungus === this.fungus
+        ),
+    );
+    return this.util.randomElOf(targetNeighbourKeys) as Cardinal;
   }
 }

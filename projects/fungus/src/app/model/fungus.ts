@@ -2,46 +2,61 @@ import {Injector} from '@angular/core';
 import {ConfigService} from '../config/config.service';
 import {GridService} from '../util/grid.service';
 import {UtilService} from '../util/util.service';
+import {CellBg} from './cell-bg';
 import {CellFungus} from './cell-fungus';
 
 export class Fungus {
-  private util: UtilService;
-  private grid: GridService;
-  private config: ConfigService;
+  private _util: UtilService;
+  private _grid: GridService;
+  private _config: ConfigService;
 
   private readonly _colour: string;
   private readonly _breedDelayLowMs: number;
   private readonly _breedDelayHighMs: number;
 
-  constructor(private injector: Injector) {
-    this.util = injector.get(UtilService);
-    this.grid = injector.get(GridService);
-    this.config = injector.get(ConfigService);
-    this._colour = this.util.randomColourStr;
+  constructor(private _injector: Injector) {
+    this._util = _injector.get(UtilService);
+    this._grid = _injector.get(GridService);
+    this._config = _injector.get(ConfigService);
+    this._colour = this._util.randomColourStr;
     this._breedDelayLowMs =
-      this.config.fungusBreedDelayLowMinMs +
+      this._config.fungusBreedDelayLowMinMs +
       Math.random() *
-        (this.config.fungusBreedDelayLowMaxMs -
-          this.config.fungusBreedDelayLowMinMs);
+        (this._config.fungusBreedDelayLowMaxMs -
+          this._config.fungusBreedDelayLowMinMs);
     this._breedDelayHighMs =
-      this.config.fungusBreedDelayHighMinMs +
+      this._config.fungusBreedDelayHighMinMs +
       Math.random() *
-        (this.config.fungusBreedDelayHighMaxMs -
-          this.config.fungusBreedDelayHighMinMs);
+        (this._config.fungusBreedDelayHighMaxMs -
+          this._config.fungusBreedDelayHighMinMs);
 
     this.add(
       new CellFungus(
-        this.injector,
+        this._injector,
         this,
-        this.grid.randCol(),
-        this.grid.randRow(),
+        this._grid.randCol(),
+        this._grid.randRow(),
         true,
       ),
     );
   }
 
-  add(cellFungus: CellFungus): void {
-    this.grid.add(cellFungus);
+  add(cf: CellFungus): void {
+    const cellReplaced = this._grid.add(cf);
+    if (cellReplaced instanceof CellFungus) {
+      const cellFungusReplaced = cellReplaced as CellFungus;
+      if (cellFungusReplaced.isNode) {
+        this._grid.cells
+          .filter(c => {
+            if (c instanceof CellFungus) {
+              return (c as CellFungus).fungus === cellFungusReplaced.fungus;
+            }
+          })
+          .forEach((c: CellFungus) =>
+            this._grid.add(new CellBg(this._injector, c.col, c.row)),
+          );
+      }
+    }
   }
 
   get breedDelayLowMs(): number {
@@ -57,8 +72,12 @@ export class Fungus {
   }
 
   get count(): number {
-    return this.grid.cells.filter(
+    return this._grid.cells.filter(
       c => c instanceof CellFungus && (c as CellFungus).fungus === this,
     ).length;
+  }
+
+  get isDead(): boolean {
+    return this.count === 0;
   }
 }

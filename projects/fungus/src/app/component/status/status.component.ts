@@ -27,7 +27,7 @@ export class StatusComponent implements OnInit {
   }
 
   get fungi(): Fungus[] {
-    return this.fungusService.fungi;
+    return this.fungusService.fungi.filter(f => !f.isDead);
   }
 
   get cellCount(): number {
