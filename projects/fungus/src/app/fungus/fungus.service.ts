@@ -18,7 +18,7 @@ export class FungusService {
   init(): void {
     let i = 0;
     while (i++ < this._config.fungusCount) {
-      this.createFungus();
+      this.createFungusAt(this._grid.randCol(), this._grid.randRow());
     }
   }
 
@@ -30,9 +30,9 @@ export class FungusService {
     return this.fungi.length;
   }
 
-  private createFungus(): void {
+  createFungusAt(col: number, row: number): void {
     const f = new Fungus(this._injector);
-    f.addCell(this._grid.randCol(), this._grid.randRow(), true);
+    f.addCell(col, row, true);
     this._fungi.push(f);
   }
 }

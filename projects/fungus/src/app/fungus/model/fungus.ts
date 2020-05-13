@@ -29,7 +29,15 @@ export class Fungus {
   }
 
   addCell(col: number, row: number, isNode: boolean): void {
-    this.add(new CellFungus(this._injector, this, col, row, isNode));
+    const cReplaced = this._grid.add(
+      new CellFungus(this._injector, this, col, row, isNode)
+    );
+    if (cReplaced instanceof CellFungus) {
+      const cfReplaced = cReplaced as CellFungus;
+      if (cfReplaced.isNode) {
+        cfReplaced.fungus.kill();
+      }
+    }
   }
 
   get breedDelayLowMs(): number {
@@ -45,28 +53,20 @@ export class Fungus {
   }
 
   get count(): number {
-    return this._grid.cells.filter(
-      c => c instanceof CellFungus && (c as CellFungus).fungus === this
-    ).length;
+    return this.cells.length;
   }
 
   get isDead(): boolean {
     return this.count === 0;
   }
 
-  private add(cf: CellFungus): void {
-    const cReplaced = this._grid.add(cf);
-    if (cReplaced instanceof CellFungus) {
-      const cfReplaced = cReplaced as CellFungus;
-      if (cfReplaced.isNode) {
-        this._grid.cells
-          .filter(c => {
-            if (c instanceof CellFungus) {
-              return (c as CellFungus).fungus === cfReplaced.fungus;
-            }
-          })
-          .forEach(c => this._bgService.addCell(c.col, c.row));
-      }
-    }
+  private get cells(): CellFungus[] {
+    return this._grid.cells.filter(
+      c => c instanceof CellFungus && (c as CellFungus).fungus === this
+    ) as CellFungus[];
+  }
+
+  private kill(): void {
+    this.cells.forEach(c => this._bgService.addCell(c.col, c.row));
   }
 }

@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {ConfigService} from '../../config/config.service';
+import {FungusService} from '../../fungus/fungus.service';
 import {CellFungus} from '../../fungus/model/cell-fungus';
 import {RenderService} from '../../render/render.service';
 import {Cell} from '../model/cell';
@@ -12,12 +13,14 @@ import {Cell} from '../model/cell';
 export class CellComponent {
   @Input() cell: Cell;
   constructor(
+    private fungusService: FungusService,
     private _renderer: RenderService,
     private _config: ConfigService
   ) {}
 
   clicked(): void {
     console.log(this.cell.toString());
+    this.fungusService.createFungusAt(this.cell.col, this.cell.row);
   }
 
   get x(): number {
