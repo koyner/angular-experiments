@@ -4,7 +4,7 @@ import {ConstantsService} from '../../services/constants.service';
 @Component({
   selector: 'app-mrb-ui-container',
   templateUrl: './container.component.html',
-  styleUrls: ['./container.component.less'],
+  styleUrls: ['./container.component.less']
 })
 export class ContainerComponent implements OnInit {
   @Output() resized = new EventEmitter<number>();

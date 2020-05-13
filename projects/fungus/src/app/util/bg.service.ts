@@ -4,13 +4,13 @@ import {CellBg} from '../model/cell-bg';
 import {GridService} from './grid.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class BgService {
   constructor(
     private injector: Injector,
     private config: ConfigService,
-    private grid: GridService,
+    private grid: GridService
   ) {}
 
   init(): void {

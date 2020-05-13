@@ -7,13 +7,13 @@ import {GridService} from '../../util/grid.service';
 @Component({
   selector: 'app-status',
   templateUrl: './status.component.html',
-  styleUrls: ['./status.component.less'],
+  styleUrls: ['./status.component.less']
 })
 export class StatusComponent implements OnInit {
   constructor(
     private animate: AnimateService,
     private fungusService: FungusService,
-    private grid: GridService,
+    private grid: GridService
   ) {}
 
   ngOnInit(): void {}

@@ -4,7 +4,7 @@ import {AppComponent} from './app.component';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      declarations: [AppComponent]
     }).compileComponents();
   }));
 
@@ -25,7 +25,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('.content span').textContent).toContain(
-      'mrb-ui app is running!',
+      'mrb-ui app is running!'
     );
   });
 });

@@ -11,7 +11,7 @@ describe('AppComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      declarations: [AppComponent]
     }).compileComponents();
   }));
 
@@ -28,7 +28,7 @@ describe('AppComponent', () => {
     const h1 = de.nativeElement;
     expect(h1.innerText).toMatch(
       /angular/i,
-      '<h1> should say something about "Angular"',
+      '<h1> should say something about "Angular"'
     );
   });
 });

@@ -7,6 +7,6 @@ import {Component} from '@angular/core';
         <h1 class="title">Welcome to Nugget</h1>
       </div>
     </div>
-  `,
+  `
 })
 export class HomeComponent {}

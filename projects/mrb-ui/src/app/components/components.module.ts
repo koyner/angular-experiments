@@ -10,6 +10,6 @@ export function _window() {
   declarations: [ContainerComponent],
   imports: [],
   exports: [ContainerComponent],
-  providers: [{provide: WINDOW, useFactory: _window}, ConstantsService],
+  providers: [{provide: WINDOW, useFactory: _window}, ConstantsService]
 })
 export class ComponentsModule {}

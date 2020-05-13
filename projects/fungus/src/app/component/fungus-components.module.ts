@@ -8,6 +8,6 @@ import {StatusComponent} from './status/status.component';
 @NgModule({
   declarations: [CellComponent, GridComponent, StatusComponent],
   imports: [CommonModule],
-  exports: [CellComponent, GridComponent, StatusComponent],
+  exports: [CellComponent, GridComponent, StatusComponent]
 })
 export class FungusComponentsModule {}

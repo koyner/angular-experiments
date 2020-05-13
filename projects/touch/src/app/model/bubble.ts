@@ -5,7 +5,7 @@ export class Bubble {
     public xMid: number,
     public yMid: number,
     public speed: number,
-    public side: number,
+    public side: number
   ) {}
 
   get x(): number {

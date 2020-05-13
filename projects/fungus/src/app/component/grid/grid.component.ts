@@ -5,7 +5,7 @@ import {GridService} from '../../util/grid.service';
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
-  styleUrls: ['./grid.component.less'],
+  styleUrls: ['./grid.component.less']
 })
 export class GridComponent {
   constructor(private gridService: GridService) {}

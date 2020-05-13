@@ -7,7 +7,7 @@ export enum Cardinal {
   w = 'w',
   e = 'e',
   n = 'n',
-  s = 's',
+  s = 's'
 }
 
 interface INeighbourCells {
@@ -18,7 +18,7 @@ interface INeighbourCells {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class GridService {
   private _cells: Cell[] = [];

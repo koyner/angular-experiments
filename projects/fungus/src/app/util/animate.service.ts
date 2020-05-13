@@ -6,7 +6,7 @@ export interface Animatable {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AnimateService {
   private _animatable: Animatable[] = [];

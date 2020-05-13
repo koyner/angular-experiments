@@ -4,7 +4,7 @@ import {ConfigService} from '../config/config.service';
 import {Cell} from '../model/cell';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class RenderService {
   private _size: number;

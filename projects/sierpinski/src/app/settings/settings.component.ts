@@ -11,7 +11,7 @@ import {SettingsService} from './settings.service';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.less'],
+  styleUrls: ['./settings.component.less']
 })
 export class SettingsComponent implements OnInit {
   isOpen = false;
@@ -20,7 +20,7 @@ export class SettingsComponent implements OnInit {
 
   constructor(
     public settings: SettingsService,
-    public animate: AnimateService,
+    public animate: AnimateService
   ) {}
 
   close(): void {
@@ -48,7 +48,7 @@ export class SettingsComponent implements OnInit {
       };
     }).pipe(
       distinctUntilChanged(),
-      debounceTime(this.settings.armsCountDebounce),
+      debounceTime(this.settings.armsCountDebounce)
     );
   }
 

@@ -5,7 +5,7 @@ import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 @Component({
   selector: 'app-demo2',
   templateUrl: './demo2.component.html',
-  styleUrls: ['./demo2.component.less'],
+  styleUrls: ['./demo2.component.less']
 })
 export class Demo2Component implements OnInit {
   private static loadModel(scene: THREE.Scene): void {
@@ -17,7 +17,7 @@ export class Demo2Component implements OnInit {
       undefined,
       error => {
         console.error(error);
-      },
+      }
     );
   }
   constructor() {}
@@ -28,12 +28,12 @@ export class Demo2Component implements OnInit {
       75,
       window.innerWidth / window.innerHeight,
       0.1,
-      1000,
+      1000
     );
 
     const canvas = document.getElementById('canvas') as HTMLCanvasElement;
     const context = canvas.getContext('webgl2', {
-      alpha: true,
+      alpha: true
     }) as WebGLRenderingContext;
     const renderer = new THREE.WebGLRenderer({canvas, context});
     renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);

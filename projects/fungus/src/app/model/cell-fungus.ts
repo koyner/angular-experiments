@@ -16,7 +16,7 @@ export class CellFungus extends Cell implements Animatable {
     private _fungus: Fungus,
     col: number,
     row: number,
-    private _isNode: boolean,
+    private _isNode: boolean
   ) {
     super(_fungus.colour, col, row);
     this.grid = _injector.get(GridService);
@@ -68,8 +68,8 @@ export class CellFungus extends Cell implements Animatable {
             this._fungus,
             coords.col,
             coords.row,
-            false,
-          ),
+            false
+          )
         );
       }
       this.cueNextBreed();
@@ -91,7 +91,7 @@ export class CellFungus extends Cell implements Animatable {
         !(
           neighbours[key] instanceof CellFungus &&
           (neighbours[key] as CellFungus).fungus === this.fungus
-        ),
+        )
     );
     return this.util.randomElOf(targetNeighbourKeys) as Cardinal;
   }

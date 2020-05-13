@@ -6,13 +6,13 @@ import {SettingsService} from '../settings/settings.service';
 
 enum Axis {
   x,
-  y,
+  y
 }
 
 @Component({
   selector: 'app-node',
   templateUrl: './node.component.html',
-  styleUrls: ['./node.component.less'],
+  styleUrls: ['./node.component.less']
 })
 export class NodeComponent implements OnInit, OnDestroy, IRenderable {
   private static get colRand(): number {
@@ -69,7 +69,7 @@ export class NodeComponent implements OnInit, OnDestroy, IRenderable {
     public settings: SettingsService,
     public draw: DrawService,
     private animate: AnimateService,
-    private domSanitizer: DomSanitizer,
+    private domSanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -107,7 +107,7 @@ export class NodeComponent implements OnInit, OnDestroy, IRenderable {
             this.x - this.size / 2,
             this.y - this.size / 2,
             this.size,
-            this.size,
+            this.size
           );
         } else {
           ctx.strokeStyle = this.col;
@@ -115,7 +115,7 @@ export class NodeComponent implements OnInit, OnDestroy, IRenderable {
             this.x - this.size / 2,
             this.y - this.size / 2,
             this.size,
-            this.size,
+            this.size
           );
         }
       }
@@ -146,7 +146,7 @@ export class NodeComponent implements OnInit, OnDestroy, IRenderable {
         (!this.settings.alternate || this.level % 2 === 0 ? 1 : -1);
       const trig = isX ? Math.sin : Math.cos;
       const coordRotation = trig(
-        ((this.pos * 2) / this.settings.armsCount) * Math.PI + coordLinear,
+        ((this.pos * 2) / this.settings.armsCount) * Math.PI + coordLinear
       );
       const coordOffset = parentOffset * coordRotation;
       return coordOffset + (isX ? this.xParent : this.yParent);

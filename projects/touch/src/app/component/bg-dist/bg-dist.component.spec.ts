@@ -8,7 +8,7 @@ describe('BgDistComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BgDistComponent],
+      declarations: [BgDistComponent]
     }).compileComponents();
   }));
 

@@ -12,6 +12,6 @@ import {TimerService} from './utils/timer.service';
   declarations: [AppComponent, BarComponent],
   imports: [BrowserModule, FormsModule, MrbLoggingModule],
   providers: [TimerService],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

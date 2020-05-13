@@ -14,8 +14,8 @@ import {QuizModule} from './quiz/quiz.module';
     AppComponent,
     HomeComponent,
     AboutComponent,
-    PageNotFoundComponent,
+    PageNotFoundComponent
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

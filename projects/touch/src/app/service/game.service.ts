@@ -4,7 +4,7 @@ import {BubbleService} from './bubble.service';
 import {DistService} from './dist.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class GameService {
   private rate = 500;
@@ -12,7 +12,7 @@ export class GameService {
   constructor(
     @Inject('Window') private window: Window,
     private bubbleService: BubbleService,
-    private distService: DistService,
+    private distService: DistService
   ) {}
 
   start(): void {

@@ -11,7 +11,7 @@ import {IQuiz, QuizService} from './quiz.service';
         {{ quiz.name }}
       </li>
     </ul>
-  `,
+  `
 })
 export class QuizzesComponent implements OnInit {
   quizzes: IQuiz[];

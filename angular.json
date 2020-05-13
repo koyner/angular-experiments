@@ -704,9 +704,7 @@
               "projects/fungus/src/favicon.ico",
               "projects/fungus/src/assets"
             ],
-            "styles": [
-              "projects/fungus/src/styles.less"
-            ],
+            "styles": ["projects/fungus/src/styles.less"],
             "scripts": []
           },
           "configurations": {
@@ -769,9 +767,7 @@
               "projects/fungus/src/favicon.ico",
               "projects/fungus/src/assets"
             ],
-            "styles": [
-              "projects/fungus/src/styles.less"
-            ],
+            "styles": ["projects/fungus/src/styles.less"],
             "scripts": []
           }
         },
@@ -783,9 +779,7 @@
               "projects/fungus/tsconfig.spec.json",
               "projects/fungus/e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -864,9 +858,7 @@
               "projects/mrb-ui/src/favicon.ico",
               "projects/mrb-ui/src/assets"
             ],
-            "styles": [
-              "projects/mrb-ui/src/styles.less"
-            ],
+            "styles": ["projects/mrb-ui/src/styles.less"],
             "scripts": []
           },
           "configurations": {
@@ -928,9 +920,7 @@
               "projects/mrb-ui/src/favicon.ico",
               "projects/mrb-ui/src/assets"
             ],
-            "styles": [
-              "projects/mrb-ui/src/styles.less"
-            ],
+            "styles": ["projects/mrb-ui/src/styles.less"],
             "scripts": []
           }
         },
@@ -942,9 +932,7 @@
               "projects/mrb-ui/tsconfig.spec.json",
               "projects/mrb-ui/e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {

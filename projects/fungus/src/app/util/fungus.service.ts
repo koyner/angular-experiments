@@ -3,7 +3,7 @@ import {ConfigService} from '../config/config.service';
 import {Fungus} from '../model/fungus';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class FungusService {
   private readonly _fungi: Fungus[] = [];

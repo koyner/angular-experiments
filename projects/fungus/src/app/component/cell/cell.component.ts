@@ -7,7 +7,7 @@ import {RenderService} from '../../render/render.service';
 @Component({
   selector: 'app-cell',
   templateUrl: './cell.component.html',
-  styleUrls: ['./cell.component.less'],
+  styleUrls: ['./cell.component.less']
 })
 export class CellComponent {
   @Input() cell: Cell;
@@ -43,7 +43,7 @@ export class CellComponent {
       if (!cf.isNode) {
         return Math.max(
           this.config.fungusMinOpacity,
-          1 - cf.age / this.config.fungusAgingDelayMs,
+          1 - cf.age / this.config.fungusAgingDelayMs
         );
       }
     }

@@ -8,7 +8,7 @@ import {Dist} from '../model/dist';
 import {ConstantsService} from 'mrb-ui';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class BubbleService {
   get tLastCreated(): number {
@@ -24,7 +24,7 @@ export class BubbleService {
 
   constructor(
     private distService: DistService,
-    private constants: ConstantsService,
+    private constants: ConstantsService
   ) {}
 
   create(): void {

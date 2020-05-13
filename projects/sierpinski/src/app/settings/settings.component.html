@@ -2,13 +2,15 @@
   <div id="container">
     <div *ngIf="!isOpen">
       <mat-label>
-        <a (click)="open()" style="color:white;font-size:120%;">☰ Settings</a>
+        <a (click)="open()" style="color: white; font-size: 120%;"
+          >☰ Settings</a
+        >
       </mat-label>
     </div>
     <div *ngIf="isOpen">
       <mat-card>
         <mat-card-content>
-          <div style="float:right;">
+          <div style="float: right;">
             <a (click)="close()">Close</a>
           </div>
           <h3>
@@ -135,7 +137,7 @@
           </table>
         </mat-card-content>
         <mat-card-content>
-          <div style="float:left;padding-right:50px;">
+          <div style="float: left; padding-right: 50px;">
             <h3>
               <mat-label>Rendering</mat-label>
             </h3>
@@ -149,7 +151,7 @@
             </mat-radio-group>
             <div>FPS: {{ animate.fps | number: '1.1-1' }}</div>
           </div>
-          <div style="float:left;">
+          <div style="float: left;">
             <h3>
               <mat-label>Options</mat-label>
             </h3>
@@ -192,7 +194,7 @@
               >
             </div>
           </div>
-          <div style="clear:both"></div>
+          <div style="clear: both;"></div>
         </mat-card-content>
       </mat-card>
     </div>

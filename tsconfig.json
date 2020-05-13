@@ -10,26 +10,13 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
     "paths": {
-      "mrb-logging": [
-        "dist/mrb-logging"
-      ],
-      "mrb-logging/*": [
-        "dist/mrb-logging/*"
-      ],
-      "mrb-ui": [
-        "dist/mrb-ui"
-      ],
-      "mrb-ui/*": [
-        "dist/mrb-ui/*"
-      ]
+      "mrb-logging": ["dist/mrb-logging"],
+      "mrb-logging/*": ["dist/mrb-logging/*"],
+      "mrb-ui": ["dist/mrb-ui"],
+      "mrb-ui/*": ["dist/mrb-ui/*"]
     }
   },
   "angularCompilerOptions": {

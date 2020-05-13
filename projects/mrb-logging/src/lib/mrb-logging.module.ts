@@ -4,6 +4,6 @@ import {MrbLoggingComponent} from './mrb-logging.component';
 @NgModule({
   declarations: [MrbLoggingComponent],
   imports: [],
-  exports: [MrbLoggingComponent],
+  exports: [MrbLoggingComponent]
 })
 export class MrbLoggingModule {}

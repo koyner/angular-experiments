@@ -5,7 +5,7 @@ export class Dist {
     public xMid: number,
     public yMid: number,
     public w: number,
-    public h: number,
+    public h: number
   ) {}
 
   get x(): number {

@@ -4,7 +4,7 @@ import {Bubble} from '../model/bubble';
 import {Dist} from '../model/dist';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class DistService {
   dists: Dist[][] = [];
@@ -36,7 +36,7 @@ export class DistService {
           const dY = Math.abs(b.yMid - d.yMid);
           const distToBubbleCurrent = Math.max(
             0,
-            Math.sqrt(dX * dX + dY * dY) - b.side / 2,
+            Math.sqrt(dX * dX + dY * dY) - b.side / 2
           );
           if (distToBubble === -1 || distToBubbleCurrent < distToBubble) {
             distToBubble = distToBubbleCurrent;

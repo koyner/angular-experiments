@@ -22,15 +22,15 @@ import {ComponentsModule} from 'mrb-ui';
     BgMeasureComponent,
     BgComponent,
     BubblesComponent,
-    StatusComponent,
+    StatusComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatSliderModule,
-    ComponentsModule,
+    ComponentsModule
   ],
   providers: [{provide: 'Window', useValue: window}],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -5,6 +5,6 @@ import {TimerService} from './timer.service';
 @NgModule({
   imports: [CommonModule],
   declarations: [],
-  providers: [TimerService],
+  providers: [TimerService]
 })
 export class UtilsModule {}

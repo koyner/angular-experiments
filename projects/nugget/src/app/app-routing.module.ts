@@ -9,24 +9,24 @@ const appRoutes: Routes = [
   {
     path: '',
     redirectTo: '/home',
-    pathMatch: 'full',
+    pathMatch: 'full'
   },
   {
     path: 'home',
-    component: HomeComponent,
+    component: HomeComponent
   },
   {
     path: 'about',
-    component: AboutComponent,
+    component: AboutComponent
   },
   {
     path: '**',
-    component: PageNotFoundComponent,
-  },
+    component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

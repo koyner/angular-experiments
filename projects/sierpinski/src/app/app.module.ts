@@ -29,7 +29,7 @@ import {ComponentsModule} from 'mrb-ui';
     MatFormFieldModule,
     MatCardModule,
     MatRadioModule,
-    ComponentsModule,
+    ComponentsModule
   ],
   declarations: [AppComponent, NodeComponent, SettingsComponent],
   bootstrap: [AppComponent],
@@ -37,7 +37,7 @@ import {ComponentsModule} from 'mrb-ui';
     SettingsService,
     AnimateService,
     DrawService,
-    {provide: 'Window', useValue: window},
-  ],
+    {provide: 'Window', useValue: window}
+  ]
 })
 export class AppModule {}

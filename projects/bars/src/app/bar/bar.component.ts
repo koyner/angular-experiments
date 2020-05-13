@@ -4,7 +4,7 @@ import {IReceivesFrames, TimerService} from '../utils/timer.service';
 @Component({
   selector: 'app-bar',
   templateUrl: './bar.component.html',
-  styleUrls: ['./bar.component.css'],
+  styleUrls: ['./bar.component.css']
 })
 export class BarComponent implements OnInit, IReceivesFrames {
   constructor(private timerService: TimerService) {}

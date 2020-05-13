@@ -13,9 +13,9 @@ import {FungusComponentsModule} from './component/fungus-components.module';
     BrowserModule,
     AppRoutingModule,
     ComponentsModule,
-    FungusComponentsModule,
+    FungusComponentsModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

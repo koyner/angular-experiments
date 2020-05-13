@@ -6,7 +6,7 @@ import {Bubble} from '../../model/bubble';
 @Component({
   selector: 'app-bubble',
   templateUrl: './bubble.component.html',
-  styleUrls: ['./bubble.component.less'],
+  styleUrls: ['./bubble.component.less']
 })
 export class BubbleComponent {
   @Input() bubble: Bubble;

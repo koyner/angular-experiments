@@ -14,10 +14,10 @@ import {NavComponent} from './nav/nav.component';
     Demo1Component,
     NavComponent,
     Demo2Component,
-    Demo3Component,
+    Demo3Component
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

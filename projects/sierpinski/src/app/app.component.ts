@@ -3,7 +3,7 @@ import {
   Component,
   ElementRef,
   OnInit,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import {AnimateService} from './animate/animate.service';
 
@@ -13,7 +13,7 @@ import {SettingsService} from './settings/settings.service';
 @Component({
   styleUrls: ['app.component.less'],
   selector: 'app-root',
-  templateUrl: 'app.component.html',
+  templateUrl: 'app.component.html'
 })
 export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('appCanvas') canvasRef: ElementRef;
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(
     private animate: AnimateService,
     public settings: SettingsService,
-    public draw: DrawService,
+    public draw: DrawService
   ) {}
 
   ngOnInit(): void {

@@ -8,12 +8,12 @@ import {ConstantsService} from 'mrb-ui';
 @Component({
   selector: 'app-bg-measure',
   templateUrl: './bg-measure.component.html',
-  styleUrls: ['./bg-measure.component.less'],
+  styleUrls: ['./bg-measure.component.less']
 })
 export class BgMeasureComponent implements OnInit {
   constructor(
     private distService: DistService,
-    private constants: ConstantsService,
+    private constants: ConstantsService
   ) {}
 
   ngOnInit(): void {}

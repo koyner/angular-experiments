@@ -27,7 +27,7 @@ export class AnimateService {
   constructor(
     @Inject('Window') private window: Window,
     private settings: SettingsService,
-    private draw: DrawService,
+    private draw: DrawService
   ) {}
 
   start(): void {

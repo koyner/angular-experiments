@@ -5,7 +5,7 @@ import {DrawService} from './draw.service';
 describe('DrawService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DrawService],
+      providers: [DrawService]
     });
   });
 

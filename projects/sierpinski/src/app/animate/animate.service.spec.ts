@@ -5,7 +5,7 @@ import {AnimateService} from './animate.service';
 describe('AnimateService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AnimateService],
+      providers: [AnimateService]
     });
   });
 
@@ -13,6 +13,6 @@ describe('AnimateService', () => {
     [AnimateService],
     (service: AnimateService) => {
       expect(service).toBeTruthy();
-    },
+    }
   ));
 });

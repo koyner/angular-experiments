@@ -8,7 +8,7 @@ describe('MrbLoggingComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MrbLoggingComponent],
+      declarations: [MrbLoggingComponent]
     }).compileComponents();
   }));
 

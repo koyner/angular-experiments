@@ -8,11 +8,11 @@ import {Demo3Component} from './demo3/demo3.component';
 const routes: Routes = [
   {path: 'demo1', component: Demo1Component},
   {path: 'demo2', component: Demo2Component},
-  {path: 'demo3', component: Demo3Component},
+  {path: 'demo3', component: Demo3Component}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

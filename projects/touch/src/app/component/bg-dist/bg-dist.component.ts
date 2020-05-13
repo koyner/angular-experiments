@@ -8,14 +8,14 @@ import {ConstantsService} from 'mrb-ui';
 @Component({
   selector: 'app-bg-dist',
   templateUrl: './bg-dist.component.html',
-  styleUrls: ['./bg-dist.component.less'],
+  styleUrls: ['./bg-dist.component.less']
 })
 export class BgDistComponent implements OnInit {
   @Input() dist: Dist;
 
   constructor(
     private distService: DistService,
-    private constants: ConstantsService,
+    private constants: ConstantsService
   ) {}
 
   ngOnInit(): void {}

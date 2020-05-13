@@ -9,13 +9,13 @@ import {ConstantsService} from 'mrb-ui';
 @Component({
   selector: 'app-status',
   templateUrl: './status.component.html',
-  styleUrls: ['./status.component.less'],
+  styleUrls: ['./status.component.less']
 })
 export class StatusComponent implements OnInit {
   constructor(
     private gameService: GameService,
     private bubbleService: BubbleService,
-    private constants: ConstantsService,
+    private constants: ConstantsService
   ) {}
 
   ngOnInit(): void {}

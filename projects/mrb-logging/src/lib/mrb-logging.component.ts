@@ -7,7 +7,7 @@ import {Component, OnInit} from '@angular/core';
       mrb-logging works!
     </p>
   `,
-  styles: [],
+  styles: []
 })
 export class MrbLoggingComponent implements OnInit {
   constructor() {}

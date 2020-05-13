@@ -7,16 +7,16 @@ import {QuizzesComponent} from './quizzes.component';
 const appRoutes: Routes = [
   {
     path: 'quizzes',
-    component: QuizzesComponent,
+    component: QuizzesComponent
   },
   {
     path: 'quiz/:id',
-    component: QuizComponent,
-  },
+    component: QuizComponent
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(appRoutes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class QuizRoutingModule {}

@@ -36,8 +36,8 @@ export class Fungus {
         this,
         this._grid.randCol(),
         this._grid.randRow(),
-        true,
-      ),
+        true
+      )
     );
   }
 
@@ -53,7 +53,7 @@ export class Fungus {
             }
           })
           .forEach((c: CellFungus) =>
-            this._grid.add(new CellBg(this._injector, c.col, c.row)),
+            this._grid.add(new CellBg(this._injector, c.col, c.row))
           );
       }
     }
@@ -73,7 +73,7 @@ export class Fungus {
 
   get count(): number {
     return this._grid.cells.filter(
-      c => c instanceof CellFungus && (c as CellFungus).fungus === this,
+      c => c instanceof CellFungus && (c as CellFungus).fungus === this
     ).length;
   }
 

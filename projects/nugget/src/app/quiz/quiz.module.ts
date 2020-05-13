@@ -9,6 +9,6 @@ import {QuizzesComponent} from './quizzes.component';
 @NgModule({
   imports: [QuizRoutingModule, CommonModule],
   declarations: [QuizComponent, QuizzesComponent],
-  providers: [QuizService],
+  providers: [QuizService]
 })
 export class QuizModule {}

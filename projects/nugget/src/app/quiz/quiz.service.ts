@@ -8,7 +8,7 @@ export interface IQuiz {
 const quizzes: IQuiz[] = [
   {id: 1, name: 'the first quiz'},
   {id: 2, name: 'the 2nd quiz'},
-  {id: 3, name: 'the 3rd one'},
+  {id: 3, name: 'the 3rd one'}
 ];
 
 const quizzesPromise = Promise.resolve(quizzes);

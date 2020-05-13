@@ -8,7 +8,7 @@ describe('BgMeasureComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BgMeasureComponent],
+      declarations: [BgMeasureComponent]
     }).compileComponents();
   }));
 

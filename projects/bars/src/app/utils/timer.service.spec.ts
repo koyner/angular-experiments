@@ -5,7 +5,7 @@ import {TimerService} from './timer.service';
 describe('TimerService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TimerService],
+      providers: [TimerService]
     });
   });
 
