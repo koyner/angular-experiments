@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
 import {ConfigService} from '../config/config.service';
+import {StatusService} from '../status/status.service';
+import {UtilService} from './util.service';
 
 export interface Animatable {
-  animate: () => void;
+  animate: (tsDiff: number) => void;
 }
 
 @Injectable({
@@ -10,9 +12,19 @@ export interface Animatable {
 })
 export class AnimateService {
   private _animatable: Animatable[] = [];
-  constructor(private _config: ConfigService) {
+  private _tsPrev: number;
+  constructor(
+    private _config: ConfigService,
+    private _status: StatusService,
+    private _util: UtilService
+  ) {
+    this._tsPrev = this._util.now;
     window.setInterval(() => {
-      this._animatable.forEach(a => a.animate());
+      const tsNow = this._util.now;
+      if (!this._status.paused) {
+        this._animatable.forEach(a => a.animate(tsNow - this._tsPrev));
+      }
+      this._tsPrev = tsNow;
     }, this._config.animateMs);
   }
 

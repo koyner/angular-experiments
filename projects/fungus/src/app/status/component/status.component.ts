@@ -3,6 +3,7 @@ import {FungusService} from '../../fungus/fungus.service';
 import {Fungus} from '../../fungus/model/fungus';
 import {GridService} from '../../grid/grid.service';
 import {AnimateService} from '../../util/animate.service';
+import {StatusService} from '../status.service';
 
 @Component({
   selector: 'app-status',
@@ -13,7 +14,8 @@ export class StatusComponent {
   constructor(
     private _animate: AnimateService,
     private _fungusService: FungusService,
-    private _grid: GridService
+    private _grid: GridService,
+    private _status: StatusService
   ) {}
 
   get animatableCount(): number {
@@ -30,5 +32,13 @@ export class StatusComponent {
 
   get cellCount(): number {
     return this._grid.count;
+  }
+
+  get paused(): boolean {
+    return this._status.paused;
+  }
+
+  set paused(p: boolean) {
+    this._status.paused = p;
   }
 }

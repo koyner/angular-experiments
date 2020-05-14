@@ -8,9 +8,8 @@ import {Fungus} from './fungus';
 export class CellFungus extends Cell implements Animatable {
   private _grid: GridService;
   private _util: UtilService;
-  private _age: number;
+  private _age = 0;
   private _breedNext: number;
-  private readonly _createdAt: number;
   constructor(
     private _injector: Injector,
     private _fungus: Fungus,
@@ -21,7 +20,6 @@ export class CellFungus extends Cell implements Animatable {
     super(_fungus.colour, col, row);
     this._grid = _injector.get(GridService);
     this._util = _injector.get(UtilService);
-    this._createdAt = this._util.now;
     this.cueNextBreed();
   }
 
@@ -37,13 +35,13 @@ export class CellFungus extends Cell implements Animatable {
     return this._fungus;
   }
 
-  animate(): void {
-    this._age = this._util.now - this._createdAt;
+  animate(elapsed: number): void {
+    this._age += elapsed;
     this.breed();
   }
 
   private breed(): void {
-    if (this._breedNext < this._util.now) {
+    if (this._breedNext < this.age) {
       let coords;
       switch (this.dirGrow()) {
         case Cardinal.w:
@@ -70,7 +68,7 @@ export class CellFungus extends Cell implements Animatable {
 
   private cueNextBreed(): void {
     this._breedNext =
-      this._util.now +
+      this.age +
       this._fungus.breedDelayLowMs +
       Math.random() *
         (this._fungus.breedDelayHighMs - this._fungus.breedDelayLowMs);
