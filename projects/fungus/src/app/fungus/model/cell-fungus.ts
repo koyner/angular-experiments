@@ -1,11 +1,10 @@
 import {Injector} from '@angular/core';
 import {Cell} from '../../cell/model/cell';
 import {Cardinal, GridService} from '../../grid/grid.service';
-import {Animatable} from '../../util/animate.service';
 import {UtilService} from '../../util/util.service';
 import {Fungus} from './fungus';
 
-export class CellFungus extends Cell implements Animatable {
+export class CellFungus extends Cell {
   private _grid: GridService;
   private _util: UtilService;
   private _age = 0;

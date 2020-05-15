@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Cell} from '../cell/model/cell';
 import {ConfigService} from '../config/config.service';
-import {AnimateService} from '../util/animate.service';
 
 export enum Cardinal {
   w = 'w',
@@ -23,10 +22,7 @@ interface INeighbourCells {
 export class GridService {
   private _cells: Cell[] = [];
 
-  constructor(
-    private _config: ConfigService,
-    private _animate: AnimateService
-  ) {}
+  constructor(private _config: ConfigService) {}
 
   get cells(): Cell[] {
     return this._cells;
@@ -36,14 +32,8 @@ export class GridService {
     const cellReplaced = this.cellAt(cell.col, cell.row);
     if (cellReplaced) {
       this._cells.splice(this._cells.indexOf(cellReplaced), 1);
-      if (this._animate.isAnimatable(cellReplaced)) {
-        this._animate.remove(cellReplaced);
-      }
     }
     this._cells.push(cell);
-    if (this._animate.isAnimatable(cell)) {
-      this._animate.add(cell);
-    }
     return cellReplaced;
   }
 

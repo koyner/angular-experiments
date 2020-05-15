@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
+import {ConfigService} from '../../config/config.service';
 import {FungusService} from '../../fungus/fungus.service';
 import {Fungus} from '../../fungus/model/fungus';
 import {GridService} from '../../grid/grid.service';
 import {AnimateService} from '../../util/animate.service';
-import {StatusService} from '../status.service';
 
 @Component({
   selector: 'app-status',
@@ -15,7 +15,7 @@ export class StatusComponent {
     private _animate: AnimateService,
     private _fungusService: FungusService,
     private _grid: GridService,
-    private _status: StatusService
+    private _config: ConfigService
   ) {}
 
   get animatableCount(): number {
@@ -23,7 +23,7 @@ export class StatusComponent {
   }
 
   get fungusCount(): number {
-    return this._fungusService.count;
+    return this._fungusService.countFungi;
   }
 
   get fungi(): Fungus[] {
@@ -34,11 +34,15 @@ export class StatusComponent {
     return this._grid.count;
   }
 
+  get age(): number {
+    return this._animate.age / 1000;
+  }
+
   get paused(): boolean {
-    return this._status.paused;
+    return this._config.paused;
   }
 
   set paused(p: boolean) {
-    this._status.paused = p;
+    this._config.paused = p;
   }
 }

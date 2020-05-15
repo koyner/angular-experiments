@@ -60,7 +60,7 @@ export class Fungus {
     return this.count === 0;
   }
 
-  private get cells(): CellFungus[] {
+  get cells(): CellFungus[] {
     return this._grid.cells.filter(
       c => c instanceof CellFungus && (c as CellFungus).fungus === this
     ) as CellFungus[];

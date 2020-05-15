@@ -1,18 +1,9 @@
 import {Injectable} from '@angular/core';
+import {StatusModule} from './status.module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: StatusModule
 })
 export class StatusService {
-  private _paused: boolean;
-
   constructor() {}
-
-  get paused(): boolean {
-    return this._paused;
-  }
-
-  set paused(p: boolean) {
-    this._paused = p;
-  }
 }
