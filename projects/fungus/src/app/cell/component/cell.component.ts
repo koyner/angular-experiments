@@ -51,6 +51,8 @@ export class CellComponent {
           this._config.fungusMinOpacity,
           1 - cf.age / this._config.fungusAgingDelayMs
         );
+      } else {
+        return this._config.fungusNodeOpacity;
       }
     }
     return 1;
