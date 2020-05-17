@@ -13,14 +13,14 @@ import {Cell} from '../model/cell';
 export class CellComponent {
   @Input() cell: Cell;
   constructor(
-    private fungusService: FungusService,
+    private _fungusService: FungusService,
     private _renderer: RenderService,
     private _config: ConfigService
   ) {}
 
   clicked(): void {
     console.log(this.cell.toString());
-    this.fungusService.createFungusAt(this.cell.col, this.cell.row);
+    this._fungusService.createFungusAt(this.cell.col, this.cell.row);
   }
 
   get x(): number {
