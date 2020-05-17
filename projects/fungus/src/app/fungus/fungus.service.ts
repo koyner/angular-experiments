@@ -25,6 +25,9 @@ export class FungusService implements Animatable {
     while (i++ < this._config.fungusCount) {
       this.createFungusAt(this._grid.randCol(), this._grid.randRow());
     }
+    this.createFungusAt(6, 20);
+    this.createFungusAt(14, 20);
+    this.createFungusLine();
   }
 
   createFungusAt(col: number, row: number): void {
@@ -33,11 +36,23 @@ export class FungusService implements Animatable {
     this._fungi.push(f);
   }
 
+  createFungusLine(): void {
+    const f = new Fungus(this._injector, {low: 2000, high: 3000});
+    f.addCell(10, 0, true);
+    for (let i = 1; i < this._config.rows; i++) {
+      f.addCell(10, i, false);
+    }
+    this._fungi.push(f);
+  }
+
   animate(tsDiff: number): void {
     if (this.areAllCellsFungus() && this.isOneFungusLeft) {
       this._config.finish();
     } else {
-      this.fungi.forEach(f => f.cells.forEach(c => c.animate(tsDiff)));
+      this.fungi.forEach(f => {
+        f.feedCells();
+        f.animate(tsDiff);
+      });
     }
   }
 

@@ -38,20 +38,30 @@ export class GridService {
   }
 
   neighboursOf(cell: Cell): INeighbourCells {
+    const neighbours = this.neighbourArrayOf(cell);
     const dirs: INeighbourCells = {};
     if (cell.col !== 0) {
-      dirs[Cardinal.w] = this.cellAt(cell.col - 1, cell.row);
+      dirs[Cardinal.w] = neighbours[0];
     }
     if (cell.col !== this._config.cols - 1) {
-      dirs[Cardinal.e] = this.cellAt(cell.col + 1, cell.row);
+      dirs[Cardinal.e] = neighbours[1];
     }
     if (cell.row !== 0) {
-      dirs[Cardinal.n] = this.cellAt(cell.col, cell.row - 1);
+      dirs[Cardinal.n] = neighbours[2];
     }
     if (cell.row !== this._config.rows - 1) {
-      dirs[Cardinal.s] = this.cellAt(cell.col, cell.row + 1);
+      dirs[Cardinal.s] = neighbours[3];
     }
     return dirs;
+  }
+
+  neighbourArrayOf(cell: Cell): Cell[] {
+    return [
+      this.cellAt(cell.col - 1, cell.row),
+      this.cellAt(cell.col + 1, cell.row),
+      this.cellAt(cell.col, cell.row - 1),
+      this.cellAt(cell.col, cell.row + 1)
+    ];
   }
 
   randCol(): number {

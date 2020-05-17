@@ -6,8 +6,8 @@ import {Injectable} from '@angular/core';
 export class ConfigService {
   bgColour = 'rgb(30, 30, 30)';
   animateMs = 20;
-  cols = 9;
-  rows = 9;
+  cols = 39;
+  rows = 39;
   fungusCount = 0;
   fungusBreedDelayLowMinMs = 50;
   fungusBreedDelayLowMaxMs = 200;

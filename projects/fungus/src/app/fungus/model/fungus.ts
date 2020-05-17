@@ -13,19 +13,21 @@ export class Fungus {
   private readonly _breedDelayLowMs: number;
   private readonly _breedDelayHighMs: number;
 
-  constructor(private _injector: Injector) {
+  constructor(private _injector: Injector, ms?: any) {
     this._grid = _injector.get(GridService);
     this._bgService = _injector.get(BgService);
     this._colour = _injector.get(UtilService).randomColourStr;
     const config = _injector.get(ConfigService);
-    this._breedDelayLowMs =
-      config.fungusBreedDelayLowMinMs +
-      Math.random() *
-        (config.fungusBreedDelayLowMaxMs - config.fungusBreedDelayLowMinMs);
-    this._breedDelayHighMs =
-      config.fungusBreedDelayHighMinMs +
-      Math.random() *
-        (config.fungusBreedDelayHighMaxMs - config.fungusBreedDelayHighMinMs);
+    this._breedDelayLowMs = ms
+      ? ms.low
+      : config.fungusBreedDelayLowMinMs +
+        Math.random() *
+          (config.fungusBreedDelayLowMaxMs - config.fungusBreedDelayLowMinMs);
+    this._breedDelayHighMs = ms
+      ? ms.high
+      : config.fungusBreedDelayHighMinMs +
+        Math.random() *
+          (config.fungusBreedDelayHighMaxMs - config.fungusBreedDelayHighMinMs);
   }
 
   addCell(col: number, row: number, isNode: boolean): void {
@@ -38,6 +40,35 @@ export class Fungus {
         cfReplaced.fungus.kill();
       }
     }
+  }
+
+  animate(tsDiff: number): void {
+    this.cells.forEach(c => c.animate(tsDiff));
+  }
+
+  feedCells(): void {
+    let cellsFound: CellFungus[] = [this.cells.find(c => c.isNode)];
+    let thisRound = cellsFound;
+    while (thisRound.length > 0) {
+      let nextRound: CellFungus[] = [];
+      thisRound.forEach(c => {
+        const neighbours: CellFungus[] = this._grid
+          .neighbourArrayOf(c)
+          .filter(
+            n =>
+              n instanceof CellFungus &&
+              (n as CellFungus).fungus === this &&
+              cellsFound.indexOf(n) === -1 &&
+              nextRound.indexOf(n) === -1
+          ) as CellFungus[];
+        nextRound = nextRound.concat(neighbours);
+      });
+      cellsFound = cellsFound.concat(nextRound);
+      thisRound = nextRound;
+    }
+    this.cells
+      .filter(c => !cellsFound.includes(c))
+      .forEach(c => this._bgService.addCell(c.col, c.row));
   }
 
   get breedDelayLowMs(): number {
