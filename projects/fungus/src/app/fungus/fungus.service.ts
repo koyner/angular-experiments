@@ -33,16 +33,7 @@ export class FungusService implements Animatable {
   createFungusAt(col: number, row: number): void {
     const f = new Fungus(this._injector);
     f.addCell(col, row, true);
-    this._fungi.push(f);
-  }
-
-  createFungusLine(): void {
-    const f = new Fungus(this._injector, {low: 2000, high: 3000});
-    f.addCell(10, 0, true);
-    for (let i = 1; i < this._config.rows; i++) {
-      f.addCell(10, i, false);
-    }
-    this._fungi.push(f);
+    this.addFungus(f);
   }
 
   animate(tsDiff: number): void {
@@ -60,19 +51,32 @@ export class FungusService implements Animatable {
     return this._fungi.filter(f => !f.isDead);
   }
 
-  get countFungi(): number {
+  get fungusCount(): number {
     return this.fungi.length;
   }
 
-  private areAllCellsFungus(): boolean {
-    return this.countFungusCells === this._config.spaceCount;
+  private createFungusLine(): void {
+    const f = new Fungus(this._injector, {low: 2000, high: 3000});
+    f.addCell(10, 0, true);
+    for (let i = 1; i < this._config.rows; i++) {
+      f.addCell(10, i, false);
+    }
+    this.addFungus(f);
   }
 
-  private get countFungusCells(): number {
+  private addFungus(f: Fungus): void {
+    this._fungi.push(f);
+  }
+
+  private areAllCellsFungus(): boolean {
+    return this.fungusCellCount === this._config.spaceCount;
+  }
+
+  private get fungusCellCount(): number {
     return this._grid.cells.filter(c => c instanceof CellFungus).length;
   }
 
   private get isOneFungusLeft(): boolean {
-    return this.countFungi === 1;
+    return this.fungusCount === 1;
   }
 }

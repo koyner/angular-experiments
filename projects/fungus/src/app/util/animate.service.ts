@@ -31,7 +31,7 @@ export class AnimateService {
     this._animatable.push(a);
   }
 
-  get count(): number {
+  get animatableCount(): number {
     return this._animatable.length;
   }
 

@@ -37,20 +37,20 @@ export class GridService {
     return cellReplaced;
   }
 
-  neighboursOf(cell: Cell): INeighbourCells {
-    const neighbours = this.neighbourArrayOf(cell);
+  neighboursDirsOf(cell: Cell): INeighbourCells {
+    const n = this.neighbourArrayOf(cell);
     const dirs: INeighbourCells = {};
     if (cell.col !== 0) {
-      dirs[Cardinal.w] = neighbours[0];
+      dirs[Cardinal.w] = n[0];
     }
     if (cell.col !== this._config.cols - 1) {
-      dirs[Cardinal.e] = neighbours[1];
+      dirs[Cardinal.e] = n[1];
     }
     if (cell.row !== 0) {
-      dirs[Cardinal.n] = neighbours[2];
+      dirs[Cardinal.n] = n[2];
     }
     if (cell.row !== this._config.rows - 1) {
-      dirs[Cardinal.s] = neighbours[3];
+      dirs[Cardinal.s] = n[3];
     }
     return dirs;
   }
@@ -72,11 +72,11 @@ export class GridService {
     return Math.floor(Math.random() * this._config.rows);
   }
 
-  get count(): number {
+  get cellCount(): number {
     return this.cells.length;
   }
 
   private cellAt(col: number, row: number): Cell {
-    return this._cells.find(cell => cell.col === col && cell.row === row);
+    return this._cells.find(c => c.col === col && c.row === row);
   }
 }

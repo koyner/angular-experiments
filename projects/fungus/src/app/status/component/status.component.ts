@@ -19,11 +19,11 @@ export class StatusComponent {
   ) {}
 
   get animatableCount(): number {
-    return this._animate.count;
+    return this._animate.animatableCount;
   }
 
   get fungusCount(): number {
-    return this._fungusService.countFungi;
+    return this._fungusService.fungusCount;
   }
 
   get fungi(): Fungus[] {
@@ -31,7 +31,7 @@ export class StatusComponent {
   }
 
   get cellCount(): number {
-    return this._grid.count;
+    return this._grid.cellCount;
   }
 
   get age(): number {

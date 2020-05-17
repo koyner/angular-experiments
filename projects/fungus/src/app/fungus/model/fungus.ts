@@ -66,9 +66,11 @@ export class Fungus {
       cellsFound = cellsFound.concat(nextRound);
       thisRound = nextRound;
     }
-    this.cells
-      .filter(c => !cellsFound.includes(c))
-      .forEach(c => this._bgService.addCell(c.col, c.row));
+    this.cells.forEach(c => {
+      if (!cellsFound.includes(c)) {
+        this._bgService.addCell(c.col, c.row);
+      }
+    });
   }
 
   get breedDelayLowMs(): number {

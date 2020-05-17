@@ -74,7 +74,7 @@ export class CellFungus extends Cell {
   }
 
   private dirGrow(): Cardinal {
-    const neighbours = this._grid.neighboursOf(this);
+    const neighbours = this._grid.neighboursDirsOf(this);
     const targetNeighbourKeys = Object.keys(neighbours).filter(
       key =>
         !(
