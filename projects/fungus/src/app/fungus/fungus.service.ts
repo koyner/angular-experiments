@@ -41,8 +41,10 @@ export class FungusService implements Animatable {
       this._config.finish();
     } else {
       this.fungi.forEach(f => {
-        f.feedCells();
-        f.animate(tsDiff);
+        f.grow(tsDiff);
+      });
+      this.fungi.forEach(f => {
+        f.feed();
       });
     }
   }

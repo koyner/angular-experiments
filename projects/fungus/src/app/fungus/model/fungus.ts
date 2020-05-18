@@ -42,11 +42,11 @@ export class Fungus {
     }
   }
 
-  animate(tsDiff: number): void {
-    this.cells.forEach(c => c.animate(tsDiff));
+  grow(tsDiff: number): void {
+    this.cells.forEach(c => c.grow(tsDiff));
   }
 
-  feedCells(): void {
+  feed(): void {
     let cellsFound: CellFungus[] = [this.cells.find(c => c.isNode)];
     let thisRound = cellsFound;
     while (thisRound.length > 0) {

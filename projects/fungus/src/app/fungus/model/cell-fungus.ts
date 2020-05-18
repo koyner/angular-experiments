@@ -35,7 +35,7 @@ export class CellFungus extends Cell {
     return this._fungus;
   }
 
-  animate(elapsed: number): void {
+  grow(elapsed: number): void {
     this._age += elapsed;
     this.breed();
   }
