@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {BgService} from './bg/bg.service';
 import {FungusService} from './fungus/fungus.service';
 import {RenderService} from './render/render.service';
+import {WallService} from './wall/wall.service';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,13 @@ import {RenderService} from './render/render.service';
 export class AppComponent {
   constructor(
     private _renderer: RenderService,
+    private _bgService: BgService,
     private _fungusService: FungusService,
-    private _bgService: BgService
+    private _wallService: WallService
   ) {
     this._bgService.init();
     this._fungusService.init();
+    this._wallService.init();
   }
 
   resized(size: number): void {

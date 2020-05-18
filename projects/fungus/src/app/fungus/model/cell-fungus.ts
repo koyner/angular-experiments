@@ -2,6 +2,7 @@ import {Injector} from '@angular/core';
 import {Cell} from '../../cell/model/cell';
 import {Cardinal, GridService} from '../../grid/grid.service';
 import {UtilService} from '../../util/util.service';
+import {CellWall} from '../../wall/model/cell-wall';
 import {Fungus} from './fungus';
 
 export class CellFungus extends Cell {
@@ -77,6 +78,7 @@ export class CellFungus extends Cell {
     const neighbours = this._grid.neighboursDirsOf(this);
     const targetNeighbourKeys = Object.keys(neighbours).filter(
       key =>
+        !(neighbours[key] instanceof CellWall) &&
         !(
           neighbours[key] instanceof CellFungus &&
           (neighbours[key] as CellFungus).fungus === this.fungus
