@@ -4,6 +4,7 @@ import {FungusService} from '../../fungus/fungus.service';
 import {Fungus} from '../../fungus/model/fungus';
 import {GridService} from '../../grid/grid.service';
 import {AnimateService} from '../../util/animate.service';
+import {WallService} from '../../wall/wall.service';
 
 @Component({
   selector: 'app-status',
@@ -14,6 +15,7 @@ export class StatusComponent {
   constructor(
     private _animate: AnimateService,
     private _fungusService: FungusService,
+    private _wallService: WallService,
     private _grid: GridService,
     private _config: ConfigService
   ) {}
@@ -24,6 +26,10 @@ export class StatusComponent {
 
   get fungusCount(): number {
     return this._fungusService.fungusCount;
+  }
+
+  get wallCount(): number {
+    return this._wallService.wallCount;
   }
 
   get fungi(): Fungus[] {

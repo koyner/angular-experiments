@@ -8,11 +8,11 @@ export class ConfigService {
   animateMs = 20;
   cols = 39;
   rows = 39;
-  fungusCount = 2;
+  fungusCount = 6;
   fungusBreedDelayLowMinMs = 50;
-  fungusBreedDelayLowMaxMs = 200;
+  fungusBreedDelayLowMaxMs = 100;
   fungusBreedDelayHighMinMs = 1000;
-  fungusBreedDelayHighMaxMs = 4000;
+  fungusBreedDelayHighMaxMs = 2000;
   fungusAgingDelayMs = 300;
   fungusMinOpacity = 0.75;
   fungusNodeOpacity = 0.5;
