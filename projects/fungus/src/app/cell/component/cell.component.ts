@@ -49,7 +49,11 @@ export class CellComponent {
       if (!cf.isNode) {
         return Math.max(
           this._config.fungusMinOpacity,
-          1 - cf.age / this._config.fungusAgingDelayMs
+          Math.min(
+            1,
+            cf._pctVelocity / 100 +
+              0.15 * Math.max(0, 1 - cf.age / this._config.fungusAgingDelayMs)
+          )
         );
       } else {
         return this._config.fungusNodeOpacity;

@@ -14,6 +14,8 @@ export class WallService {
     this._walls.push(new Wall(this._injector, 13, 26, 13, WallAxis.y));
     this._walls.push(new Wall(this._injector, 16, 24, 13, WallAxis.y));
     this._walls.push(new Wall(this._injector, 19, 26, 11, WallAxis.y));
+    this._walls.push(new Wall(this._injector, 12, 4, 20, WallAxis.x));
+    this._walls.push(new Wall(this._injector, 20, 8, 12, WallAxis.y));
   }
 
   get walls(): Wall[] {

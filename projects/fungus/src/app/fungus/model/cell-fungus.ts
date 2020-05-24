@@ -6,6 +6,7 @@ import {CellWall} from '../../wall/model/cell-wall';
 import {Fungus} from './fungus';
 
 export class CellFungus extends Cell {
+  readonly _pctVelocity: number;
   private _grid: GridService;
   private _util: UtilService;
   private _age = 0;
@@ -20,6 +21,16 @@ export class CellFungus extends Cell {
     super(_fungus.colour, col, row);
     this._grid = _injector.get(GridService);
     this._util = _injector.get(UtilService);
+    const velocities = this._grid
+      .neighbourArrayOf(this)
+      .filter(c => c instanceof CellFungus && c.fungus === this.fungus)
+      .map(c => (c as CellFungus)._pctVelocity);
+    const velocityAvg =
+      velocities.reduce((acc: number, curr: number) => acc + curr, 0) /
+      velocities.length;
+    this._pctVelocity = this.isNode
+      ? 50
+      : Math.max(0, Math.min(100, velocityAvg + 30 * (Math.random() - 0.62)));
     this.cueNextBreed();
   }
 
@@ -69,9 +80,10 @@ export class CellFungus extends Cell {
   private cueNextBreed(): void {
     this._breedNext =
       this.age +
-      this._fungus.breedDelayLowMs +
-      Math.random() *
-        (this._fungus.breedDelayHighMs - this._fungus.breedDelayLowMs);
+      (4 - (4 * this._pctVelocity) / 100) *
+        (this._fungus.breedDelayLowMs +
+          Math.random() *
+            (this._fungus.breedDelayHighMs - this._fungus.breedDelayLowMs));
   }
 
   private dirGrow(): Cardinal {

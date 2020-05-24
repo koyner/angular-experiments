@@ -58,7 +58,7 @@ export class FungusService implements Animatable {
   }
 
   private createFungusLine(): void {
-    const f = new Fungus(this._injector, {low: 2000, high: 3000});
+    const f = new Fungus(this._injector);
     f.addCell(10, 0, true);
     for (let i = 1; i < this._config.rows; i++) {
       f.addCell(10, i, false);

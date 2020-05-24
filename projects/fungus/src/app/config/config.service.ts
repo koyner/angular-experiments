@@ -4,18 +4,18 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class ConfigService {
-  bgColour = 'rgb(30, 30, 30)';
+  bgColour = 'rgb(10, 10, 10)';
   animateMs = 20;
   cols = 39;
   rows = 39;
-  fungusCount = 6;
-  fungusBreedDelayLowMinMs = 50;
-  fungusBreedDelayLowMaxMs = 100;
-  fungusBreedDelayHighMinMs = 1000;
-  fungusBreedDelayHighMaxMs = 2000;
-  fungusAgingDelayMs = 300;
-  fungusMinOpacity = 0.75;
-  fungusNodeOpacity = 0.5;
+  fungusCount = 3;
+  fungusBreedDelayLowMinMs = 300;
+  fungusBreedDelayLowMaxMs = 300;
+  fungusBreedDelayHighMinMs = 300;
+  fungusBreedDelayHighMaxMs = 300;
+  fungusAgingDelayMs = 200;
+  fungusMinOpacity = 0.1;
+  fungusNodeOpacity = 1;
 
   private _finished: boolean;
   private _paused: boolean;
