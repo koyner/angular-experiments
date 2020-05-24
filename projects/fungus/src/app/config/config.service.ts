@@ -8,6 +8,8 @@ export class ConfigService {
   animateMs = 20;
   cols = 39;
   rows = 39;
+  wallCount = 8;
+  wallLengthMin = 3;
   fungusCount = 3;
   fungusBreedDelayLowMinMs = 300;
   fungusBreedDelayLowMaxMs = 300;
@@ -38,9 +40,5 @@ export class ConfigService {
 
   finish(): void {
     this._finished = true;
-  }
-
-  get spaceCount(): number {
-    return this.rows * this.cols;
   }
 }

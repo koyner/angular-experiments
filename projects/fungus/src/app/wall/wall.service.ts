@@ -1,4 +1,5 @@
 import {Injectable, Injector} from '@angular/core';
+import {ConfigService} from '../config/config.service';
 import {Wall, WallAxis} from './model/wall';
 
 @Injectable({
@@ -6,16 +7,30 @@ import {Wall, WallAxis} from './model/wall';
 })
 export class WallService {
   private _walls: Wall[] = [];
-  constructor(private _injector: Injector) {}
+  constructor(private _injector: Injector, private _config: ConfigService) {}
 
   init(): void {
-    this._walls.push(new Wall(this._injector, 13, 23, 20, WallAxis.x));
-    this._walls.push(new Wall(this._injector, 22, 26, 15, WallAxis.x));
-    this._walls.push(new Wall(this._injector, 13, 26, 13, WallAxis.y));
-    this._walls.push(new Wall(this._injector, 16, 24, 13, WallAxis.y));
-    this._walls.push(new Wall(this._injector, 19, 26, 11, WallAxis.y));
-    this._walls.push(new Wall(this._injector, 12, 4, 20, WallAxis.x));
-    this._walls.push(new Wall(this._injector, 20, 8, 12, WallAxis.y));
+    for (let i = 0; i < this._config.wallCount; i++) {
+      const x =
+        1 +
+        Math.floor(
+          Math.random() * (this._config.cols - this._config.wallLengthMin - 2)
+        );
+      const y =
+        1 +
+        Math.floor(
+          Math.random() * (this._config.rows - this._config.wallLengthMin - 2)
+        );
+      const dir = Math.random() > 0.5 ? WallAxis.x : WallAxis.y;
+      const length = Math.max(
+        this._config.wallLengthMin,
+        Math.floor(
+          Math.random() *
+            (dir === WallAxis.x ? this._config.cols - x : this._config.rows - y)
+        )
+      );
+      this._walls.push(new Wall(this._injector, x, y, length, dir));
+    }
   }
 
   get walls(): Wall[] {
