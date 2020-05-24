@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
+import {BgService} from '../bg/bg.service';
 import {ConfigService} from '../config/config.service';
 import {FungusService} from '../fungus/fungus.service';
-import {CellFungus} from '../fungus/model/cell-fungus';
 import {GridService} from '../grid/grid.service';
 import {Animatable, AnimateService} from '../util/animate.service';
-import {CellWall} from '../wall/model/cell-wall';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +13,7 @@ export class StatusService implements Animatable {
     private _animate: AnimateService,
     private _config: ConfigService,
     private _fungusService: FungusService,
+    private _bgService: BgService,
     private _grid: GridService
   ) {}
 
@@ -22,21 +22,15 @@ export class StatusService implements Animatable {
   }
 
   animate(_tsDiff: number): void {
-    if (this.areAllCellsFungusAndWall() && this.isOneFungusLeft) {
+    if (this.areNoCellsBg() && this.isOneFungusLeft) {
       this._config.finish();
     }
   }
 
-  private areAllCellsFungusAndWall(): boolean {
-    return this.fungusOrWallCellCount === this._config.spaceCount;
+  private areNoCellsBg(): boolean {
+    return this._bgService.count === 0;
   }
 
-  private get fungusOrWallCellCount(): number {
-    return this._grid.cells.filter(
-      c => c instanceof CellFungus || c instanceof CellWall
-    ).length;
-  }
-  
   private get isOneFungusLeft(): boolean {
     return this._fungusService.fungusCount === 1;
   }

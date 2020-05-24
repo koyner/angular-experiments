@@ -19,4 +19,8 @@ export class Bg {
   addCell(col: number, row: number): void {
     this._grid.add(new CellBg(this._injector, col, row));
   }
+
+  get count(): number {
+    return this._grid.cells.filter(c => c instanceof CellBg).length;
+  }
 }

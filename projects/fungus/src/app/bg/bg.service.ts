@@ -22,4 +22,8 @@ export class BgService {
   addCell(col: number, row: number): void {
     this._bg.addCell(col, row);
   }
+
+  get count(): number {
+    return this._bg.count;
+  }
 }
