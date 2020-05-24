@@ -2,7 +2,6 @@ import {Injectable, Injector} from '@angular/core';
 import {ConfigService} from '../config/config.service';
 import {GridService} from '../grid/grid.service';
 import {Animatable, AnimateService} from '../util/animate.service';
-import {CellFungus} from './model/cell-fungus';
 import {Fungus} from './model/fungus';
 
 @Injectable({
@@ -16,11 +15,10 @@ export class FungusService implements Animatable {
     private _config: ConfigService,
     private _grid: GridService,
     private _animate: AnimateService
-  ) {
-    this._animate.add(this);
-  }
+  ) {}
 
   init(): void {
+    this._animate.add(this);
     let i = 0;
     while (i++ < this._config.fungusCount) {
       this.createFungusAt(this._grid.randCol(), this._grid.randRow());
@@ -37,16 +35,12 @@ export class FungusService implements Animatable {
   }
 
   animate(tsDiff: number): void {
-    if (this.areAllCellsFungus() && this.isOneFungusLeft) {
-      this._config.finish();
-    } else {
-      this.fungi.forEach(f => {
-        f.grow(tsDiff);
-      });
-      this.fungi.forEach(f => {
-        f.feed();
-      });
-    }
+    this.fungi.forEach(f => {
+      f.grow(tsDiff);
+    });
+    this.fungi.forEach(f => {
+      f.feed();
+    });
   }
 
   get fungi(): Fungus[] {
@@ -68,17 +62,5 @@ export class FungusService implements Animatable {
 
   private addFungus(f: Fungus): void {
     this._fungi.push(f);
-  }
-
-  private areAllCellsFungus(): boolean {
-    return this.fungusCellCount === this._config.spaceCount;
-  }
-
-  private get fungusCellCount(): number {
-    return this._grid.cells.filter(c => c instanceof CellFungus).length;
-  }
-
-  private get isOneFungusLeft(): boolean {
-    return this.fungusCount === 1;
   }
 }
