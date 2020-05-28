@@ -1,3 +1,5 @@
+import {Injector} from '@angular/core';
+
 export enum CellType {
   wall,
   fungus,
@@ -6,6 +8,7 @@ export enum CellType {
 
 export abstract class Cell {
   protected constructor(
+    _injector: Injector,
     public colour: string,
     public col: number,
     public row: number
@@ -16,4 +19,5 @@ export abstract class Cell {
   }
 
   abstract get type(): CellType;
+  abstract get opacity(): number;
 }

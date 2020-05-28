@@ -23,7 +23,7 @@ export class Wall {
     if (axis === WallAxis.x) {
       for (let i = col; i < col + length && i < this._config.cols; i++) {
         try {
-          this._cellManager.add(new CellWall(i, row));
+          this._cellManager.add(new CellWall(_injector, i, row));
         } catch (e) {
           console.log(e.message);
         }
@@ -31,7 +31,7 @@ export class Wall {
     } else {
       for (let i = row; i < row + length && i < this._config.rows; i++) {
         try {
-          this._cellManager.add(new CellWall(col, i));
+          this._cellManager.add(new CellWall(_injector, col, i));
         } catch (e) {
           console.log(e.message);
         }

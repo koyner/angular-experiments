@@ -51,4 +51,12 @@ export class StatusComponent {
   set paused(p: boolean) {
     this._config.paused = p;
   }
+
+  get domEnabled(): boolean {
+    return this._config.domEnabled;
+  }
+
+  set domEnabled(d: boolean) {
+    this._config.domEnabled = d;
+  }
 }

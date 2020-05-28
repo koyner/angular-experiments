@@ -1,5 +1,6 @@
 import {Injector} from '@angular/core';
 import {Cell, CellType} from '../../cell/model/cell';
+import {ConfigService} from '../../config/config.service';
 import {Cardinal, GridService} from '../../grid/grid.service';
 import {UtilService} from '../../util/util.service';
 import {CellWall} from '../../wall/model/cell-wall';
@@ -9,6 +10,7 @@ export class CellFungus extends Cell {
   readonly _pctVelocity: number;
   private _grid: GridService;
   private _util: UtilService;
+  private _config: ConfigService;
   private _age = 0;
   private _breedNext: number;
   constructor(
@@ -18,9 +20,10 @@ export class CellFungus extends Cell {
     row: number,
     private _isNode: boolean
   ) {
-    super(_fungus.colour, col, row);
+    super(_injector, _fungus.colour, col, row);
     this._grid = _injector.get(GridService);
     this._util = _injector.get(UtilService);
+    this._config = _injector.get(ConfigService);
     const velocities = this._grid
       .neighbourArrayOf(this)
       .filter(c => c instanceof CellFungus && c.fungus === this.fungus)
@@ -53,6 +56,21 @@ export class CellFungus extends Cell {
 
   get type(): CellType {
     return CellType.fungus;
+  }
+
+  get opacity(): number {
+    if (!this.isNode) {
+      return Math.max(
+        this._config.fungusMinOpacity,
+        Math.min(
+          1,
+          this._pctVelocity / 100 +
+            0.15 * Math.max(0, 1 - this.age / this._config.fungusAgingDelayMs)
+        )
+      );
+    } else {
+      return this._config.fungusNodeOpacity;
+    }
   }
 
   private breed(): void {

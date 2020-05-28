@@ -27,6 +27,10 @@ export class StatusService implements Animatable {
     }
   }
 
+  isDomEnabled(): boolean {
+    return true;
+  }
+
   private areNoCellsBg(): boolean {
     return this._bgService.count === 0;
   }

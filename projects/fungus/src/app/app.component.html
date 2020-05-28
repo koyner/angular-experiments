@@ -1,4 +1,8 @@
 <app-mrb-ui-container (resized)="resized($event)">
-  <app-grid></app-grid>
+  <app-grid *ngIf="isDomEnabled()"></app-grid>
+  <canvas
+    #myCanvas
+    [style.visibility]="!isDomEnabled() ? 'visible' : 'hidden'"
+  ></canvas>
 </app-mrb-ui-container>
 <app-status></app-status>

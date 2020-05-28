@@ -43,7 +43,7 @@ export class CellManager {
       return this._grid.add(cNew);
     } else {
       throw new Error(
-        `Could not add cell of type ${(cNew.constructor as any).name} (${cNew})`
+        `Could not add cell of type ${CellType[cNew.type]} (${cNew})`
       );
     }
   }

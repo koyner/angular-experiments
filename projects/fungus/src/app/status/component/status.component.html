@@ -7,6 +7,10 @@
     <label for="paused">Paused:</label>
     <input id="paused" [(ngModel)]="paused" type="checkbox" />
   </p>
+  <p>
+    <label for="isDomEnabled">DOM:</label>
+    <input id="isDomEnabled" [(ngModel)]="domEnabled" type="checkbox" />
+  </p>
   <p>Time: {{ age | number: '1.2-2' }}</p>
   <div
     class="bar"

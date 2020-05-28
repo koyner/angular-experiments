@@ -52,22 +52,7 @@ export class CellComponent {
   }
 
   get opacity(): number {
-    if (this.cell instanceof CellFungus) {
-      const cf = this.cell as CellFungus;
-      if (!cf.isNode) {
-        return Math.max(
-          this._config.fungusMinOpacity,
-          Math.min(
-            1,
-            cf._pctVelocity / 100 +
-              0.15 * Math.max(0, 1 - cf.age / this._config.fungusAgingDelayMs)
-          )
-        );
-      } else {
-        return this._config.fungusNodeOpacity;
-      }
-    }
-    return 1;
+    return this.cell.opacity;
   }
 
   private isFungusNode(): boolean {
