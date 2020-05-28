@@ -8,9 +8,9 @@ export class ConfigService {
   animateMs = 20;
   cols = 39;
   rows = 39;
-  wallCount = 8;
+  wallCount = 10;
   wallLengthMin = 3;
-  fungusCount = 3;
+  fungusCount = 20;
   fungusBreedDelayLowMinMs = 300;
   fungusBreedDelayLowMaxMs = 300;
   fungusBreedDelayHighMinMs = 300;

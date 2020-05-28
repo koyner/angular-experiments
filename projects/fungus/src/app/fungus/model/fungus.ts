@@ -1,5 +1,6 @@
 import {Injector} from '@angular/core';
 import {BgService} from '../../bg/bg.service';
+import {CellManager} from '../../cell-manager/cell-manager.service';
 import {ConfigService} from '../../config/config.service';
 import {GridService} from '../../grid/grid.service';
 import {UtilService} from '../../util/util.service';
@@ -7,6 +8,7 @@ import {CellFungus} from './cell-fungus';
 
 export class Fungus {
   private _grid: GridService;
+  private _cellManager: CellManager;
   private _bgService: BgService;
 
   private readonly _colour: string;
@@ -15,6 +17,7 @@ export class Fungus {
 
   constructor(private _injector: Injector, ms?: any) {
     this._grid = _injector.get(GridService);
+    this._cellManager = _injector.get(CellManager);
     this._bgService = _injector.get(BgService);
     this._colour = _injector.get(UtilService).randomColourStr;
     const config = _injector.get(ConfigService);
@@ -31,10 +34,15 @@ export class Fungus {
   }
 
   addCell(col: number, row: number, isNode: boolean): void {
-    const cReplaced = this._grid.add(
-      new CellFungus(this._injector, this, col, row, isNode)
-    );
-    if (cReplaced instanceof CellFungus) {
+    let cReplaced;
+    try {
+      cReplaced = this._cellManager.add(
+        new CellFungus(this._injector, this, col, row, isNode)
+      );
+    } catch (e) {
+      console.log(e.message);
+    }
+    if (cReplaced && cReplaced instanceof CellFungus) {
       const cfReplaced = cReplaced as CellFungus;
       if (cfReplaced.isNode) {
         cfReplaced.fungus.kill();

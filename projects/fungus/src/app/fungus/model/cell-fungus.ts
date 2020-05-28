@@ -1,5 +1,5 @@
 import {Injector} from '@angular/core';
-import {Cell} from '../../cell/model/cell';
+import {Cell, CellType} from '../../cell/model/cell';
 import {Cardinal, GridService} from '../../grid/grid.service';
 import {UtilService} from '../../util/util.service';
 import {CellWall} from '../../wall/model/cell-wall';
@@ -49,6 +49,10 @@ export class CellFungus extends Cell {
   grow(elapsed: number): void {
     this._age += elapsed;
     this.breed();
+  }
+
+  get type(): CellType {
+    return CellType.fungus;
   }
 
   private breed(): void {

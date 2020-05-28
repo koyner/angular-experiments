@@ -76,7 +76,7 @@ export class GridService {
     return this.cells.length;
   }
 
-  private cellAt(col: number, row: number): Cell {
+  cellAt(col: number, row: number): Cell {
     return this._cells.find(c => c.col === col && c.row === row);
   }
 }
