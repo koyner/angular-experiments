@@ -43,6 +43,14 @@ export class CellComponent {
     return this.cell.colour;
   }
 
+  get borderSize(): number {
+    return this.isFungusNode() ? 2 : 0;
+  }
+
+  get borderColour(): string {
+    return this.isFungusNode() ? '#ddd' : this.cell.colour;
+  }
+
   get opacity(): number {
     if (this.cell instanceof CellFungus) {
       const cf = this.cell as CellFungus;
@@ -60,5 +68,9 @@ export class CellComponent {
       }
     }
     return 1;
+  }
+
+  private isFungusNode(): boolean {
+    return this.cell instanceof CellFungus && (this.cell as CellFungus).isNode;
   }
 }
