@@ -65,7 +65,8 @@ export class CellFungus extends Cell {
         Math.min(
           1,
           this._pctVelocity / 100 +
-            0.15 * Math.max(0, 1 - this.age / this._config.fungusAgingDelayMs)
+            this._config.fungusBirthBrightness *
+              Math.max(0, 1 - this.age / this._config.fungusAgingDelayMs)
         )
       );
     } else {

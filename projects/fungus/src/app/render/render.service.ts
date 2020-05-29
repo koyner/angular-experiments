@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Cell} from '../cell/model/cell';
+import {Cell, CellType} from '../cell/model/cell';
 
-import {ConfigService} from '../config/config.service';
+import {ConfigService, FungusShape} from '../config/config.service';
 import {GridService} from '../grid/grid.service';
 import {Animatable, AnimateService} from '../util/animate.service';
 
@@ -12,12 +12,14 @@ export class RenderService implements Animatable {
   private _canvas: HTMLCanvasElement;
   private _ctx: CanvasRenderingContext2D;
   private _size: number;
+  private readonly pixelRatio: number;
   constructor(
     private _config: ConfigService,
     private _animate: AnimateService,
     private _grid: GridService
   ) {
     this._animate.add(this);
+    this.pixelRatio = window.devicePixelRatio || 1;
   }
 
   setCanvas(canvas: HTMLCanvasElement): void {
@@ -53,38 +55,45 @@ export class RenderService implements Animatable {
 
   animate(_tsDiff: number): void {
     if (!this._config.domEnabled) {
-      this._ctx.globalAlpha = 1;
-      this._ctx.fillStyle = 'rgb(0, 0, 0)';
-      this._ctx.fillRect(0, 0, this._size, this._size);
+      this._ctx.clearRect(0, 0, this.scale(this.size), this.scale(this.size));
       this._grid.cells.forEach(c => {
         this._ctx.globalAlpha = c.opacity;
-        this._ctx.strokeStyle = c.colour;
         this._ctx.fillStyle = c.colour;
-        this._ctx.beginPath();
-        this._ctx.arc(
-          this.xFor(c) + this.wFor(c) / 2,
-          this.yFor(c) + this.wFor(c) / 2,
-          this.wFor(c) / 2,
-          0,
-          Math.PI * 2,
-          true
-        );
-        this._ctx.closePath();
-        this._ctx.fill();
-        // this._ctx.fillRect(
-        //   this.xFor(c) + this.wFor(c) / 2,
-        //   this.yFor(c) + this.wFor(c) / 2,
-        //   this.wFor(c) + 1,
-        //   this.wFor(c) + 1
-        // );
+        if (
+          this._config.fungusShape === FungusShape.circle &&
+          c.type !== CellType.wall
+        ) {
+          this._ctx.beginPath();
+          this._ctx.arc(
+            this.scale(this.xFor(c) + this.wFor(c) / 2),
+            this.scale(this.yFor(c) + this.wFor(c) / 2),
+            this.scale(this.wFor(c) / 2),
+            0,
+            Math.PI * 2,
+            true
+          );
+          this._ctx.closePath();
+          this._ctx.fill();
+        } else {
+          this._ctx.fillRect(
+            this.scale(this.xFor(c) - 1),
+            this.scale(this.yFor(c) - 1),
+            this.scale(this.wFor(c) + 1),
+            this.scale(this.wFor(c) + 1)
+          );
+        }
       });
     }
   }
 
+  private scale(n: number): number {
+    return n * this.pixelRatio;
+  }
+
   private setCanvasSize(): void {
     if (this._canvas) {
-      this._canvas.width = this._size;
-      this._canvas.height = this._size;
+      this._canvas.width = this.scale(this._size);
+      this._canvas.height = this.scale(this._size);
     }
   }
 

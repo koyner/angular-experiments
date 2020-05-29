@@ -3,7 +3,7 @@ import {Cell, CellType} from '../../cell/model/cell';
 
 export class CellWall extends Cell {
   constructor(private _injector: Injector, col: number, row: number) {
-    super(_injector, 'white', col, row);
+    super(_injector, '#ccc', col, row);
   }
 
   get type(): CellType {

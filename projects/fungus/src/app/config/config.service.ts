@@ -1,5 +1,10 @@
 import {Injectable} from '@angular/core';
 
+export enum FungusShape {
+  circle,
+  square
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -8,7 +13,7 @@ export class ConfigService {
   animateMs = 20;
   cols = 39;
   rows = 39;
-  wallCount = 10;
+  wallCount = 20;
   wallLengthMin = 3;
   fungusCount = 3;
   fungusBreedDelayLowMinMs = 100;
@@ -16,8 +21,10 @@ export class ConfigService {
   fungusBreedDelayHighMinMs = 500;
   fungusBreedDelayHighMaxMs = 500;
   fungusAgingDelayMs = 200;
-  fungusMinOpacity = 0.2;
+  fungusMinOpacity = 0.3;
   fungusNodeOpacity = 1;
+  fungusBirthBrightness = 0.3; // -1 to 1
+  fungusShape = FungusShape.circle;
 
   private _finished: boolean;
   private _paused: boolean;
