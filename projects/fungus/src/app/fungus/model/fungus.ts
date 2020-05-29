@@ -34,15 +34,16 @@ export class Fungus {
   }
 
   addCell(col: number, row: number, isNode: boolean): void {
+    const c = new CellFungus(this._injector, this, col, row, isNode);
     let cReplaced;
     try {
-      cReplaced = this._cellManager.add(
-        new CellFungus(this._injector, this, col, row, isNode)
-      );
+      cReplaced = this._cellManager.add(c);
     } catch (e) {
       console.log(e.message);
+      return;
     }
-    if (cReplaced && cReplaced instanceof CellFungus) {
+    if (cReplaced instanceof CellFungus) {
+      c.didKill = true;
       const cfReplaced = cReplaced as CellFungus;
       if (cfReplaced.isNode) {
         cfReplaced.fungus.kill();

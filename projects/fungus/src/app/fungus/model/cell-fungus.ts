@@ -13,6 +13,7 @@ export class CellFungus extends Cell {
   private _config: ConfigService;
   private _age = 0;
   private _breedNext: number;
+  private _didKill: boolean;
   constructor(
     private _injector: Injector,
     private _fungus: Fungus,
@@ -33,7 +34,7 @@ export class CellFungus extends Cell {
       velocities.length;
     this._pctVelocity = this.isNode
       ? 50
-      : Math.max(0, Math.min(100, velocityAvg + 30 * (Math.random() - 0.62)));
+      : Math.max(0, Math.min(100, velocityAvg + 30 * (Math.random() - 0.6)));
     this.cueNextBreed();
   }
 
@@ -60,18 +61,24 @@ export class CellFungus extends Cell {
 
   get opacity(): number {
     if (!this.isNode) {
+      const birthBrightness =
+        this._config.fungusBirthBrightness * (this._didKill ? 1 : -1);
       return Math.max(
         this._config.fungusMinOpacity,
         Math.min(
           1,
           this._pctVelocity / 100 +
-            this._config.fungusBirthBrightness *
+            birthBrightness *
               Math.max(0, 1 - this.age / this._config.fungusAgingDelayMs)
         )
       );
     } else {
       return this._config.fungusNodeOpacity;
     }
+  }
+
+  set didKill(d: boolean) {
+    this._didKill = d;
   }
 
   private breed(): void {

@@ -13,14 +13,14 @@ export class ConfigService {
   animateMs = 20;
   cols = 39;
   rows = 39;
-  wallCount = 20;
+  wallCount = 8;
   wallLengthMin = 3;
   fungusCount = 3;
   fungusBreedDelayLowMinMs = 100;
   fungusBreedDelayLowMaxMs = 100;
   fungusBreedDelayHighMinMs = 500;
   fungusBreedDelayHighMaxMs = 500;
-  fungusAgingDelayMs = 200;
+  fungusAgingDelayMs = 300;
   fungusMinOpacity = 0.3;
   fungusNodeOpacity = 1;
   fungusBirthBrightness = 0.3; // -1 to 1
