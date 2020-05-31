@@ -20,7 +20,7 @@ export class ConfigService {
   fungusBreedDelayLowMaxMs = 100;
   fungusBreedDelayHighMinMs = 500;
   fungusBreedDelayHighMaxMs = 500;
-  fungusAgingDelayMs = 300;
+  fungusAgingDelayMs = 200;
   fungusMinOpacity = 0.3;
   fungusNodeOpacity = 1;
   fungusBirthBrightness = 0.3; // -1 to 1

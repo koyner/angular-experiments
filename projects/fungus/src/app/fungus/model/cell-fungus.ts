@@ -34,7 +34,7 @@ export class CellFungus extends Cell {
       velocities.length;
     this._pctVelocity = this.isNode
       ? 50
-      : Math.max(0, Math.min(100, velocityAvg + 30 * (Math.random() - 0.6)));
+      : Math.max(0, Math.min(100, velocityAvg + 30 * (Math.random() - 0.58)));
     this.cueNextBreed();
   }
 

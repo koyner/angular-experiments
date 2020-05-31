@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Cell, CellType} from '../cell/model/cell';
 
 import {ConfigService, FungusShape} from '../config/config.service';
+import {CellFungus} from '../fungus/model/cell-fungus';
 import {GridService} from '../grid/grid.service';
 import {Animatable, AnimateService} from '../util/animate.service';
 
@@ -56,30 +57,59 @@ export class RenderService implements Animatable {
   animate(_tsDiff: number): void {
     if (!this._config.domEnabled) {
       this._ctx.clearRect(0, 0, this.scale(this.size), this.scale(this.size));
-      this._grid.cells.forEach(c => {
-        this._ctx.globalAlpha = c.opacity;
-        this._ctx.fillStyle = c.colour;
+      this._grid.cells.forEach(cell => {
+        this._ctx.globalAlpha = cell.opacity;
+        this._ctx.fillStyle = cell.colour;
+        const x = this.scale(this.xFor(cell));
+        const y = this.scale(this.yFor(cell));
+        const w = this.scale(this.wFor(cell));
+        const h = this.scale(this.hFor(cell));
         if (
           this._config.fungusShape === FungusShape.circle &&
-          c.type !== CellType.wall
+          cell.type !== CellType.wall
         ) {
           this._ctx.beginPath();
-          this._ctx.arc(
-            this.scale(this.xFor(c) + this.wFor(c) / 2),
-            this.scale(this.yFor(c) + this.wFor(c) / 2),
-            this.scale(this.wFor(c) / 2),
-            0,
-            Math.PI * 2,
-            true
-          );
+          const r = w / 3;
+          this._ctx.moveTo(x + r, y);
+          this._ctx.arcTo(x + w, y, x + w, y + h, r);
+          this._ctx.arcTo(x + w, y + h, x, y + h, r);
+          this._ctx.arcTo(x, y + h, x, y, r);
+          this._ctx.arcTo(x, y, x + w, y, r);
+          if (cell instanceof CellFungus) {
+            const nbrs = this._grid.neighboursDirsOf(cell);
+            if (
+              nbrs.n instanceof CellFungus &&
+              (nbrs.n as CellFungus).fungus === (cell as CellFungus).fungus
+            ) {
+              this._ctx.rect(x, y, w, h / 2);
+            }
+            if (
+              nbrs.s instanceof CellFungus &&
+              (nbrs.s as CellFungus).fungus === (cell as CellFungus).fungus
+            ) {
+              this._ctx.rect(x, y + h / 2, w, h / 2);
+            }
+            if (
+              nbrs.w instanceof CellFungus &&
+              (nbrs.w as CellFungus).fungus === (cell as CellFungus).fungus
+            ) {
+              this._ctx.rect(x, y, w / 2, h);
+            }
+            if (
+              nbrs.e instanceof CellFungus &&
+              (nbrs.e as CellFungus).fungus === (cell as CellFungus).fungus
+            ) {
+              this._ctx.rect(x + w / 2, y, w / 2, h);
+            }
+          }
           this._ctx.closePath();
           this._ctx.fill();
         } else {
           this._ctx.fillRect(
-            this.scale(this.xFor(c) - 1),
-            this.scale(this.yFor(c) - 1),
-            this.scale(this.wFor(c) + 1),
-            this.scale(this.wFor(c) + 1)
+            this.scale(this.xFor(cell)),
+            this.scale(this.yFor(cell)),
+            this.scale(this.wFor(cell)),
+            this.scale(this.wFor(cell))
           );
         }
       });
