@@ -22,20 +22,16 @@ export class StatusService implements Animatable {
   }
 
   animate(_tsDiff: number): void {
-    if (this.areNoCellsBg() && this.isOneFungusLeft) {
+    if (this.areNoCellsBg() && this.isOneFungusLeft()) {
       this._config.finish();
     }
-  }
-
-  isDomEnabled(): boolean {
-    return true;
   }
 
   private areNoCellsBg(): boolean {
     return this._bgService.count === 0;
   }
 
-  private get isOneFungusLeft(): boolean {
+  private isOneFungusLeft(): boolean {
     return this._fungusService.fungusCount === 1;
   }
 }

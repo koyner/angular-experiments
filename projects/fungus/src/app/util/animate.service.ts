@@ -12,19 +12,10 @@ export interface Animatable {
 export class AnimateService {
   private _animatable: Animatable[] = [];
   private _tsPrev: number;
-  private _age: number;
+  private _age = 0;
   constructor(private _config: ConfigService, private _util: UtilService) {
     this._tsPrev = this._util.now;
-    this._age = 0;
-    window.setInterval(() => {
-      const tsNow = this._util.now;
-      if (!this._config.paused && !this._config.finished) {
-        const tsDiff = tsNow - this._tsPrev;
-        this._age += tsDiff;
-        this._animatable.forEach(a => a.animate(tsDiff));
-      }
-      this._tsPrev = tsNow;
-    }, this._config.animateMs);
+    window.setInterval(this.animateFrame, this._config.animateMs);
   }
 
   add(a: Animatable): void {
@@ -37,5 +28,19 @@ export class AnimateService {
 
   get age(): number {
     return this._age;
+  }
+
+  private animateFrame = (): void => {
+    const tsNow = this._util.now;
+    if (this.isAnimating()) {
+      const tsDiff = tsNow - this._tsPrev;
+      this._age += tsDiff;
+      this._animatable.forEach(a => a.animate(tsDiff));
+    }
+    this._tsPrev = tsNow;
+  };
+
+  private isAnimating(): boolean {
+    return !this._config.paused && !this._config.finished;
   }
 }

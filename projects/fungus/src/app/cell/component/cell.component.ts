@@ -32,11 +32,11 @@ export class CellComponent {
   }
 
   get w(): number {
-    return this._renderer.wFor(this.cell);
+    return this._renderer.cellW;
   }
 
   get h(): number {
-    return this._renderer.hFor(this.cell);
+    return this._renderer.cellH;
   }
 
   get colour(): string {
