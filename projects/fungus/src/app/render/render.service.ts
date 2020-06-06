@@ -39,19 +39,19 @@ export class RenderService implements Animatable {
   }
 
   xFor(cell: Cell): number {
-    return Math.floor(cell.col * this.cellWidth);
+    return Math.round(cell.col * this.cellWidth);
   }
 
   yFor(cell: Cell): number {
-    return Math.floor(cell.row * this.cellHeight);
+    return Math.round(cell.row * this.cellHeight);
   }
 
   get cellW(): number {
-    return Math.floor(this.cellWidth);
+    return Math.round(this.cellWidth);
   }
 
   get cellH(): number {
-    return Math.floor(this.cellHeight);
+    return Math.round(this.cellHeight);
   }
 
   animate(_tsDiff: number): void {

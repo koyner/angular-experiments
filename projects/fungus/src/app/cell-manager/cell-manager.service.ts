@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {Cell, CellType} from '../cell/model/cell';
 import {GridService} from '../grid/grid.service';
 
-import wall = CellType.wall;
 import bg = CellType.bg;
 import fungus = CellType.fungus;
+import wall = CellType.wall;
 
 @Injectable({
   providedIn: 'root'

@@ -36,10 +36,10 @@ export class FungusService implements Animatable {
 
   animate(tsDiff: number): void {
     this.fungi.forEach(f => {
-      f.grow(tsDiff);
+      f.feed();
     });
     this.fungi.forEach(f => {
-      f.feed();
+      f.grow(tsDiff);
     });
   }
 

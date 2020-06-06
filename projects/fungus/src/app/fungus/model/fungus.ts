@@ -56,30 +56,31 @@ export class Fungus {
   }
 
   feed(): void {
-    let cellsFound: CellFungus[] = [this.cells.find(c => c.isNode)];
-    let thisRound = cellsFound;
+    let cellsConnected: CellFungus[] = [this.cells.find(c => c.isNode)];
+    let thisRound = cellsConnected;
     while (thisRound.length > 0) {
       let nextRound: CellFungus[] = [];
       thisRound.forEach(c => {
-        const neighbours: CellFungus[] = this._grid
-          .neighbourArrayOf(c)
-          .filter(
-            n =>
-              n instanceof CellFungus &&
-              (n as CellFungus).fungus === this &&
-              cellsFound.indexOf(n) === -1 &&
-              nextRound.indexOf(n) === -1
-          ) as CellFungus[];
-        nextRound = nextRound.concat(neighbours);
+        nextRound = nextRound.concat(
+          this._grid
+            .neighbourArrayOf(c)
+            .filter(
+              n =>
+                n instanceof CellFungus &&
+                (n as CellFungus).fungus === this &&
+                !cellsConnected.includes(n) &&
+                !nextRound.includes(n)
+            ) as CellFungus[]
+        );
       });
-      cellsFound = cellsFound.concat(nextRound);
+      cellsConnected = cellsConnected.concat(nextRound);
       thisRound = nextRound;
     }
-    this.cells.forEach(c => {
-      if (!cellsFound.includes(c)) {
+    this.cells
+      .filter(c => !cellsConnected.includes(c))
+      .forEach(c => {
         this._bgService.addCell(c.col, c.row);
-      }
-    });
+      });
   }
 
   get breedDelayLowMs(): number {
