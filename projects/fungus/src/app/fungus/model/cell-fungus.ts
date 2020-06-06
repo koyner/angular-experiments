@@ -27,7 +27,9 @@ export class CellFungus extends Cell {
     this._config = _injector.get(ConfigService);
     const velocities = this._grid
       .neighbourArrayOf(this)
-      .filter(c => c instanceof CellFungus && c.fungus === this.fungus)
+      .filter(
+        c => c instanceof CellFungus && (c as CellFungus).fungus === this.fungus
+      )
       .map(c => (c as CellFungus)._pctVelocity);
     const velocityAvg =
       velocities.reduce((acc: number, curr: number) => acc + curr, 0) /
