@@ -25,18 +25,7 @@ export class CellFungus extends Cell {
     this._grid = _injector.get(GridService);
     this._util = _injector.get(UtilService);
     this._config = _injector.get(ConfigService);
-    const velocities = this._grid
-      .neighbourArrayOf(this)
-      .filter(
-        c => c instanceof CellFungus && (c as CellFungus).fungus === this.fungus
-      )
-      .map(c => (c as CellFungus)._pctVelocity);
-    const velocityAvg =
-      velocities.reduce((acc: number, curr: number) => acc + curr, 0) /
-      velocities.length;
-    this._pctVelocity = this.isNode
-      ? 50
-      : Math.max(0, Math.min(100, velocityAvg + 30 * (Math.random() - 0.58)));
+    this._pctVelocity = this.isNode ? 50 : this.calcPctVelocity();
     this.cueNextBreed();
   }
 
@@ -110,12 +99,19 @@ export class CellFungus extends Cell {
   }
 
   private cueNextBreed(): void {
-    this._breedNext =
-      this.age +
-      (4 - (4 * this._pctVelocity) / 100) *
-        (this._fungus.breedDelayLowMs +
-          Math.random() *
-            (this._fungus.breedDelayHighMs - this._fungus.breedDelayLowMs));
+    this._breedNext = this.age + this.calcTimeToNextBreedMs();
+  }
+
+  private calcTimeToNextBreedMs(): number {
+    return (10 - (9 * this._pctVelocity) / 100) * this.calcRandBreedDelayMs();
+  }
+
+  private calcRandBreedDelayMs(): number {
+    return (
+      this._fungus.breedDelayLowMs +
+      Math.random() *
+        (this._fungus.breedDelayHighMs - this._fungus.breedDelayLowMs)
+    );
   }
 
   private dirGrow(): Cardinal {
@@ -129,5 +125,34 @@ export class CellFungus extends Cell {
         )
     );
     return this._util.randomElOf(targetNeighbourKeys) as Cardinal;
+  }
+
+  private calcPctVelocity(): number {
+    return Math.max(
+      0,
+      Math.min(
+        100,
+        this.nbrVelocityAvg +
+          this._config.fungusMutation *
+            (Math.random() - 0.5 + this._config.fungusMutationShift)
+      )
+    );
+  }
+
+  private get nbrVelocityAvg(): number {
+    const velocities = this.nbrVelocities;
+    return (
+      velocities.reduce((acc: number, curr: number) => acc + curr, 0) /
+      velocities.length
+    );
+  }
+
+  private get nbrVelocities(): number[] {
+    return this._grid
+      .neighbourArrayOf(this)
+      .filter(
+        c => c instanceof CellFungus && (c as CellFungus).fungus === this.fungus
+      )
+      .map(c => (c as CellFungus)._pctVelocity);
   }
 }

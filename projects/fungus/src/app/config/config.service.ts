@@ -16,11 +16,13 @@ export class ConfigService {
   wallCount = 8;
   wallLengthMin = 3;
   fungusCount = 3;
-  fungusBreedDelayLowMinMs = 100;
-  fungusBreedDelayLowMaxMs = 100;
-  fungusBreedDelayHighMinMs = 500;
-  fungusBreedDelayHighMaxMs = 500;
+  fungusBreedDelayLowMinMs = 200;
+  fungusBreedDelayLowMaxMs = 200;
+  fungusBreedDelayHighMinMs = 400;
+  fungusBreedDelayHighMaxMs = 400;
   fungusAgingDelayMs = 200;
+  fungusMutation = 30; // 0 to 200
+  fungusMutationShift = -0.05; // -0.5 zo 0.5
   fungusMinOpacity = 0.3;
   fungusNodeOpacity = 1;
   fungusBirthBrightness = 0.3; // -1 to 1
