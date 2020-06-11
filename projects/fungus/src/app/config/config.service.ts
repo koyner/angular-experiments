@@ -11,12 +11,13 @@ export enum FungusShape {
 export class ConfigService {
   bgColour = 'rgb(10, 10, 10)';
   animateMs = 20;
+  fpsRefreshMs = 500;
   cols = 49;
   rows = 49;
   wallCount = 8;
   wallLengthMin = 3;
   fungus = {
-    count: 10,
+    count: 5,
     breedDelayLowMinMs: 0,
     breedDelayLowMaxMs: 0,
     breedDelayHighMinMs: 200,
@@ -27,6 +28,7 @@ export class ConfigService {
     minOpacity: 0.3,
     nodeOpacity: 1,
     birthBrightness: 0.3, // -1 to 1
+    fillEdges: false,
     shape: FungusShape.circle
   };
 

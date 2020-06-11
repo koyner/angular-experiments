@@ -75,7 +75,7 @@ export class RenderService implements Animatable {
           this._ctx.arcTo(x + w, y + h, x, y + h, r);
           this._ctx.arcTo(x, y + h, x, y, r);
           this._ctx.arcTo(x, y, x + w, y, r);
-          if (cell instanceof CellFungus) {
+          if (cell instanceof CellFungus && this._config.fungus.fillEdges) {
             const cf = cell as CellFungus;
             const nbrs = this._grid.neighboursDirsOf(cf);
             if (

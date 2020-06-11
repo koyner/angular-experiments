@@ -20,6 +20,10 @@ export class StatusComponent {
     private _config: ConfigService
   ) {}
 
+  get fps(): number {
+    return this._animate.fps;
+  }
+
   get animatableCount(): number {
     return this._animate.animatableCount;
   }
@@ -58,5 +62,13 @@ export class StatusComponent {
 
   set domEnabled(d: boolean) {
     this._config.domEnabled = d;
+  }
+
+  get fungusFillEdges(): boolean {
+    return this._config.fungus.fillEdges;
+  }
+
+  set fungusFillEdges(f: boolean) {
+    this._config.fungus.fillEdges = f;
   }
 }
