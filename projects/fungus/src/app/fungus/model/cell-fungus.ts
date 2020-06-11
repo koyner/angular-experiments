@@ -53,18 +53,18 @@ export class CellFungus extends Cell {
   get opacity(): number {
     if (!this.isNode) {
       const birthBrightness =
-        this._config.fungusBirthBrightness * (this._didKill ? 1 : -1);
+        this._config.fungus.birthBrightness * (this._didKill ? 1 : -1);
       return Math.max(
-        this._config.fungusMinOpacity,
+        this._config.fungus.minOpacity,
         Math.min(
           1,
           this._pctVelocity / 100 +
             birthBrightness *
-              Math.max(0, 1 - this.age / this._config.fungusAgingDelayMs)
+              Math.max(0, 1 - this.age / this._config.fungus.agingDelayMs)
         )
       );
     } else {
-      return this._config.fungusNodeOpacity;
+      return this._config.fungus.nodeOpacity;
     }
   }
 
@@ -133,8 +133,8 @@ export class CellFungus extends Cell {
       Math.min(
         100,
         this.nbrVelocityAvg +
-          this._config.fungusMutation *
-            (Math.random() - 0.5 + this._config.fungusMutationShift)
+          this._config.fungus.mutation *
+            (Math.random() - 0.5 + this._config.fungus.mutationShift)
       )
     );
   }

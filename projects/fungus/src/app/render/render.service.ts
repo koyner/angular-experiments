@@ -65,7 +65,7 @@ export class RenderService implements Animatable {
         const x = this.getCellXScaled(cell);
         const y = this.getCellYScaled(cell);
         if (
-          this._config.fungusShape === FungusShape.circle &&
+          this._config.fungus.shape === FungusShape.circle &&
           cell.type !== CellType.wall
         ) {
           this._ctx.beginPath();

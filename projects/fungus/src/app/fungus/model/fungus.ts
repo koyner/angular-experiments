@@ -23,14 +23,15 @@ export class Fungus {
     const config = _injector.get(ConfigService);
     this._breedDelayLowMs = ms
       ? ms.low
-      : config.fungusBreedDelayLowMinMs +
+      : config.fungus.breedDelayLowMinMs +
         Math.random() *
-          (config.fungusBreedDelayLowMaxMs - config.fungusBreedDelayLowMinMs);
+          (config.fungus.breedDelayLowMaxMs - config.fungus.breedDelayLowMinMs);
     this._breedDelayHighMs = ms
       ? ms.high
-      : config.fungusBreedDelayHighMinMs +
+      : config.fungus.breedDelayHighMinMs +
         Math.random() *
-          (config.fungusBreedDelayHighMaxMs - config.fungusBreedDelayHighMinMs);
+          (config.fungus.breedDelayHighMaxMs -
+            config.fungus.breedDelayHighMinMs);
   }
 
   addCell(col: number, row: number, isNode: boolean): void {

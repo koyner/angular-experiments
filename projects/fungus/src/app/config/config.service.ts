@@ -15,18 +15,20 @@ export class ConfigService {
   rows = 39;
   wallCount = 8;
   wallLengthMin = 3;
-  fungusCount = 3;
-  fungusBreedDelayLowMinMs = 200;
-  fungusBreedDelayLowMaxMs = 200;
-  fungusBreedDelayHighMinMs = 400;
-  fungusBreedDelayHighMaxMs = 400;
-  fungusAgingDelayMs = 200;
-  fungusMutation = 30; // 0 to 200
-  fungusMutationShift = -0.05; // -0.5 zo 0.5
-  fungusMinOpacity = 0.3;
-  fungusNodeOpacity = 1;
-  fungusBirthBrightness = 0.3; // -1 to 1
-  fungusShape = FungusShape.circle;
+  fungus = {
+    count: 3,
+    breedDelayLowMinMs: 200,
+    breedDelayLowMaxMs: 200,
+    breedDelayHighMinMs: 400,
+    breedDelayHighMaxMs: 400,
+    agingDelayMs: 200,
+    mutation: 30, // 0 to 200
+    mutationShift: -0.05, // -0.5 zo 0.5
+    minOpacity: 0.3,
+    nodeOpacity: 1,
+    birthBrightness: 0.3, // -1 to 1
+    shape: FungusShape.circle
+  };
 
   private _finished: boolean;
   private _paused: boolean;
