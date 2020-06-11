@@ -58,57 +58,59 @@ export class RenderService implements Animatable {
     if (!this._config.domEnabled) {
       const w = this.cellWScaled;
       const h = this.cellHScaled;
-      this._ctx.clearRect(0, 0, this.sizeScaled, this.sizeScaled);
-      this._grid.cells.forEach(cell => {
-        this._ctx.globalAlpha = cell.opacity;
-        this._ctx.fillStyle = cell.colour;
-        const x = this.getCellXScaled(cell);
-        const y = this.getCellYScaled(cell);
-        if (
-          this._config.fungus.shape === FungusShape.circle &&
-          cell.type !== CellType.wall
-        ) {
-          this._ctx.beginPath();
-          const r = w / 3;
-          this._ctx.moveTo(x + r, y);
-          this._ctx.arcTo(x + w, y, x + w, y + h, r);
-          this._ctx.arcTo(x + w, y + h, x, y + h, r);
-          this._ctx.arcTo(x, y + h, x, y, r);
-          this._ctx.arcTo(x, y, x + w, y, r);
-          if (cell instanceof CellFungus && this._config.fungus.fillEdges) {
-            const cf = cell as CellFungus;
-            const nbrs = this._grid.neighboursDirsOf(cf);
-            if (
-              nbrs.n instanceof CellFungus &&
-              (nbrs.n as CellFungus).fungus === cf.fungus
-            ) {
-              this._ctx.rect(x, y, w, h / 2);
+      this._grid.cells
+        .filter(c => c.needsRerender())
+        .forEach(cell => {
+          const x = this.getCellXScaled(cell);
+          const y = this.getCellYScaled(cell);
+          this._ctx.clearRect(x, y, w, h);
+          this._ctx.globalAlpha = cell.opacity;
+          this._ctx.fillStyle = cell.colour;
+          if (
+            this._config.fungus.shape === FungusShape.circle &&
+            cell.type !== CellType.wall
+          ) {
+            this._ctx.beginPath();
+            const r = w / 3;
+            this._ctx.moveTo(x + r, y);
+            this._ctx.arcTo(x + w, y, x + w, y + h, r);
+            this._ctx.arcTo(x + w, y + h, x, y + h, r);
+            this._ctx.arcTo(x, y + h, x, y, r);
+            this._ctx.arcTo(x, y, x + w, y, r);
+            if (cell instanceof CellFungus && this._config.fungus.fillEdges) {
+              const cf = cell as CellFungus;
+              const nbrs = this._grid.neighboursDirsOf(cf);
+              if (
+                nbrs.n instanceof CellFungus &&
+                (nbrs.n as CellFungus).fungus === cf.fungus
+              ) {
+                this._ctx.rect(x, y, w, h / 2);
+              }
+              if (
+                nbrs.s instanceof CellFungus &&
+                (nbrs.s as CellFungus).fungus === cf.fungus
+              ) {
+                this._ctx.rect(x, y + h / 2, w, h / 2);
+              }
+              if (
+                nbrs.w instanceof CellFungus &&
+                (nbrs.w as CellFungus).fungus === cf.fungus
+              ) {
+                this._ctx.rect(x, y, w / 2, h);
+              }
+              if (
+                nbrs.e instanceof CellFungus &&
+                (nbrs.e as CellFungus).fungus === cf.fungus
+              ) {
+                this._ctx.rect(x + w / 2, y, w / 2, h);
+              }
             }
-            if (
-              nbrs.s instanceof CellFungus &&
-              (nbrs.s as CellFungus).fungus === cf.fungus
-            ) {
-              this._ctx.rect(x, y + h / 2, w, h / 2);
-            }
-            if (
-              nbrs.w instanceof CellFungus &&
-              (nbrs.w as CellFungus).fungus === cf.fungus
-            ) {
-              this._ctx.rect(x, y, w / 2, h);
-            }
-            if (
-              nbrs.e instanceof CellFungus &&
-              (nbrs.e as CellFungus).fungus === cf.fungus
-            ) {
-              this._ctx.rect(x + w / 2, y, w / 2, h);
-            }
+            this._ctx.closePath();
+            this._ctx.fill();
+          } else {
+            this._ctx.fillRect(x, y, w, h);
           }
-          this._ctx.closePath();
-          this._ctx.fill();
-        } else {
-          this._ctx.fillRect(x, y, w, h);
-        }
-      });
+        });
     }
   }
 

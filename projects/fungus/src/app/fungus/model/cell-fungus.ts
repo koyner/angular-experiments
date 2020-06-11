@@ -14,6 +14,8 @@ export class CellFungus extends Cell {
   private _age = 0;
   private _breedNext: number;
   private _didKill: boolean;
+  private _opacity = -1;
+  private _opacityPrev = -1;
   constructor(
     private _injector: Injector,
     private _fungus: Fungus,
@@ -43,6 +45,7 @@ export class CellFungus extends Cell {
 
   grow(elapsed: number): void {
     this._age += elapsed;
+    this.calcOpacity();
     this.breed();
   }
 
@@ -50,11 +53,12 @@ export class CellFungus extends Cell {
     return CellType.fungus;
   }
 
-  get opacity(): number {
+  calcOpacity(): void {
+    this._opacityPrev = this._opacity;
     if (!this.isNode) {
       const birthBrightness =
         this._config.fungus.birthBrightness * (this._didKill ? 1 : -1);
-      return Math.max(
+      this._opacity = Math.max(
         this._config.fungus.minOpacity,
         Math.min(
           1,
@@ -64,12 +68,20 @@ export class CellFungus extends Cell {
         )
       );
     } else {
-      return this._config.fungus.nodeOpacity;
+      this._opacity = this._config.fungus.nodeOpacity;
     }
+  }
+
+  get opacity(): number {
+    return this._opacity;
   }
 
   set didKill(d: boolean) {
     this._didKill = d;
+  }
+
+  needsRerender(): boolean {
+    return this._opacity !== this._opacityPrev;
   }
 
   private breed(): void {

@@ -7,6 +7,8 @@ export enum CellType {
 }
 
 export abstract class Cell {
+  private _needsRender = true;
+
   protected constructor(
     _injector: Injector,
     public colour: string,
@@ -16,6 +18,12 @@ export abstract class Cell {
 
   toString(): string {
     return `${this.col}, ${this.row}, ${this.colour}`;
+  }
+
+  needsRerender(): boolean {
+    const n = this._needsRender;
+    this._needsRender = false;
+    return n;
   }
 
   abstract get type(): CellType;
