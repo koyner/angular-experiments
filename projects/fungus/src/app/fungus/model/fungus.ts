@@ -10,6 +10,7 @@ export class Fungus {
   private _grid: GridService;
   private _cellManager: CellManager;
   private _bgService: BgService;
+  private _node: CellFungus;
 
   private readonly _colour: string;
   private readonly _breedDelayLowMs: number;
@@ -39,6 +40,9 @@ export class Fungus {
     let cReplaced;
     try {
       cReplaced = this._cellManager.add(c);
+      if (isNode) {
+        this._node = c;
+      }
     } catch (e) {
       console.log(e.message);
       return;
@@ -57,7 +61,7 @@ export class Fungus {
   }
 
   feed(): void {
-    let cellsConnected: CellFungus[] = [this.cells.find(c => c.isNode)];
+    let cellsConnected: CellFungus[] = [this._node];
     let thisRound = cellsConnected;
     while (thisRound.length > 0) {
       let nextRound: CellFungus[] = [];

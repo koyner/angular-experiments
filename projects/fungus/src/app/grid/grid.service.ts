@@ -20,20 +20,13 @@ interface INeighbourCells {
   providedIn: 'root'
 })
 export class GridService {
-  private _cells: Cell[] = [];
+  private _cells: Cell[][] = [];
 
   constructor(private _config: ConfigService) {}
 
-  get cells(): Cell[] {
-    return this._cells;
-  }
-
   add(cell: Cell): Cell {
     const cellReplaced = this.cellAt(cell.col, cell.row);
-    if (cellReplaced) {
-      this._cells.splice(this._cells.indexOf(cellReplaced), 1);
-    }
-    this._cells.push(cell);
+    this._cells[cell.col][cell.row] = cell;
     return cellReplaced;
   }
 
@@ -64,12 +57,11 @@ export class GridService {
     ];
   }
 
-  randCol(): number {
-    return Math.floor(Math.random() * this._config.cols);
-  }
-
-  randRow(): number {
-    return Math.floor(Math.random() * this._config.rows);
+  get cells(): Cell[] {
+    return this._cells.reduce(
+      (acc: Cell[], curr: Cell[]) => acc.concat(curr),
+      []
+    );
   }
 
   get cellCount(): number {
@@ -77,6 +69,18 @@ export class GridService {
   }
 
   cellAt(col: number, row: number): Cell {
-    return this._cells.find(c => c.col === col && c.row === row);
+    if (this._cells[col]) {
+      return this._cells[col][row];
+    } else {
+      this._cells[col] = [];
+    }
+  }
+
+  randCol(): number {
+    return Math.floor(Math.random() * this._config.cols);
+  }
+
+  randRow(): number {
+    return Math.floor(Math.random() * this._config.rows);
   }
 }

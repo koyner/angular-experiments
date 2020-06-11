@@ -11,19 +11,19 @@ export enum FungusShape {
 export class ConfigService {
   bgColour = 'rgb(10, 10, 10)';
   animateMs = 20;
-  cols = 39;
-  rows = 39;
+  cols = 49;
+  rows = 49;
   wallCount = 8;
   wallLengthMin = 3;
   fungus = {
-    count: 3,
-    breedDelayLowMinMs: 200,
-    breedDelayLowMaxMs: 200,
-    breedDelayHighMinMs: 400,
-    breedDelayHighMaxMs: 400,
+    count: 10,
+    breedDelayLowMinMs: 0,
+    breedDelayLowMaxMs: 0,
+    breedDelayHighMinMs: 200,
+    breedDelayHighMaxMs: 200,
     agingDelayMs: 200,
-    mutation: 30, // 0 to 200
-    mutationShift: -0.05, // -0.5 zo 0.5
+    mutation: 40, // 0 to 200
+    mutationShift: -0.09, // -0.5 zo 0.5
     minOpacity: 0.3,
     nodeOpacity: 1,
     birthBrightness: 0.3, // -1 to 1

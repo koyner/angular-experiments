@@ -23,9 +23,9 @@ export class FungusService implements Animatable {
     while (i++ < this._config.fungus.count) {
       this.createFungusAt(this._grid.randCol(), this._grid.randRow());
     }
-    this.createFungusAt(6, 20);
-    this.createFungusAt(14, 20);
-    this.createFungusLine();
+    // this.createFungusAt(6, 20);
+    // this.createFungusAt(14, 20);
+    // this.createFungusLine();
   }
 
   createFungusAt(col: number, row: number): void {
