@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Cell, CellType} from '../cell/model/cell';
 
 import {ConfigService, FungusShape} from '../config/config.service';
-import {CellFungus} from '../fungus/model/cell-fungus';
 import {GridService} from '../grid/grid.service';
 import {Animatable, AnimateService} from '../util/animate.service';
 
@@ -77,34 +76,6 @@ export class RenderService implements Animatable {
             this._ctx.arcTo(x + w, y + h, x, y + h, r);
             this._ctx.arcTo(x, y + h, x, y, r);
             this._ctx.arcTo(x, y, x + w, y, r);
-            if (cell instanceof CellFungus && this._config.fungus.fillEdges) {
-              const cf = cell as CellFungus;
-              const nbrs = this._grid.neighboursDirsOf(cf);
-              if (
-                nbrs.n instanceof CellFungus &&
-                (nbrs.n as CellFungus).fungus === cf.fungus
-              ) {
-                this._ctx.rect(x, y, w, h / 2);
-              }
-              if (
-                nbrs.s instanceof CellFungus &&
-                (nbrs.s as CellFungus).fungus === cf.fungus
-              ) {
-                this._ctx.rect(x, y + h / 2, w, h / 2);
-              }
-              if (
-                nbrs.w instanceof CellFungus &&
-                (nbrs.w as CellFungus).fungus === cf.fungus
-              ) {
-                this._ctx.rect(x, y, w / 2, h);
-              }
-              if (
-                nbrs.e instanceof CellFungus &&
-                (nbrs.e as CellFungus).fungus === cf.fungus
-              ) {
-                this._ctx.rect(x + w / 2, y, w / 2, h);
-              }
-            }
             this._ctx.closePath();
             this._ctx.fill();
           } else {

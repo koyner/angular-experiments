@@ -28,7 +28,6 @@ export class ConfigService {
     minOpacity: 0.3,
     nodeOpacity: 1,
     birthBrightness: 0.3, // -1 to 1
-    fillEdges: false,
     shape: FungusShape.circle
   };
 
