@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {BgDistComponent} from './bg-dist.component';
 
@@ -6,7 +6,7 @@ describe('BgDistComponent', () => {
   let component: BgDistComponent;
   let fixture: ComponentFixture<BgDistComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [BgDistComponent]
     }).compileComponents();
