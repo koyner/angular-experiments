@@ -11,14 +11,12 @@ import {ConstantsService} from 'mrb-ui';
   templateUrl: './status.component.html',
   styleUrls: ['./status.component.less']
 })
-export class StatusComponent implements OnInit {
+export class StatusComponent {
   constructor(
     private gameService: GameService,
     private bubbleService: BubbleService,
     private constants: ConstantsService
   ) {}
-
-  ngOnInit(): void {}
 
   get bubbleCount(): number {
     return this.bubbleService.bubbles.length;

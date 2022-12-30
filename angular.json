@@ -23,7 +23,9 @@
               "projects/minitest/src/favicon.ico",
               "projects/minitest/src/assets"
             ],
-            "styles": ["projects/minitest/src/styles.css"],
+            "styles": [
+              "projects/minitest/src/styles.css"
+            ],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -92,19 +94,19 @@
               "projects/minitest/src/favicon.ico",
               "projects/minitest/src/assets"
             ],
-            "styles": ["projects/minitest/src/styles.css"],
+            "styles": [
+              "projects/minitest/src/styles.css"
+            ],
             "scripts": []
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/minitest/tsconfig.app.json",
-              "projects/minitest/tsconfig.spec.json",
-              "projects/minitest/e2e/tsconfig.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/minitest/**/*.ts",
+              "projects/minitest/**/*.html"
+            ]
           }
         },
         "e2e": {
@@ -141,7 +143,9 @@
               "projects/touch/src/favicon.ico",
               "projects/touch/src/assets"
             ],
-            "styles": ["projects/touch/src/styles.less"],
+            "styles": [
+              "projects/touch/src/styles.less"
+            ],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -210,19 +214,19 @@
               "projects/touch/src/favicon.ico",
               "projects/touch/src/assets"
             ],
-            "styles": ["projects/touch/src/styles.less"],
+            "styles": [
+              "projects/touch/src/styles.less"
+            ],
             "scripts": []
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/touch/tsconfig.app.json",
-              "projects/touch/tsconfig.spec.json",
-              "projects/touch/e2e/tsconfig.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/touch/**/*.ts",
+              "projects/touch/**/*.html"
+            ]
           }
         },
         "e2e": {
@@ -259,7 +263,9 @@
               "projects/sierpinski/src/favicon.ico",
               "projects/sierpinski/src/assets"
             ],
-            "styles": ["projects/sierpinski/src/styles.less"],
+            "styles": [
+              "projects/sierpinski/src/styles.less"
+            ],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -328,19 +334,19 @@
               "projects/sierpinski/src/favicon.ico",
               "projects/sierpinski/src/assets"
             ],
-            "styles": ["projects/sierpinski/src/styles.less"],
+            "styles": [
+              "projects/sierpinski/src/styles.less"
+            ],
             "scripts": []
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/sierpinski/tsconfig.app.json",
-              "projects/sierpinski/tsconfig.spec.json",
-              "projects/sierpinski/e2e/tsconfig.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/sierpinski/**/*.ts",
+              "projects/sierpinski/**/*.html"
+            ]
           }
         },
         "e2e": {
@@ -377,7 +383,9 @@
               "projects/bars/src/favicon.ico",
               "projects/bars/src/assets"
             ],
-            "styles": ["projects/bars/src/styles.css"],
+            "styles": [
+              "projects/bars/src/styles.css"
+            ],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -446,19 +454,19 @@
               "projects/bars/src/favicon.ico",
               "projects/bars/src/assets"
             ],
-            "styles": ["projects/bars/src/styles.css"],
+            "styles": [
+              "projects/bars/src/styles.css"
+            ],
             "scripts": []
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/bars/tsconfig.app.json",
-              "projects/bars/tsconfig.spec.json",
-              "projects/bars/e2e/tsconfig.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/bars/**/*.ts",
+              "projects/bars/**/*.html"
+            ]
           }
         },
         "e2e": {
@@ -495,7 +503,9 @@
               "projects/nugget/src/favicon.ico",
               "projects/nugget/src/assets"
             ],
-            "styles": ["projects/nugget/src/styles.css"],
+            "styles": [
+              "projects/nugget/src/styles.css"
+            ],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -564,19 +574,19 @@
               "projects/nugget/src/favicon.ico",
               "projects/nugget/src/assets"
             ],
-            "styles": ["projects/nugget/src/styles.css"],
+            "styles": [
+              "projects/nugget/src/styles.css"
+            ],
             "scripts": []
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/nugget/tsconfig.app.json",
-              "projects/nugget/tsconfig.spec.json",
-              "projects/nugget/e2e/tsconfig.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/nugget/**/*.ts",
+              "projects/nugget/**/*.html"
+            ]
           }
         },
         "e2e": {
@@ -617,7 +627,9 @@
               "projects/threejs/src/favicon.ico",
               "projects/threejs/src/assets"
             ],
-            "styles": ["projects/threejs/src/styles.less"],
+            "styles": [
+              "projects/threejs/src/styles.less"
+            ],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -687,19 +699,19 @@
               "projects/threejs/src/favicon.ico",
               "projects/threejs/src/assets"
             ],
-            "styles": ["projects/threejs/src/styles.less"],
+            "styles": [
+              "projects/threejs/src/styles.less"
+            ],
             "scripts": []
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/threejs/tsconfig.app.json",
-              "projects/threejs/tsconfig.spec.json",
-              "projects/threejs/e2e/tsconfig.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/threejs/**/*.ts",
+              "projects/threejs/**/*.html"
+            ]
           }
         },
         "e2e": {
@@ -739,7 +751,9 @@
               "projects/fungus/src/favicon.ico",
               "projects/fungus/src/assets"
             ],
-            "styles": ["projects/fungus/src/styles.less"],
+            "styles": [
+              "projects/fungus/src/styles.less"
+            ],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -808,19 +822,19 @@
               "projects/fungus/src/favicon.ico",
               "projects/fungus/src/assets"
             ],
-            "styles": ["projects/fungus/src/styles.less"],
+            "styles": [
+              "projects/fungus/src/styles.less"
+            ],
             "scripts": []
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/fungus/tsconfig.app.json",
-              "projects/fungus/tsconfig.spec.json",
-              "projects/fungus/e2e/tsconfig.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/fungus/**/*.ts",
+              "projects/fungus/**/*.html"
+            ]
           }
         },
         "e2e": {
@@ -864,13 +878,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/mrb-logging/tsconfig.lib.json",
-              "projects/mrb-logging/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/mrb-logging/**/*.ts",
+              "projects/mrb-logging/**/*.html"
+            ]
           }
         }
       }
@@ -898,7 +911,9 @@
               "projects/mrb-ui/src/favicon.ico",
               "projects/mrb-ui/src/assets"
             ],
-            "styles": ["projects/mrb-ui/src/styles.less"],
+            "styles": [
+              "projects/mrb-ui/src/styles.less"
+            ],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -966,19 +981,19 @@
               "projects/mrb-ui/src/favicon.ico",
               "projects/mrb-ui/src/assets"
             ],
-            "styles": ["projects/mrb-ui/src/styles.less"],
+            "styles": [
+              "projects/mrb-ui/src/styles.less"
+            ],
             "scripts": []
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/mrb-ui/tsconfig.app.json",
-              "projects/mrb-ui/tsconfig.spec.json",
-              "projects/mrb-ui/e2e/tsconfig.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/mrb-ui/**/*.ts",
+              "projects/mrb-ui/**/*.html"
+            ]
           }
         },
         "e2e": {
@@ -996,5 +1011,8 @@
       }
     }
   },
-  "defaultProject": "touch"
+  "defaultProject": "touch",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

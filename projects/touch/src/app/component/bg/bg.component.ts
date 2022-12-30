@@ -10,13 +10,11 @@ import {ConstantsService} from 'mrb-ui';
   templateUrl: './bg.component.html',
   styleUrls: ['./bg.component.less']
 })
-export class BgComponent implements OnInit {
+export class BgComponent {
   constructor(
     private distService: DistService,
     private constants: ConstantsService
   ) {}
-
-  ngOnInit(): void {}
 
   get dists(): Dist[][] {
     return this.distService.dists;

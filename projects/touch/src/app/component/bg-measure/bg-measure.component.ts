@@ -10,13 +10,11 @@ import {ConstantsService} from 'mrb-ui';
   templateUrl: './bg-measure.component.html',
   styleUrls: ['./bg-measure.component.less']
 })
-export class BgMeasureComponent implements OnInit {
+export class BgMeasureComponent {
   constructor(
     private distService: DistService,
     private constants: ConstantsService
   ) {}
-
-  ngOnInit(): void {}
 
   get x(): number {
     return (

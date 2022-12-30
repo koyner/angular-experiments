@@ -8,10 +8,8 @@ import {BubbleService} from '../../service/bubble.service';
   templateUrl: './bubbles.component.html',
   styleUrls: ['./bubbles.component.less']
 })
-export class BubblesComponent implements OnInit {
+export class BubblesComponent {
   constructor(private bubbleService: BubbleService) {}
-
-  ngOnInit(): void {}
 
   get bubbles(): Bubble[] {
     return this.bubbleService.bubbles;

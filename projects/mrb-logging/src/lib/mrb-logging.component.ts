@@ -9,8 +9,6 @@ import {Component, OnInit} from '@angular/core';
   `,
   styles: []
 })
-export class MrbLoggingComponent implements OnInit {
+export class MrbLoggingComponent {
   constructor() {}
-
-  ngOnInit(): void {}
 }
