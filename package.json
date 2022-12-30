@@ -63,16 +63,7 @@
     "tslint-eslint-rules": "^5.4.0",
     "typescript": "~4.0.3"
   },
-  "resolutions": {
-    "dot-prop": ">= 5.1.1",
-    "elliptic": ">= 6.5.3",
-    "http-proxy": ">= 1.18.1",
-    "lodash": ">=4.17.19",
-    "minimist": ">= 1.2.3",
-    "node-forge": ">= 0.10.0",
-    "npm-registry-fetch": ">=8.1.1",
-    "serialize-javascript": ">= 3.1.0"
-  },
+  "resolutions": {},
   "prettier": {
     "arrowParens": "avoid",
     "bracketSpacing": false,
