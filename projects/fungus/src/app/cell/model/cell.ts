@@ -1,4 +1,5 @@
 import {Injector} from '@angular/core';
+import {RenderService} from '../../render/render.service';
 
 export enum CellType {
   wall,
@@ -7,23 +8,27 @@ export enum CellType {
 }
 
 export abstract class Cell {
-  private _needsRender = true;
+  protected _render: RenderService;
 
   protected constructor(
-    _injector: Injector,
+    protected _injector: Injector,
     public colour: string,
     public col: number,
     public row: number
-  ) {}
+  ) {
+    this._render = _injector.get(RenderService);
+  }
 
   toString(): string {
     return `${this.col}, ${this.row}, ${this.colour}`;
   }
 
-  needsRerender(): boolean {
-    const n = this._needsRender;
-    this._needsRender = false;
-    return n;
+  forceRender(): void {
+    this._render.add(this);
+  }
+
+  wasRendered(): void {
+    this._render.remove(this);
   }
 
   abstract get type(): CellType;

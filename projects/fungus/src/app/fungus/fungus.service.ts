@@ -9,6 +9,7 @@ import {Fungus} from './model/fungus';
 })
 export class FungusService implements Animatable {
   private readonly _fungi: Fungus[] = [];
+  private _timeSinceLastFeed = 0;
 
   constructor(
     private _injector: Injector,
@@ -35,12 +36,15 @@ export class FungusService implements Animatable {
   }
 
   animate(tsDiff: number): void {
-    this.fungi.forEach(f => {
-      f.feed();
-    });
-    this.fungi.forEach(f => {
-      f.grow(tsDiff);
-    });
+    // this._timeSinceLastFeed += tsDiff;
+    // if (this._timeSinceLastFeed > 1000) {
+    //   this._timeSinceLastFeed -= 1000;
+    //   this.fungi.forEach(f => {
+    //     f.feed();
+    //   });
+    // }
+    console.log(`fungi: ${this.fungi.length}`);
+    this.fungi.forEach(f => f.grow(tsDiff));
   }
 
   get fungi(): Fungus[] {

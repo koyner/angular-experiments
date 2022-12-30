@@ -1,24 +1,46 @@
 <div id="cont">
-  <p>FPS: {{ fps | number: '1.0-0' }}</p>
-  <p>Cells: {{ cellCount }}</p>
-  <p>Animatable: {{ animatableCount }}</p>
-  <p>Fungi: {{ fungusCount }}</p>
-  <p>Walls: {{ wallCount }}</p>
-  <p>
-    <label for="paused">Paused:</label>
-    <input id="paused" [(ngModel)]="paused" type="checkbox" />
-  </p>
-  <p>
-    <label for="isDomEnabled">DOM:</label>
-    <input id="isDomEnabled" [(ngModel)]="domEnabled" type="checkbox" />
-  </p>
-  <p>Time: {{ age | number: '1.2-2' }}</p>
-  <div
-    class="bar"
-    *ngFor="let fungus of fungi"
-    [style.background-color]="fungus.colour"
-    [style.width.%]="100 * (fungus.count / cellCount)"
-  >
-    {{ fungus.count }}
-  </div>
+  <table>
+    <tr>
+      <td>Elapsed:</td>
+      <td>{{ age | number: '1.2-2' }}</td>
+    </tr>
+    <tr>
+      <td>FPS:</td>
+      <td>{{ fps | number: '1.0-0' }}</td>
+    </tr>
+    <!--    <tr>-->
+    <!--      <td>Cells:</td>-->
+    <!--      <td>{{ cellCount }}</td>-->
+    <!--    </tr>-->
+    <!--    <tr>-->
+    <!--      <td>Animatable:</td>-->
+    <!--      <td>{{ animatableCount }}</td>-->
+    <!--    </tr>-->
+    <!--    <tr>-->
+    <!--      <td>Fungi:</td>-->
+    <!--      <td>{{ fungusCount }}</td>-->
+    <!--    </tr>-->
+    <!--    <tr>-->
+    <!--      <td>Walls:</td>-->
+    <!--      <td>{{ wallCount }}</td>-->
+    <!--    </tr>-->
+    <!--    <tr>-->
+    <!--      <td><label for="paused">Paused:</label></td>-->
+    <!--      <td><input id="paused" [(ngModel)]="paused" type="checkbox" /></td>-->
+    <!--    </tr>-->
+    <!--    <tr>-->
+    <!--      <td><label for="isDomEnabled">DOM:</label></td>-->
+    <!--      <td>-->
+    <!--        <input id="isDomEnabled" [(ngModel)]="domEnabled" type="checkbox" />-->
+    <!--      </td>-->
+    <!--    </tr>-->
+  </table>
+  <!--  <div-->
+  <!--    class="bar"-->
+  <!--    *ngFor="let fungus of fungi"-->
+  <!--    [style.background-color]="fungus.colour"-->
+  <!--    [style.width.%]="100 * (fungus.count / cellCount)"-->
+  <!--  >-->
+  <!--    {{ fungus.count }}-->
+  <!--  </div>-->
 </div>

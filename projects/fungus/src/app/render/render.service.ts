@@ -9,6 +9,7 @@ import {Animatable, AnimateService} from '../util/animate.service';
   providedIn: 'root'
 })
 export class RenderService implements Animatable {
+  private _cellsToRender: Set<Cell> = new Set();
   private _canvas: HTMLCanvasElement;
   private _ctx: CanvasRenderingContext2D;
   private _size: number;
@@ -54,41 +55,50 @@ export class RenderService implements Animatable {
   }
 
   animate(_tsDiff: number): void {
+    console.log(`cells: ${this._cellsToRender.size}`);
     if (!this._config.domEnabled) {
       const w = this.cellWScaled;
       const h = this.cellHScaled;
-      this._grid.cells
-        .filter(c => c.needsRerender())
-        .forEach(cell => {
-          const x = this.getCellXScaled(cell);
-          const y = this.getCellYScaled(cell);
-          this._ctx.clearRect(x, y, w, h);
-          this._ctx.globalAlpha = cell.opacity;
-          this._ctx.fillStyle = cell.colour;
-          if (
-            this._config.fungus.shape === FungusShape.circle &&
-            cell.type !== CellType.wall
-          ) {
-            this._ctx.beginPath();
-            const r = w / 3;
-            this._ctx.moveTo(x + r, y);
-            this._ctx.arcTo(x + w, y, x + w, y + h, r);
-            this._ctx.arcTo(x + w, y + h, x, y + h, r);
-            this._ctx.arcTo(x, y + h, x, y, r);
-            this._ctx.arcTo(x, y, x + w, y, r);
-            this._ctx.closePath();
-            this._ctx.fill();
-          } else {
-            this._ctx.fillRect(x, y, w, h);
-          }
-        });
+      this._cellsToRender.forEach(cell => {
+        const x = this.getCellXScaled(cell);
+        const y = this.getCellYScaled(cell);
+        this._ctx.clearRect(x, y, w, h);
+        this._ctx.globalAlpha = cell.opacity;
+        this._ctx.fillStyle = cell.colour;
+        if (
+          this._config.fungus.shape === FungusShape.circle &&
+          cell.type !== CellType.wall
+        ) {
+          this._ctx.beginPath();
+          const r = w / 3;
+          this._ctx.moveTo(x + r, y);
+          this._ctx.arcTo(x + w, y, x + w, y + h, r);
+          this._ctx.arcTo(x + w, y + h, x, y + h, r);
+          this._ctx.arcTo(x, y + h, x, y, r);
+          this._ctx.arcTo(x, y, x + w, y, r);
+          this._ctx.closePath();
+          this._ctx.fill();
+        } else {
+          this._ctx.fillRect(x, y, w, h);
+        }
+        cell.wasRendered();
+      });
     }
+  }
+
+  add(c: Cell): void {
+    this._cellsToRender.add(c);
+  }
+
+  remove(c: Cell): void {
+    this._cellsToRender.delete(c);
   }
 
   private setCanvasSize(): void {
     if (this._canvas) {
       this._canvas.width = this.sizeScaled;
       this._canvas.height = this.sizeScaled;
+      this._grid.cells.forEach(c => c.forceRender());
     }
   }
 

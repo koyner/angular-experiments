@@ -18,7 +18,7 @@ export class StatusService implements Animatable {
   ) {}
 
   init(): void {
-    this._animate.add(this);
+    // this._animate.add(this);
   }
 
   animate(_tsDiff: number): void {

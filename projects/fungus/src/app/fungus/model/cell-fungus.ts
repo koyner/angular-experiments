@@ -15,9 +15,9 @@ export class CellFungus extends Cell {
   private _breedNext: number;
   private _didKill: boolean;
   private _opacity = -1;
-  private _opacityPrev = -1;
+  private _opacityPrev;
   constructor(
-    private _injector: Injector,
+    _injector: Injector,
     private _fungus: Fungus,
     col: number,
     row: number,
@@ -28,6 +28,7 @@ export class CellFungus extends Cell {
     this._util = _injector.get(UtilService);
     this._config = _injector.get(ConfigService);
     this._pctVelocity = this.isNode ? 50 : this.calcPctVelocity();
+    this.calcOpacity();
     this.cueNextBreed();
   }
 
@@ -80,8 +81,10 @@ export class CellFungus extends Cell {
     this._didKill = d;
   }
 
-  needsRerender(): boolean {
-    return this._opacity !== this._opacityPrev;
+  wasRendered(): void {
+    if (this._opacity === this._opacityPrev) {
+      this._render.remove(this);
+    }
   }
 
   private breed(): void {

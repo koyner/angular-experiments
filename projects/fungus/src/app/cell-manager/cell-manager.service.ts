@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Cell, CellType} from '../cell/model/cell';
 import {GridService} from '../grid/grid.service';
+import {RenderService} from '../render/render.service';
 
 import bg = CellType.bg;
 import fungus = CellType.fungus;
@@ -18,7 +19,7 @@ export class CellManager {
     return [wall, fungus, bg].includes(type);
   }
 
-  constructor(private _grid: GridService) {}
+  constructor(private _grid: GridService, private _render: RenderService) {}
 
   add(cNew: Cell): Cell {
     let canAdd: boolean;
@@ -40,7 +41,10 @@ export class CellManager {
         break;
     }
     if (canAdd) {
-      return this._grid.add(cNew);
+      const cOld = this._grid.add(cNew);
+      this._render.remove(cOld);
+      this._render.add(cNew);
+      return cOld;
     } else {
       throw new Error(
         `Could not add cell of type ${CellType[cNew.type]} (${cNew})`

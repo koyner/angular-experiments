@@ -3,10 +3,12 @@ import {BgService} from '../../bg/bg.service';
 import {CellManager} from '../../cell-manager/cell-manager.service';
 import {ConfigService} from '../../config/config.service';
 import {GridService} from '../../grid/grid.service';
+import {RenderService} from '../../render/render.service';
 import {UtilService} from '../../util/util.service';
 import {CellFungus} from './cell-fungus';
 
 export class Fungus {
+  private _render: RenderService;
   private _grid: GridService;
   private _cellManager: CellManager;
   private _bgService: BgService;

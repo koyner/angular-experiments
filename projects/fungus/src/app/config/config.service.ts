@@ -9,23 +9,23 @@ export enum FungusShape {
   providedIn: 'root'
 })
 export class ConfigService {
-  bgColour = 'rgb(10, 10, 10)';
+  bgColour = 'rgb(5, 5, 5)';
   animateMs = 20;
   fpsRefreshMs = 500;
-  cols = 49;
-  rows = 49;
-  wallCount = 8;
+  cols = 50;
+  rows = 50;
+  wallCount = 0;
   wallLengthMin = 3;
   fungus = {
-    count: 5,
+    count: 10,
     breedDelayLowMinMs: 0,
     breedDelayLowMaxMs: 0,
-    breedDelayHighMinMs: 200,
-    breedDelayHighMaxMs: 200,
+    breedDelayHighMinMs: 50,
+    breedDelayHighMaxMs: 50,
     agingDelayMs: 200,
     mutation: 40, // 0 to 200
     mutationShift: -0.09, // -0.5 zo 0.5
-    minOpacity: 0.3,
+    minOpacity: 0.2,
     nodeOpacity: 1,
     birthBrightness: 0.3, // -1 to 1
     shape: FungusShape.circle
