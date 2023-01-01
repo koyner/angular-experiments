@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import {MatSliderModule} from '@angular/material/slider';
+import {MatLegacySliderModule as MatSliderModule} from '@angular/material/legacy-slider';
 
 import {AppComponent} from './app.component';
 import {BgDistComponent} from './component/bg-dist/bg-dist.component';
