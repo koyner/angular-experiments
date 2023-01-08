@@ -10,20 +10,20 @@ export class WallService {
   constructor(private _injector: Injector, private _config: ConfigService) {}
 
   init(): void {
-    for (let i = 0; i < this._config.wallCount; i++) {
+    for (let i = 0; i < this._config.wall.count; i++) {
       const x =
         1 +
         Math.floor(
-          Math.random() * (this._config.cols - this._config.wallLengthMin - 2)
+          Math.random() * (this._config.cols - this._config.wall.lengthMin - 2)
         );
       const y =
         1 +
         Math.floor(
-          Math.random() * (this._config.rows - this._config.wallLengthMin - 2)
+          Math.random() * (this._config.rows - this._config.wall.lengthMin - 2)
         );
       const dir = Math.random() > 0.5 ? WallAxis.x : WallAxis.y;
       const length = Math.max(
-        this._config.wallLengthMin,
+        this._config.wall.lengthMin,
         Math.floor(
           Math.random() *
             (dir === WallAxis.x ? this._config.cols - x : this._config.rows - y)

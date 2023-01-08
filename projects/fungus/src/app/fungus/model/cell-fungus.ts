@@ -56,20 +56,20 @@ export class CellFungus extends Cell {
 
   calcOpacity(): void {
     this._opacityPrev = this._opacity;
-    if (!this.isNode) {
+    if (this.isNode) {
+      this._opacity = this._config.fungus.cell.nodeOpacity;
+    } else {
       const birthBrightness =
-        this._config.fungus.birthBrightness * (this._didKill ? 1 : -1);
+        this._config.fungus.cell.birthBrightness * (this._didKill ? 1 : -1);
       this._opacity = Math.max(
-        this._config.fungus.minOpacity,
+        this._config.fungus.cell.minOpacity,
         Math.min(
           1,
           this._pctVelocity / 100 +
             birthBrightness *
-              Math.max(0, 1 - this.age / this._config.fungus.agingDelayMs)
+              Math.max(0, 1 - this.age / this._config.fungus.cell.agingDelayMs)
         )
       );
-    } else {
-      this._opacity = this._config.fungus.nodeOpacity;
     }
   }
 
@@ -124,8 +124,7 @@ export class CellFungus extends Cell {
   private calcRandBreedDelayMs(): number {
     return (
       this._fungus.breedDelayLowMs +
-      Math.random() *
-        (this._fungus.breedDelayHighMs - this._fungus.breedDelayLowMs)
+      Math.random() * this._fungus.breedDelayRangeMs
     );
   }
 
@@ -148,26 +147,23 @@ export class CellFungus extends Cell {
       Math.min(
         100,
         this.nbrVelocityAvg +
-          this._config.fungus.mutation *
-            (Math.random() - 0.5 + this._config.fungus.mutationShift)
+          this._config.fungus.mutation.rate *
+            (Math.random() - 0.5 + this._config.fungus.mutation.shift)
       )
     );
   }
 
   private get nbrVelocityAvg(): number {
-    const velocities = this.nbrVelocities;
     return (
-      velocities.reduce((acc: number, curr: number) => acc + curr, 0) /
-      velocities.length
+      this.nbrVelocities.reduce((acc: number, curr: number) => acc + curr, 0) /
+      this.nbrVelocities.length
     );
   }
 
   private get nbrVelocities(): number[] {
     return this._grid
       .neighbourArrayOf(this)
-      .filter(
-        c => c instanceof CellFungus && (c as CellFungus).fungus === this.fungus
-      )
+      .filter(c => c instanceof CellFungus && c.fungus === this.fungus)
       .map(c => (c as CellFungus)._pctVelocity);
   }
 }

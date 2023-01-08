@@ -14,21 +14,29 @@ export class ConfigService {
   fpsRefreshMs = 500;
   cols = 50;
   rows = 50;
-  wallCount = 0;
-  wallLengthMin = 3;
+  wall = {
+    count: 0,
+    lengthMin: 3
+  };
   fungus = {
-    count: 10,
-    breedDelayLowMinMs: 0,
-    breedDelayLowMaxMs: 0,
-    breedDelayHighMinMs: 50,
-    breedDelayHighMaxMs: 50,
-    agingDelayMs: 200,
-    mutation: 40, // 0 to 200
-    mutationShift: -0.09, // -0.5 zo 0.5
-    minOpacity: 0.2,
-    nodeOpacity: 1,
-    birthBrightness: 0.3, // -1 to 1
-    shape: FungusShape.circle
+    count: 10, // number of funguses at the start,
+    mutation: {
+      rate: 40, // 0 to 200
+      shift: -0.09 // -0.5 zo 0.5
+    },
+    breedDelay: {
+      loMinMs: 0, // the min possible low value for a fungus's breed delay
+      loMaxMs: 100, // the max possible low value for a fungus's breed delay
+      hiMinMs: 300, // the min possible high value for a fungus's breed delay
+      hiMaxMs: 600 // the max possible high value for a fungus's breed delay
+    },
+    cell: {
+      shape: FungusShape.circle,
+      nodeOpacity: 1,
+      minOpacity: 0.2,
+      birthBrightness: 0.3, // -1 to 1
+      agingDelayMs: 100
+    }
   };
 
   private _finished: boolean;

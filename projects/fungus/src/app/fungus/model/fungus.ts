@@ -18,23 +18,20 @@ export class Fungus {
   private readonly _breedDelayLowMs: number;
   private readonly _breedDelayHighMs: number;
 
-  constructor(private _injector: Injector, ms?: any) {
+  constructor(private _injector: Injector) {
     this._grid = _injector.get(GridService);
     this._cellManager = _injector.get(CellManager);
     this._bgService = _injector.get(BgService);
     this._colour = _injector.get(UtilService).randomColourStr;
     const config = _injector.get(ConfigService);
-    this._breedDelayLowMs = ms
-      ? ms.low
-      : config.fungus.breedDelayLowMinMs +
-        Math.random() *
-          (config.fungus.breedDelayLowMaxMs - config.fungus.breedDelayLowMinMs);
-    this._breedDelayHighMs = ms
-      ? ms.high
-      : config.fungus.breedDelayHighMinMs +
-        Math.random() *
-          (config.fungus.breedDelayHighMaxMs -
-            config.fungus.breedDelayHighMinMs);
+    this._breedDelayLowMs =
+      config.fungus.breedDelay.loMinMs +
+      Math.random() *
+        (config.fungus.breedDelay.loMaxMs - config.fungus.breedDelay.loMinMs);
+    this._breedDelayHighMs =
+      config.fungus.breedDelay.hiMinMs +
+      Math.random() *
+        (config.fungus.breedDelay.hiMaxMs - config.fungus.breedDelay.hiMinMs);
   }
 
   addCell(col: number, row: number, isNode: boolean): void {
@@ -94,8 +91,8 @@ export class Fungus {
     return this._breedDelayLowMs;
   }
 
-  get breedDelayHighMs(): number {
-    return this._breedDelayHighMs;
+  get breedDelayRangeMs(): number {
+    return this._breedDelayHighMs - this._breedDelayLowMs;
   }
 
   get colour(): string {

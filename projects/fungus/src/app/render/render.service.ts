@@ -66,7 +66,7 @@ export class RenderService implements Animatable {
         this._ctx.globalAlpha = cell.opacity;
         this._ctx.fillStyle = cell.colour;
         if (
-          this._config.fungus.shape === FungusShape.circle &&
+          this._config.fungus.cell.shape === FungusShape.circle &&
           cell.type !== CellType.wall
         ) {
           this._ctx.beginPath();
