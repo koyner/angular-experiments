@@ -15,7 +15,7 @@ export class ConfigService {
   cols = 50;
   rows = 50;
   wall = {
-    count: 0,
+    count: 5,
     lengthMin: 3
   };
   fungus = {

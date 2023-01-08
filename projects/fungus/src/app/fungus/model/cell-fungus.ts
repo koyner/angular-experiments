@@ -23,7 +23,7 @@ export class CellFungus extends Cell {
     row: number,
     private _isNode: boolean
   ) {
-    super(_injector, _fungus.colour, col, row);
+    super(_injector, _isNode ? 'white' : _fungus.colour, col, row);
     this._grid = _injector.get(GridService);
     this._util = _injector.get(UtilService);
     this._config = _injector.get(ConfigService);
