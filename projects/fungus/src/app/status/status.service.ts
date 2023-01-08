@@ -18,13 +18,17 @@ export class StatusService implements Animatable {
   ) {}
 
   init(): void {
-    // this._animate.add(this);
+    this._animate.add(this);
   }
 
   animate(_tsDiff: number): void {
-    if (this.areNoCellsBg() && this.isOneFungusLeft()) {
+    if (this.isDone()) {
       this._config.finish();
     }
+  }
+
+  private isDone() {
+    return this.areNoCellsBg() && this.isOneFungusLeft();
   }
 
   private areNoCellsBg(): boolean {

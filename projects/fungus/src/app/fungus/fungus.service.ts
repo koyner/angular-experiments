@@ -19,17 +19,17 @@ export class FungusService implements Animatable {
   ) {}
 
   init(): void {
-    this._animate.add(this);
     let i = 0;
     while (i++ < this._config.fungus.count) {
       this.createFungusAt(this._grid.randCol(), this._grid.randRow());
     }
+    this._animate.add(this);
   }
 
   createFungusAt(col: number, row: number): void {
     const f = new Fungus(this._injector);
     f.addCell(col, row, true);
-      this.addFungus(f);
+    this.addFungus(f);
   }
 
   animate(tsDiff: number): void {

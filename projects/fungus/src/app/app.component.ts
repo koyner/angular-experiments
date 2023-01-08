@@ -4,6 +4,7 @@ import {ConfigService} from './config/config.service';
 import {FungusService} from './fungus/fungus.service';
 import {RenderService} from './render/render.service';
 import {StatusService} from './status/status.service';
+import {AnimateService} from './util/animate.service';
 import {WallService} from './wall/wall.service';
 
 @Component({
@@ -20,12 +21,15 @@ export class AppComponent implements AfterViewInit {
     private _bgService: BgService,
     private _fungusService: FungusService,
     private _wallService: WallService,
-    private _status: StatusService
+    private _status: StatusService,
+    private _animate: AnimateService
   ) {
-    this._status.init();
     this._bgService.init();
-    this._fungusService.init();
     this._wallService.init();
+    this._fungusService.init();
+    this._renderer.init();
+    this._status.init();
+    this._animate.start();
   }
 
   ngAfterViewInit(): void {

@@ -16,7 +16,9 @@ export class AnimateService {
   private _fps = 0;
   private _fpsLastTs = 0;
   private _fpsTicks = 0;
-  constructor(private _config: ConfigService, private _util: UtilService) {
+  constructor(private _config: ConfigService, private _util: UtilService) {}
+
+  start(): void {
     this._tsPrev = this._util.now;
     window.setInterval(this.animateFrame, this._config.animateMs);
   }

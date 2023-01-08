@@ -13,14 +13,16 @@ export class RenderService implements Animatable {
   private _canvas: HTMLCanvasElement;
   private _ctx: CanvasRenderingContext2D;
   private _size: number;
-  private readonly _pixelRatio: number;
+  private _pixelRatio: number;
   constructor(
     private _config: ConfigService,
     private _animate: AnimateService,
     private _grid: GridService
-  ) {
-    this._animate.add(this);
+  ) {}
+
+  init(): void {
     this._pixelRatio = window.devicePixelRatio || 1;
+    this._animate.add(this);
   }
 
   setCanvas(canvas: HTMLCanvasElement): void {
