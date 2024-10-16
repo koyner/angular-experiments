@@ -33,13 +33,13 @@ export class FungusService implements Animatable {
   }
 
   animate(tsDiff: number): void {
-    // this._timeSinceLastFeed += tsDiff;
-    // if (this._timeSinceLastFeed > 1000) {
-    //   this._timeSinceLastFeed -= 1000;
-    //   this.fungi.forEach(f => {
-    //     f.feed();
-    //   });
-    // }
+    this._timeSinceLastFeed += tsDiff;
+    if (this._timeSinceLastFeed > 1000) {
+      this._timeSinceLastFeed -= 1000;
+      this.fungi.forEach(f => {
+        f.feed();
+      });
+    }
     console.log(`fungi: ${this.fungi.length}`);
     this.fungi.forEach(f => f.grow(tsDiff));
   }

@@ -89,7 +89,7 @@ export class CellFungus extends Cell {
 
   private breed(): void {
     if (this._breedNext < this.age) {
-      let coords;
+      let coords: {col: number; row: number};
       switch (this.dirGrow()) {
         case Cardinal.w:
           coords = {col: this.col - 1, row: this.row};
