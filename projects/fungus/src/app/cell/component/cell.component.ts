@@ -14,8 +14,7 @@ export class CellComponent {
   @Input() cell: Cell;
   constructor(
     private _fungusService: FungusService,
-    private _renderer: RenderService,
-    private _config: ConfigService
+    private _renderer: RenderService
   ) {}
 
   clicked(): void {
