@@ -16,7 +16,7 @@ import {NodeComponent} from './node/node.component';
 import {SettingsComponent} from './settings/settings.component';
 import {SettingsService} from './settings/settings.service';
 
-import {ComponentsModule} from 'mrb-ui';
+import {ComponentsModule} from 'projects/mrb-ui/src/projects';
 
 @NgModule({
   imports: [

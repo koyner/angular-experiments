@@ -12,7 +12,7 @@ import {BubbleComponent} from './component/bubble/bubble.component';
 import {BubblesComponent} from './component/bubbles/bubbles.component';
 import {StatusComponent} from './component/status/status.component';
 
-import {ComponentsModule} from 'mrb-ui';
+import {ComponentsModule} from 'projects/mrb-ui/src/projects';
 
 @NgModule({
   declarations: [

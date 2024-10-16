@@ -18,7 +18,7 @@
             "main": "projects/minitest/src/main.ts",
             "polyfills": "projects/minitest/src/polyfills.ts",
             "tsConfig": "projects/minitest/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "projects/minitest/src/favicon.ico",
               "projects/minitest/src/assets"
@@ -138,7 +138,7 @@
             "main": "projects/touch/src/main.ts",
             "polyfills": "projects/touch/src/polyfills.ts",
             "tsConfig": "projects/touch/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "projects/touch/src/favicon.ico",
               "projects/touch/src/assets"
@@ -258,7 +258,7 @@
             "main": "projects/sierpinski/src/main.ts",
             "polyfills": "projects/sierpinski/src/polyfills.ts",
             "tsConfig": "projects/sierpinski/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "projects/sierpinski/src/favicon.ico",
               "projects/sierpinski/src/assets"
@@ -378,7 +378,7 @@
             "main": "projects/bars/src/main.ts",
             "polyfills": "projects/bars/src/polyfills.ts",
             "tsConfig": "projects/bars/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "projects/bars/src/favicon.ico",
               "projects/bars/src/assets"
@@ -498,7 +498,7 @@
             "main": "projects/nugget/src/main.ts",
             "polyfills": "projects/nugget/src/polyfills.ts",
             "tsConfig": "projects/nugget/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "projects/nugget/src/favicon.ico",
               "projects/nugget/src/assets"
@@ -622,7 +622,7 @@
             "main": "projects/threejs/src/main.ts",
             "polyfills": "projects/threejs/src/polyfills.ts",
             "tsConfig": "projects/threejs/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "projects/threejs/src/favicon.ico",
               "projects/threejs/src/assets"
